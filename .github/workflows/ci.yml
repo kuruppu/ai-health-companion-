@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -23,14 +23,14 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Run code generation
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Analyze code
         run: flutter analyze
-
-      - name: Run code generation
-        run: flutter pub run build_runner build --delete-conflicting-outputs
 
   test:
     name: Run Tests
@@ -38,7 +38,7 @@ jobs:
     needs: analyze
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -53,7 +53,7 @@ jobs:
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Run unit tests
-        run: flutter test --coverage
+        run: flutter test --coverage --no-test-assets
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -67,7 +67,7 @@ jobs:
     needs: test
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -85,7 +85,7 @@ jobs:
         run: flutter build apk --release
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
           path: build/app/outputs/flutter-apk/app-release.apk
@@ -97,7 +97,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
