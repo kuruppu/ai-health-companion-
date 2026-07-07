@@ -79,9 +79,7 @@ class WeeklySummaryCard extends StatelessWidget {
                   child: _StatItem(
                     icon: Icons.bolt,
                     label: 'Avg Energy',
-                    value: avgEnergy > 0
-                        ? avgEnergy.toStringAsFixed(1)
-                        : 'N/A',
+                    value: avgEnergy > 0 ? avgEnergy.toStringAsFixed(1) : 'N/A',
                     color: AppColors.energy,
                   ),
                 ),

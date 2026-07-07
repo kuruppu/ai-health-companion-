@@ -13,7 +13,8 @@ class WorkoutLogsTable extends Table {
   RealColumn get completionPercentage => real()();
 
   // Performance metrics
-  TextColumn get intensity => text()(); // how_did_it_feel: easy, moderate, challenging, very_hard
+  TextColumn get intensity =>
+      text()(); // how_did_it_feel: easy, moderate, challenging, very_hard
   IntColumn get energyBefore => integer().nullable()(); // 1-5 stars
   IntColumn get energyAfter => integer().nullable()(); // 1-5 stars
 
@@ -27,7 +28,8 @@ class WorkoutLogsTable extends Table {
   TextColumn get aiNextSteps => text().nullable()();
 
   // Timestamps
-  DateTimeColumn get completedAt => dateTime().withDefault(currentDateAndTime)();
+  DateTimeColumn get completedAt =>
+      dateTime().withDefault(currentDateAndTime)();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
   @override

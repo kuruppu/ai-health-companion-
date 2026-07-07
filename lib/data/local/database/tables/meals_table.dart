@@ -12,7 +12,8 @@ class MealsTable extends Table {
 
   // Photo logging
   TextColumn get photoUrl => text().nullable()();
-  BoolColumn get isPhotoLogged => boolean().withDefault(const Constant(false))();
+  BoolColumn get isPhotoLogged =>
+      boolean().withDefault(const Constant(false))();
 
   // Nutritional info (aggregated from meal items)
   RealColumn get totalCalories => real()();

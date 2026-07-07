@@ -95,7 +95,8 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
               ),
               const SizedBox(height: 24),
               ElevatedButton(
-                onPressed: () => ref.read(todaysMealsProvider.notifier).refresh(),
+                onPressed: () =>
+                    ref.read(todaysMealsProvider.notifier).refresh(),
                 child: const Text('Retry'),
               ),
             ],

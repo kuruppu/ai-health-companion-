@@ -30,7 +30,8 @@ class QuickActionsCard extends StatelessWidget {
                   // TODO: Navigate to meal logging
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Photo meal logging - Coming in Milestone 4'),
+                      content:
+                          Text('Photo meal logging - Coming in Milestone 4'),
                     ),
                   );
                 },

@@ -188,9 +188,8 @@ class TodayWorkoutsCard extends StatelessWidget {
   int _getAvgCompletion() {
     if (workouts.isEmpty) return 0;
 
-    final totalCompletion = workouts
-        .map((w) => w.completionPercentage)
-        .reduce((a, b) => a + b);
+    final totalCompletion =
+        workouts.map((w) => w.completionPercentage).reduce((a, b) => a + b);
 
     return (totalCompletion / workouts.length).round();
   }

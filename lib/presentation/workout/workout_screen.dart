@@ -61,7 +61,8 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
           }
 
           return RefreshIndicator(
-            onRefresh: () => ref.read(workoutHistoryProvider.notifier).refresh(),
+            onRefresh: () =>
+                ref.read(workoutHistoryProvider.notifier).refresh(),
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [

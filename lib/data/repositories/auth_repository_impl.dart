@@ -91,7 +91,8 @@ class AuthRepositoryImpl implements AuthRepository {
     }
 
     try {
-      final verificationId = await _remoteDataSource.loginWithPhone(phoneNumber);
+      final verificationId =
+          await _remoteDataSource.loginWithPhone(phoneNumber);
       return Right(verificationId);
     } on AuthException catch (e) {
       return Left(AuthFailure(message: e.message, code: e.code));

@@ -15,7 +15,8 @@ class IntegratedChatScreen extends ConsumerStatefulWidget {
   const IntegratedChatScreen({super.key});
 
   @override
-  ConsumerState<IntegratedChatScreen> createState() => _IntegratedChatScreenState();
+  ConsumerState<IntegratedChatScreen> createState() =>
+      _IntegratedChatScreenState();
 }
 
 class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
@@ -71,9 +72,13 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
                   style: AppTextStyles.body1Medium,
                 ),
                 Text(
-                  hasPendingCheckIn ? 'Waiting for response...' : 'Always here to help',
+                  hasPendingCheckIn
+                      ? 'Waiting for response...'
+                      : 'Always here to help',
                   style: AppTextStyles.caption.copyWith(
-                    color: hasPendingCheckIn ? AppColors.warning : AppColors.textSecondary,
+                    color: hasPendingCheckIn
+                        ? AppColors.warning
+                        : AppColors.textSecondary,
                   ),
                 ),
               ],
@@ -83,7 +88,8 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
-            onPressed: () => ref.read(integratedChatProvider.notifier).clearPendingCheckIn(),
+            onPressed: () =>
+                ref.read(integratedChatProvider.notifier).clearPendingCheckIn(),
           ),
         ],
       ),

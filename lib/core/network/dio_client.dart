@@ -13,7 +13,8 @@ class DioClient {
 
   DioClient(this._dio) {
     _dio
-      ..options.baseUrl = dotenv.env['CLAUDE_API_BASE_URL'] ?? AppConstants.claudeApiBaseUrl
+      ..options.baseUrl =
+          dotenv.env['CLAUDE_API_BASE_URL'] ?? AppConstants.claudeApiBaseUrl
       ..options.connectTimeout = AppConstants.connectionTimeout
       ..options.receiveTimeout = AppConstants.receiveTimeout
       ..options.headers = {

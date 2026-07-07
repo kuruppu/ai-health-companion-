@@ -103,7 +103,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
-        verificationCompleted: (firebase_auth.PhoneAuthCredential credential) async {
+        verificationCompleted:
+            (firebase_auth.PhoneAuthCredential credential) async {
           await _firebaseAuth.signInWithCredential(credential);
         },
         verificationFailed: (firebase_auth.FirebaseAuthException e) {
@@ -138,7 +139,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         smsCode: otp,
       );
 
-      final userCredential = await _firebaseAuth.signInWithCredential(credential);
+      final userCredential =
+          await _firebaseAuth.signInWithCredential(credential);
 
       if (userCredential.user == null) {
         throw const AuthException(message: 'OTP verification failed');

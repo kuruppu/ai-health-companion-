@@ -57,7 +57,8 @@ class WorkoutLocalDataSource {
     final query = _database.select(_database.workoutsTable)
       ..where((tbl) => tbl.userId.equals(userId))
       ..orderBy([
-        (tbl) => OrderingTerm(expression: tbl.createdAt, mode: OrderingMode.desc)
+        (tbl) =>
+            OrderingTerm(expression: tbl.createdAt, mode: OrderingMode.desc)
       ])
       ..limit(limit);
 
@@ -135,8 +136,9 @@ class WorkoutLocalDataSource {
   /// Cache workout in Hive
   Future<void> _cacheWorkout(WorkoutModel workout) async {
     final cacheKey = '${workout.userId}_workouts';
-    final cached = _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
-        as Map<dynamic, dynamic>;
+    final cached =
+        _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
+            as Map<dynamic, dynamic>;
 
     cached[workout.workoutId] = workout.toJson();
 
@@ -163,8 +165,9 @@ class WorkoutLocalDataSource {
   /// Get cached workouts
   Future<List<WorkoutModel>> _getCachedWorkouts(String userId) async {
     final cacheKey = '${userId}_workouts';
-    final cached = _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
-        as Map<dynamic, dynamic>;
+    final cached =
+        _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
+            as Map<dynamic, dynamic>;
 
     final workouts = cached.values
         .map((json) => WorkoutModel.fromJson(json as Map<String, dynamic>))

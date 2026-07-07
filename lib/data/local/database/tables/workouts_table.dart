@@ -7,7 +7,8 @@ class WorkoutsTable extends Table {
 
   // Workout details
   TextColumn get workoutName => text()();
-  TextColumn get workoutType => text()(); // strength, cardio, yoga, stretching, mobility, recovery
+  TextColumn get workoutType =>
+      text()(); // strength, cardio, yoga, stretching, mobility, recovery
   TextColumn get intensity => text()(); // low, medium, high
   IntColumn get durationMinutes => integer()();
   IntColumn get estimatedCaloriesBurn => integer().nullable()();
@@ -17,8 +18,10 @@ class WorkoutsTable extends Table {
   TextColumn get instructions => text().nullable()();
 
   // AI generated
-  BoolColumn get isAiGenerated => boolean().withDefault(const Constant(false))();
-  TextColumn get aiContext => text().nullable()(); // Why this workout was recommended
+  BoolColumn get isAiGenerated =>
+      boolean().withDefault(const Constant(false))();
+  TextColumn get aiContext =>
+      text().nullable()(); // Why this workout was recommended
 
   // Scheduling
   DateTimeColumn get scheduledFor => dateTime().nullable()();

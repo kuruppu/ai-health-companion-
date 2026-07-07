@@ -8,7 +8,8 @@ class ChatMessagesTable extends Table {
   // Message content
   TextColumn get role => text()(); // user, assistant
   TextColumn get content => text()();
-  TextColumn get messageType => text().withDefault(const Constant('text'))(); // text, image, voice
+  TextColumn get messageType =>
+      text().withDefault(const Constant('text'))(); // text, image, voice
 
   // Metadata
   TextColumn get imageUrl => text().nullable()(); // For meal photos
@@ -16,7 +17,8 @@ class ChatMessagesTable extends Table {
   IntColumn get tokenCount => integer().nullable()();
 
   // Context tracking
-  TextColumn get context => text().nullable()(); // JSON string for conversation context
+  TextColumn get context =>
+      text().nullable()(); // JSON string for conversation context
   BoolColumn get isImportant => boolean().withDefault(const Constant(false))();
 
   // Timestamp

@@ -63,7 +63,8 @@ class WorkoutModel extends Workout {
       description: json['description'] as String,
       difficulty: WorkoutDifficulty.values.byName(json['difficulty'] as String),
       durationMinutes: json['duration_minutes'] as int,
-      targetMuscles: (json['target_muscles'] as List).map((e) => e as String).toList(),
+      targetMuscles:
+          (json['target_muscles'] as List).map((e) => e as String).toList(),
       exercises: (json['exercises'] as List)
           .map((e) => ExerciseModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -83,7 +84,8 @@ class WorkoutModel extends Workout {
       'difficulty': difficulty.name,
       'duration_minutes': durationMinutes,
       'target_muscles': targetMuscles,
-      'exercises': exercises.map((e) => ExerciseModel.fromEntity(e).toJson()).toList(),
+      'exercises':
+          exercises.map((e) => ExerciseModel.fromEntity(e).toJson()).toList(),
       'is_ai_generated': isAiGenerated,
       'ai_context': aiContext,
       'created_at': createdAt.toIso8601String(),
@@ -119,7 +121,8 @@ class WorkoutModel extends Workout {
       'difficulty': difficulty.name,
       'duration_minutes': durationMinutes,
       'target_muscles': targetMuscles.join(','),
-      'exercises_json': exercises.map((e) => ExerciseModel.fromEntity(e).toJson()).toList(),
+      'exercises_json':
+          exercises.map((e) => ExerciseModel.fromEntity(e).toJson()).toList(),
       'is_ai_generated': isAiGenerated,
       'ai_context': aiContext,
       'created_at': createdAt.millisecondsSinceEpoch,
@@ -169,7 +172,8 @@ class ExerciseModel extends Exercise {
       name: json['name'] as String,
       description: json['description'] as String,
       type: ExerciseType.values.byName(json['type'] as String),
-      targetMuscles: (json['target_muscles'] as List).map((e) => e as String).toList(),
+      targetMuscles:
+          (json['target_muscles'] as List).map((e) => e as String).toList(),
       sets: json['sets'] as int?,
       repsPerSet: json['reps_per_set'] as int?,
       durationSeconds: json['duration_seconds'] as int?,
@@ -293,7 +297,8 @@ class WorkoutLogModel extends WorkoutLog {
       workoutId: row['workout_id'] as String,
       workoutName: row['workout_name'] as String,
       startedAt: DateTime.fromMillisecondsSinceEpoch(row['started_at'] as int),
-      completedAt: DateTime.fromMillisecondsSinceEpoch(row['completed_at'] as int),
+      completedAt:
+          DateTime.fromMillisecondsSinceEpoch(row['completed_at'] as int),
       durationMinutes: row['duration_minutes'] as int,
       exercisesCompleted: row['exercises_completed'] as int,
       totalExercises: row['total_exercises'] as int,

@@ -216,7 +216,8 @@ class MealAnalysisCard extends StatelessWidget {
                                   const SizedBox(height: 8),
                                   _buildDetailRow(
                                     'Fat',
-                                    meal.analysis.nutritionalEstimate!.fatLevel!,
+                                    meal.analysis.nutritionalEstimate!
+                                        .fatLevel!,
                                   ),
                                 ],
                                 const SizedBox(height: 12),

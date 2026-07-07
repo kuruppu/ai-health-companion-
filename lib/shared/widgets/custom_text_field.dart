@@ -99,7 +99,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   )
                 : widget.suffixIcon,
             filled: true,
-            fillColor: widget.enabled ? AppColors.surfaceLight : AppColors.divider,
+            fillColor:
+                widget.enabled ? AppColors.surfaceLight : AppColors.divider,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,

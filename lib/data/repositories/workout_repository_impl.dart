@@ -187,7 +187,9 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
     try {
       await _localDataSource.deleteWorkout(workoutId: workoutId);
 
-      _remoteDataSource.deleteWorkoutFromFirestore(workoutId).catchError((error) {
+      _remoteDataSource
+          .deleteWorkoutFromFirestore(workoutId)
+          .catchError((error) {
         print('Failed to delete workout from Firestore: $error');
       });
 
@@ -208,7 +210,8 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
         limit: 10,
       );
 
-      final aiWorkouts = workouts.where((w) => w.isAiGenerated).take(3).toList();
+      final aiWorkouts =
+          workouts.where((w) => w.isAiGenerated).take(3).toList();
 
       return Right(aiWorkouts.map((w) => w.toEntity()).toList());
     } catch (e) {

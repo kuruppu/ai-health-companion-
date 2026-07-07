@@ -50,7 +50,8 @@ class AppRoutes {
   static const String startWorkoutName = 'start-workout';
 
   // Helper methods for workout routes
-  static String workoutDetails(String workoutId) => '/workout/workout/$workoutId';
+  static String workoutDetails(String workoutId) =>
+      '/workout/workout/$workoutId';
   static String startWorkout(String workoutId) => '/workout/start/$workoutId';
 
   // Profile

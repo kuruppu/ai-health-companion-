@@ -26,11 +26,13 @@ class DashboardRepositoryImpl implements DashboardRepository {
       final weekEnd = weekStart.add(const Duration(days: 6));
 
       // Get progress logs for this week
-      final logs = await _database.watchProgressLogs(
-        userId,
-        weekStart,
-        weekEnd,
-      ).first;
+      final logs = await _database
+          .watchProgressLogs(
+            userId,
+            weekStart,
+            weekEnd,
+          )
+          .first;
 
       // Get today's log
       final todayStart = DateTime(now.year, now.month, now.day);
@@ -43,8 +45,9 @@ class DashboardRepositoryImpl implements DashboardRepository {
       final todayLog = todayLogs.isNotEmpty ? todayLogs.first : null;
 
       // Calculate metrics
-      final energyLevels =
-          logs.where((log) => log.energyLevel != null).map((e) => e.energyLevel!);
+      final energyLevels = logs
+          .where((log) => log.energyLevel != null)
+          .map((e) => e.energyLevel!);
       final avgEnergy = energyLevels.isNotEmpty
           ? energyLevels.reduce((a, b) => a + b) / energyLevels.length
           : 0.0;
@@ -125,11 +128,13 @@ class DashboardRepositoryImpl implements DashboardRepository {
     required DateTime endDate,
   }) async {
     try {
-      final logs = await _database.watchProgressLogs(
-        userId,
-        startDate,
-        endDate,
-      ).first;
+      final logs = await _database
+          .watchProgressLogs(
+            userId,
+            startDate,
+            endDate,
+          )
+          .first;
 
       return Right(logs.map((log) {
         return ProgressLog(
@@ -159,11 +164,13 @@ class DashboardRepositoryImpl implements DashboardRepository {
       final todayStart = DateTime(now.year, now.month, now.day);
       final todayEnd = todayStart.add(const Duration(days: 1));
 
-      final logs = await _database.watchProgressLogs(
-        userId,
-        todayStart,
-        todayEnd,
-      ).first;
+      final logs = await _database
+          .watchProgressLogs(
+            userId,
+            todayStart,
+            todayEnd,
+          )
+          .first;
 
       if (logs.isEmpty) {
         return const Right(null);
@@ -230,4 +237,3 @@ class DashboardRepositoryImpl implements DashboardRepository {
     ];
   }
 }
-

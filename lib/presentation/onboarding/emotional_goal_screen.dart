@@ -100,7 +100,8 @@ class _EmotionalGoalScreenState extends ConsumerState<EmotionalGoalScreen> {
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 itemCount: _goals.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 12),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   final goal = _goals[index];
                   final isSelected = _selectedGoal == goal.title;
@@ -196,7 +197,9 @@ class _GoalCard extends StatelessWidget {
                   Text(
                     goal.title,
                     style: AppTextStyles.body1Medium.copyWith(
-                      color: isSelected ? AppColors.primary : AppColors.textPrimary,
+                      color: isSelected
+                          ? AppColors.primary
+                          : AppColors.textPrimary,
                     ),
                   ),
                   const SizedBox(height: 4),

@@ -23,7 +23,8 @@ class StringUtils {
   }
 
   /// Truncate string with ellipsis
-  static String truncate(String text, int maxLength, {String ellipsis = '...'}) {
+  static String truncate(String text, int maxLength,
+      {String ellipsis = '...'}) {
     if (text.length <= maxLength) {
       return text;
     }
@@ -56,10 +57,7 @@ class StringUtils {
 
   /// Convert to PascalCase
   static String toPascalCase(String text) {
-    return text
-        .split(RegExp(r'[_\s]+'))
-        .map((word) => capitalize(word))
-        .join();
+    return text.split(RegExp(r'[_\s]+')).map((word) => capitalize(word)).join();
   }
 
   /// Check if string is null or empty
@@ -171,7 +169,8 @@ class StringUtils {
 
   /// Generate random string
   static String generateRandomString(int length) {
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     final random = DateTime.now().millisecondsSinceEpoch;
     return List.generate(
       length,

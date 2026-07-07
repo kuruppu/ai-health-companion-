@@ -23,7 +23,8 @@ class ProgressLogsTable extends Table {
   IntColumn get stressLevel => integer().nullable()(); // 1-5 stars
 
   // Functional milestones (emotional goal progress)
-  TextColumn get functionalMilestones => text().nullable()(); // JSON: ["Climbed 3 flights without breathlessness", "Played with baby for 30 min"]
+  TextColumn get functionalMilestones => text()
+      .nullable()(); // JSON: ["Climbed 3 flights without breathlessness", "Played with baby for 30 min"]
 
   // Photos
   TextColumn get photoUrl => text().nullable()();

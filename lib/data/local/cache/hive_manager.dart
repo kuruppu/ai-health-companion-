@@ -128,7 +128,9 @@ class HiveManager {
     try {
       final data = _chatBox?.get('chat_history');
       if (data == null) return null;
-      return (data as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
+      return (data as List)
+          .map((e) => Map<String, dynamic>.from(e as Map))
+          .toList();
     } catch (e) {
       throw CacheException(
         message: 'Failed to get cached chat history: ${e.toString()}',
@@ -161,7 +163,9 @@ class HiveManager {
     try {
       final data = _nutritionBox?.get('recent_meals');
       if (data == null) return null;
-      return (data as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
+      return (data as List)
+          .map((e) => Map<String, dynamic>.from(e as Map))
+          .toList();
     } catch (e) {
       throw CacheException(
         message: 'Failed to get cached recent meals: ${e.toString()}',
@@ -184,7 +188,9 @@ class HiveManager {
     try {
       final data = _workoutBox?.get('recent_workouts');
       if (data == null) return null;
-      return (data as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
+      return (data as List)
+          .map((e) => Map<String, dynamic>.from(e as Map))
+          .toList();
     } catch (e) {
       throw CacheException(
         message: 'Failed to get cached recent workouts: ${e.toString()}',

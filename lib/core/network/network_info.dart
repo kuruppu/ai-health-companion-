@@ -25,7 +25,6 @@ class NetworkInfoImpl implements NetworkInfo {
   }
 
   bool _isConnected(List<ConnectivityResult> results) {
-    return results.isNotEmpty &&
-        !results.contains(ConnectivityResult.none);
+    return results.isNotEmpty && !results.contains(ConnectivityResult.none);
   }
 }

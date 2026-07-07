@@ -106,9 +106,8 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
     final messages = <Map<String, dynamic>>[];
 
     // Add conversation history (last 10 messages for context)
-    final recentHistory = history.length > 10
-        ? history.sublist(history.length - 10)
-        : history;
+    final recentHistory =
+        history.length > 10 ? history.sublist(history.length - 10) : history;
 
     for (final msg in recentHistory) {
       messages.add({

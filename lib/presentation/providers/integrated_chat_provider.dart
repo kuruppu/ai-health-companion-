@@ -36,7 +36,8 @@ class IntegratedChat extends _$IntegratedChat {
 
     // Generate check-in message
     final checkService = getIt<MealCheckService>();
-    final messageContent = checkService.generateCheckInMessage(period, userName);
+    final messageContent =
+        checkService.generateCheckInMessage(period, userName);
 
     // Create AI message
     final checkInMessage = ChatMessage(

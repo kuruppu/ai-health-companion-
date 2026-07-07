@@ -170,14 +170,11 @@ class IntegratedDashboard extends _$IntegratedDashboard {
     final workoutsCompleted = workoutLogs.length;
     final minutesExercised = workoutLogs.isEmpty
         ? 0
-        : workoutLogs
-            .map((w) => w.durationMinutes)
-            .reduce((a, b) => a + b);
+        : workoutLogs.map((w) => w.durationMinutes).reduce((a, b) => a + b);
 
     // Get meal check status
-    final skipRate = ref
-        .read(mealCheckNotifierProvider.notifier)
-        .getSkipRate(user.userId);
+    final skipRate =
+        ref.read(mealCheckNotifierProvider.notifier).getSkipRate(user.userId);
 
     // Determine which meals were eaten today
     final now = DateTime.now();
@@ -209,9 +206,8 @@ class IntegratedDashboard extends _$IntegratedDashboard {
     final weekStart = now.subtract(Duration(days: 7));
     final allWorkoutLogsState = ref.watch(workoutLogsProvider);
     final weeklyWorkoutCount = allWorkoutLogsState.maybeWhen(
-      data: (logs) => logs
-          .where((log) => log.completedAt.isAfter(weekStart))
-          .length,
+      data: (logs) =>
+          logs.where((log) => log.completedAt.isAfter(weekStart)).length,
       orElse: () => 0,
     );
 

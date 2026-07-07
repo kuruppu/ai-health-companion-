@@ -8,7 +8,8 @@ class MealItemsTable extends Table {
   // Food details
   TextColumn get foodName => text()();
   TextColumn get foodNameSinhala => text().nullable()();
-  TextColumn get category => text().nullable()(); // rice, curry, vegetable, protein, etc
+  TextColumn get category =>
+      text().nullable()(); // rice, curry, vegetable, protein, etc
 
   // Portion
   RealColumn get portionSize => real()(); // Standard serving size

@@ -122,8 +122,7 @@ class AppDatabase extends _$AppDatabase {
 
   // Meal items queries
   Stream<List<MealItemsTableData>> watchMealItems(String mealId) {
-    return (select(mealItemsTable)
-          ..where((tbl) => tbl.mealId.equals(mealId)))
+    return (select(mealItemsTable)..where((tbl) => tbl.mealId.equals(mealId)))
         .watch();
   }
 
@@ -206,7 +205,8 @@ class AppDatabase extends _$AppDatabase {
   // Reminders queries
   Stream<List<RemindersTableData>> watchReminders(String userId) {
     return (select(remindersTable)
-          ..where((tbl) => tbl.userId.equals(userId) & tbl.isActive.equals(true))
+          ..where(
+              (tbl) => tbl.userId.equals(userId) & tbl.isActive.equals(true))
           ..orderBy([(tbl) => OrderingTerm.asc(tbl.reminderTime)]))
         .watch();
   }

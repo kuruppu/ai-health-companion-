@@ -139,7 +139,8 @@ class MealRemoteDataSource {
     String? userNotes,
     Map<String, dynamic>? userData,
   }) {
-    final emotionalGoal = userData?['emotional_goal'] as String? ?? 'feel healthier';
+    final emotionalGoal =
+        userData?['emotional_goal'] as String? ?? 'feel healthier';
     final targetWeight = userData?['target_weight'] as num? ?? 55;
 
     return '''Analyze this ${mealType.displayName.toLowerCase()} photo as a supportive AI health coach.
@@ -182,11 +183,9 @@ Return ONLY the JSON, no other text.''';
 
       return MealAnalysis(
         description: json['description'] as String,
-        portionSize:
-            PortionSize.values.byName(json['portion_size'] as String),
-        foodCategories: (json['food_categories'] as List)
-            .map((e) => e as String)
-            .toList(),
+        portionSize: PortionSize.values.byName(json['portion_size'] as String),
+        foodCategories:
+            (json['food_categories'] as List).map((e) => e as String).toList(),
         healthScore: json['health_score'] as int,
         feedback: json['feedback'] as String,
         suggestions: json['suggestions'] as String?,
@@ -198,8 +197,7 @@ Return ONLY the JSON, no other text.''';
                     json['nutritional_estimate']['protein_level'] as String?,
                 carbLevel:
                     json['nutritional_estimate']['carb_level'] as String?,
-                fatLevel:
-                    json['nutritional_estimate']['fat_level'] as String?,
+                fatLevel: json['nutritional_estimate']['fat_level'] as String?,
               )
             : null,
       );

@@ -53,7 +53,9 @@ class WorkoutCard extends StatelessWidget {
                       child: Text(
                         workout.name,
                         style: AppTextStyles.h6.copyWith(
-                          color: isRecommended ? Colors.white : AppColors.textPrimary,
+                          color: isRecommended
+                              ? Colors.white
+                              : AppColors.textPrimary,
                         ),
                       ),
                     ),

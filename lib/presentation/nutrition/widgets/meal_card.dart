@@ -188,7 +188,8 @@ class MealCard extends StatelessWidget {
                 Wrap(
                   spacing: 6,
                   runSpacing: 6,
-                  children: meal.analysis.foodCategories.take(3).map((category) {
+                  children:
+                      meal.analysis.foodCategories.take(3).map((category) {
                     return Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,

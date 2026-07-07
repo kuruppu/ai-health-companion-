@@ -149,7 +149,8 @@ class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: _isLogging ? null : () => Navigator.pop(context),
+                        onPressed:
+                            _isLogging ? null : () => Navigator.pop(context),
                         child: const Text('Cancel'),
                       ),
                     ),

@@ -58,7 +58,8 @@ class MealLocalDataSource {
       ..limit(limit);
 
     if (startDate != null) {
-      query = query..where((tbl) => tbl.eatenAt.isBiggerOrEqualValue(startDate));
+      query = query
+        ..where((tbl) => tbl.eatenAt.isBiggerOrEqualValue(startDate));
     }
 
     if (endDate != null) {

@@ -81,7 +81,8 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                       label: 'General Fitness',
                       value: 'general_fitness',
                       selected: _goalType == 'general_fitness',
-                      onTap: () => setState(() => _goalType = 'general_fitness'),
+                      onTap: () =>
+                          setState(() => _goalType = 'general_fitness'),
                     ),
                     _GoalChip(
                       label: 'Weight Loss',
@@ -201,8 +202,8 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                       child: _DifficultyOption(
                         difficulty: WorkoutDifficulty.beginner,
                         selected: _difficulty == WorkoutDifficulty.beginner,
-                        onTap: () =>
-                            setState(() => _difficulty = WorkoutDifficulty.beginner),
+                        onTap: () => setState(
+                            () => _difficulty = WorkoutDifficulty.beginner),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -219,8 +220,8 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                       child: _DifficultyOption(
                         difficulty: WorkoutDifficulty.advanced,
                         selected: _difficulty == WorkoutDifficulty.advanced,
-                        onTap: () =>
-                            setState(() => _difficulty = WorkoutDifficulty.advanced),
+                        onTap: () => setState(
+                            () => _difficulty = WorkoutDifficulty.advanced),
                       ),
                     ),
                   ],
@@ -263,12 +264,13 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
     });
 
     try {
-      final workout = await ref.read(workoutGeneratorProvider.notifier).generateWorkout(
-            goalType: _goalType,
-            energyLevel: _energyLevel,
-            durationMinutes: _durationMinutes,
-            difficulty: _difficulty,
-          );
+      final workout =
+          await ref.read(workoutGeneratorProvider.notifier).generateWorkout(
+                goalType: _goalType,
+                energyLevel: _energyLevel,
+                durationMinutes: _durationMinutes,
+                difficulty: _difficulty,
+              );
 
       if (mounted) {
         Navigator.pop(context);

@@ -7,13 +7,16 @@ class WorkoutExercisesTable extends Table {
 
   // Exercise details
   TextColumn get exerciseName => text()();
-  TextColumn get exerciseType => text()(); // strength, cardio, stretching, yoga_pose
-  TextColumn get muscleGroup => text().nullable()(); // core, upper_body, lower_body, full_body
+  TextColumn get exerciseType =>
+      text()(); // strength, cardio, stretching, yoga_pose
+  TextColumn get muscleGroup =>
+      text().nullable()(); // core, upper_body, lower_body, full_body
 
   // Sets and reps
   IntColumn get sets => integer().withDefault(const Constant(1))();
   IntColumn get reps => integer().nullable()(); // For strength exercises
-  IntColumn get durationSeconds => integer().nullable()(); // For holds, planks, cardio
+  IntColumn get durationSeconds =>
+      integer().nullable()(); // For holds, planks, cardio
 
   // Instructions
   TextColumn get instructions => text().nullable()();
@@ -21,7 +24,8 @@ class WorkoutExercisesTable extends Table {
   TextColumn get imageUrl => text().nullable()();
 
   // Progression
-  RealColumn get difficultyLevel => real().withDefault(const Constant(1.0))(); // 1.0 to 5.0
+  RealColumn get difficultyLevel =>
+      real().withDefault(const Constant(1.0))(); // 1.0 to 5.0
   TextColumn get progressionNotes => text().nullable()();
 
   // Order in workout

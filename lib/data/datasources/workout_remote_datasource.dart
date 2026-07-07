@@ -125,7 +125,8 @@ class WorkoutRemoteDataSource {
     List<String>? targetMuscles,
     Map<String, dynamic>? userData,
   }) {
-    final emotionalGoal = userData?['emotional_goal'] as String? ?? 'feel healthier';
+    final emotionalGoal =
+        userData?['emotional_goal'] as String? ?? 'feel healthier';
     final targetWeight = userData?['target_weight'] as num? ?? 55;
 
     final musclesFocus = targetMuscles != null && targetMuscles.isNotEmpty
@@ -191,7 +192,8 @@ Return ONLY the JSON, no other text.''';
       // Generate unique IDs
       final workoutId = DateTime.now().millisecondsSinceEpoch.toString();
 
-      final exercises = (json['exercises'] as List).asMap().entries.map((entry) {
+      final exercises =
+          (json['exercises'] as List).asMap().entries.map((entry) {
         final exerciseJson = entry.value as Map<String, dynamic>;
         return ExerciseModel.fromJson({
           ...exerciseJson,
@@ -205,11 +207,11 @@ Return ONLY the JSON, no other text.''';
         userId: userId,
         name: json['name'] as String,
         description: json['description'] as String,
-        difficulty: WorkoutDifficulty.values.byName(json['difficulty'] as String),
+        difficulty:
+            WorkoutDifficulty.values.byName(json['difficulty'] as String),
         durationMinutes: json['duration_minutes'] as int,
-        targetMuscles: (json['target_muscles'] as List)
-            .map((e) => e as String)
-            .toList(),
+        targetMuscles:
+            (json['target_muscles'] as List).map((e) => e as String).toList(),
         exercises: exercises,
         isAiGenerated: true,
         aiContext: json['ai_context'] as String?,

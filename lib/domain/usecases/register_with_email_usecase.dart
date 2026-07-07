@@ -34,7 +34,8 @@ class RegisterWithEmailUseCase {
     if (!ValidationUtils.isValidName(displayName)) {
       return const Left(
         ValidationFailure(
-          message: 'Name must be between 2-50 characters and contain only letters',
+          message:
+              'Name must be between 2-50 characters and contain only letters',
         ),
       );
     }
