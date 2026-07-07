@@ -1,0 +1,157 @@
+<h2>Complete System Architecture</h2>
+<p class="subtitle">Based on your requirements - review each section and let me know if anything needs adjustment</p>
+
+<div class="section">
+  <h3>Core Architecture Overview</h3>
+  <div class="mockup" style="margin: 16px 0;">
+    <div class="mockup-body" style="padding: 20px; background: #f8f9fa;">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="display: inline-block; padding: 16px 24px; background: #673AB7; color: white; border-radius: 12px; font-weight: 600; font-size: 1.1em;">
+          Flutter Mobile App (Android)
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+        <div style="flex: 1; padding: 16px; background: white; border: 3px solid #2196F3; border-radius: 8px; text-align: center;">
+          <div style="font-weight: 600; margin-bottom: 8px;">Chat Interface</div>
+          <div style="font-size: 0.85em; color: #666;">Primary interaction</div>
+        </div>
+        <div style="flex: 1; padding: 16px; background: white; border: 3px solid #4CAF50; border-radius: 8px; text-align: center;">
+          <div style="font-weight: 600; margin-bottom: 8px;">AI Engine</div>
+          <div style="font-size: 0.85em; color: #666;">Claude API (real-time)</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+        <div style="flex: 1; padding: 16px; background: white; border: 2px solid #FF9800; border-radius: 8px; text-align: center;">
+          <div style="font-weight: 600; margin-bottom: 8px;">Local Cache</div>
+          <div style="font-size: 0.85em; color: #666;">SQLite (offline queue)</div>
+        </div>
+        <div style="flex: 1; padding: 16px; background: white; border: 2px solid #E91E63; border-radius: 8px; text-align: center;">
+          <div style="font-weight: 600; margin-bottom: 8px;">Cloud Storage</div>
+          <div style="font-size: 0.85em; color: #666;">Firebase (encrypted)</div>
+        </div>
+      </div>
+
+      <div style="padding: 16px; background: white; border: 2px solid #9C27B0; border-radius: 8px; text-align: center;">
+        <div style="font-weight: 600; margin-bottom: 8px;">Backend Services</div>
+        <div style="font-size: 0.85em; color: #666;">Firebase Auth + Cloud Functions + Firestore</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Technology Stack</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;">
+    <div style="padding: 12px; background: #e3f2fd; border-left: 4px solid #2196F3; border-radius: 4px;">
+      <div style="font-weight: 600; margin-bottom: 6px;">Frontend</div>
+      <ul style="margin: 4px 0 0 16px; font-size: 0.9em; line-height: 1.8;">
+        <li>Flutter 3.x (Android)</li>
+        <li>Dart 3.x</li>
+        <li>Material Design 3</li>
+      </ul>
+    </div>
+    <div style="padding: 12px; background: #f3e5f5; border-left: 4px solid #9C27B0; border-radius: 4px;">
+      <div style="font-weight: 600; margin-bottom: 6px;">State Management</div>
+      <ul style="margin: 4px 0 0 16px; font-size: 0.9em; line-height: 1.8;">
+        <li>Riverpod 2.x</li>
+        <li>Freezed (immutability)</li>
+        <li>Hooks (UI state)</li>
+      </ul>
+    </div>
+    <div style="padding: 12px; background: #fff3e0; border-left: 4px solid #FF9800; border-radius: 4px;">
+      <div style="font-weight: 600; margin-bottom: 6px;">Local Storage</div>
+      <ul style="margin: 4px 0 0 16px; font-size: 0.9em; line-height: 1.8;">
+        <li>SQLite (Drift)</li>
+        <li>Hive (secure storage)</li>
+        <li>Shared Preferences</li>
+      </ul>
+    </div>
+    <div style="padding: 12px; background: #fce4ec; border-left: 4px solid #E91E63; border-radius: 4px;">
+      <div style="font-weight: 600; margin-bottom: 6px;">Backend & Cloud</div>
+      <ul style="margin: 4px 0 0 16px; font-size: 0.9em; line-height: 1.8;">
+        <li>Firebase Auth</li>
+        <li>Cloud Firestore</li>
+        <li>Cloud Functions</li>
+      </ul>
+    </div>
+    <div style="padding: 12px; background: #e8f5e9; border-left: 4px solid #4CAF50; border-radius: 4px;">
+      <div style="font-weight: 600; margin-bottom: 6px;">AI Integration</div>
+      <ul style="margin: 4px 0 0 16px; font-size: 0.9em; line-height: 1.8;">
+        <li>Claude API (Anthropic)</li>
+        <li>HTTP Client (Dio)</li>
+        <li>Streaming responses</li>
+      </ul>
+    </div>
+    <div style="padding: 12px; background: #fff9c4; border-left: 4px solid #FFC107; border-radius: 4px;">
+      <div style="font-weight: 600; margin-bottom: 6px;">Notifications</div>
+      <ul style="margin: 4px 0 0 16px; font-size: 0.9em; line-height: 1.8;">
+        <li>Local Notifications</li>
+        <li>Background tasks</li>
+        <li>WorkManager</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Clean Architecture Layers</h3>
+  <div class="mockup" style="margin: 16px 0;">
+    <div class="mockup-body" style="padding: 16px; background: #f8f9fa;">
+      <div style="margin-bottom: 12px; padding: 12px; background: #E3F2FD; border-radius: 6px;">
+        <div style="font-weight: 600; color: #1976D2;">📱 Presentation Layer</div>
+        <div style="font-size: 0.85em; color: #666; margin-top: 4px;">
+          Pages → Widgets → ViewModels (Riverpod Notifiers)
+        </div>
+      </div>
+      <div style="margin-bottom: 12px; padding: 12px; background: #F3E5F5; border-radius: 6px;">
+        <div style="font-weight: 600; color: #7B1FA2;">🔧 Domain Layer</div>
+        <div style="font-size: 0.85em; color: #666; margin-top: 4px;">
+          Entities → Use Cases → Repository Interfaces
+        </div>
+      </div>
+      <div style="padding: 12px; background: #FFF3E0; border-radius: 6px;">
+        <div style="font-weight: 600; color: #F57C00;">💾 Data Layer</div>
+        <div style="font-size: 0.85em; color: #666; margin-top: 4px;">
+          Repository Implementations → Data Sources (Local + Remote) → Models
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Key Features Implementation</h3>
+  <div style="margin: 16px 0;">
+    <div style="padding: 12px; background: white; border-left: 4px solid #4CAF50; border-radius: 4px; margin-bottom: 10px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">✅ Chat-first meal logging</div>
+      <div style="font-size: 0.85em; color: #666;">You ask: "I made chicken curry, how much should I eat?" → AI calculates portion based on remaining calories</div>
+    </div>
+    <div style="padding: 12px; background: white; border-left: 4px solid #2196F3; border-radius: 4px; margin-bottom: 10px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">✅ Fixed reminders</div>
+      <div style="font-size: 0.85em; color: #666;">Water: 250-300ml every 2hrs | Stand-up: 5min activities every hour during work</div>
+    </div>
+    <div style="padding: 12px; background: white; border-left: 4px solid #FF9800; border-radius: 4px; margin-bottom: 10px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">✅ Deepthi workout recommendations</div>
+      <div style="font-size: 0.85em; color: #666;">AI suggests specific video titles based on your energy & progress</div>
+    </div>
+    <div style="padding: 12px; background: white; border-left: 4px solid #E91E63; border-radius: 4px; margin-bottom: 10px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">✅ Weight-focused progress (81kg → 55kg)</div>
+      <div style="font-size: 0.85em; color: #666;">Weekly weigh-ins, milestone celebrations, trajectory graph</div>
+    </div>
+    <div style="padding: 12px; background: white; border-left: 4px solid #9C27B0; border-radius: 4px; margin-bottom: 10px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">✅ Smart flex meal detection</div>
+      <div style="font-size: 0.85em; color: #666;">AI detects high-cal meals, asks "Is this your flex meal?" (2 per week)</div>
+    </div>
+    <div style="padding: 12px; background: white; border-left: 4px solid #00BCD4; border-radius: 4px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">✅ Offline queue + cloud sync</div>
+      <div style="font-size: 0.85em; color: #666;">Works offline, syncs when online | Email/Phone + Biometric auth</div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 24px; padding: 16px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+  <p><strong>Does this architecture align with your vision?</strong></p>
+  <p style="margin: 8px 0 0 0; font-size: 0.95em;">Review each section above. Let me know if anything needs to be changed or if we're good to proceed with the detailed design document.</p>
+</div>

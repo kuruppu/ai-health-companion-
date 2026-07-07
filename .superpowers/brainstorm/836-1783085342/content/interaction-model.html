@@ -1,0 +1,175 @@
+<h2>How should you interact with your AI Health Coach?</h2>
+<p class="subtitle">The primary way you'll use the app daily</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Photo-First + AI Analysis</h3>
+      <div class="mockup" style="margin: 12px 0;">
+        <div class="mockup-header">Daily Flow</div>
+        <div class="mockup-body" style="padding: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="padding: 12px; background: #f5f5f5; border-radius: 8px; border-left: 4px solid #2196F3;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.5em;">📸</span>
+                <strong>Snap a photo of your meal</strong>
+              </div>
+              <div style="font-size: 0.9em; color: #666; padding-left: 32px;">
+                AI instantly identifies food, calculates calories & portions
+              </div>
+            </div>
+
+            <div style="padding: 12px; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #4CAF50;">
+              <div style="font-size: 0.9em; font-style: italic;">
+                "I see rice with chicken curry and vegetables. That's approximately 450 calories. You have 850 calories left for today. Would you like a lighter dinner suggestion?"
+              </div>
+            </div>
+
+            <div style="padding: 12px; background: #fff3e0; border-radius: 8px; border-left: 4px solid #FF9800;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.2em;">💬</span>
+                <input class="mock-input" placeholder="Type your response or ask anything..." style="flex: 1; margin: 0;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Zero manual logging</li>
+            <li>Visual proof of meals</li>
+            <li>Fast and intuitive</li>
+            <li>Natural conversation flows from photo</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Requires camera permission</li>
+            <li>Photo quality affects accuracy</li>
+            <li>More tokens per request (vision API)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Chat-First Conversation</h3>
+      <div class="mockup" style="margin: 12px 0;">
+        <div class="mockup-header">Daily Flow</div>
+        <div class="mockup-body" style="padding: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.95em;">
+            <div style="align-self: flex-end; padding: 10px 14px; background: #2196F3; color: white; border-radius: 18px 18px 4px 18px; max-width: 70%;">
+              I had rice and chicken curry for lunch
+            </div>
+
+            <div style="align-self: flex-start; padding: 10px 14px; background: #f5f5f5; border-radius: 18px 18px 18px 4px; max-width: 75%;">
+              Got it! Can you tell me roughly how much rice? A cup? And was it a full chicken piece or smaller portions?
+            </div>
+
+            <div style="align-self: flex-end; padding: 10px 14px; background: #2196F3; color: white; border-radius: 18px 18px 4px 18px; max-width: 70%;">
+              About one cup of rice, medium chicken piece
+            </div>
+
+            <div style="align-self: flex-start; padding: 10px 14px; background: #f5f5f5; border-radius: 18px 18px 18px 4px; max-width: 75%;">
+              Perfect! I'm logging 480 calories. You're doing great - 820 calories remaining for today. Want a workout suggestion before dinner?
+            </div>
+          </div>
+          <div style="margin-top: 12px; display: flex; gap: 8px;">
+            <input class="mock-input" placeholder="Type your message..." style="flex: 1;">
+            <button class="mock-button" style="padding: 8px 16px;">Send</button>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Most natural communication</li>
+            <li>Easy to ask questions anytime</li>
+            <li>Works in any situation</li>
+            <li>Lower token cost than vision</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Requires typing descriptions</li>
+            <li>Back-and-forth for portion clarification</li>
+            <li>Less visual engagement</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Hybrid: Photo + Chat + Dashboard</h3>
+      <div class="mockup" style="margin: 12px 0;">
+        <div class="mockup-header">Home Screen</div>
+        <div class="mockup-body" style="padding: 16px;">
+          <div style="padding: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; margin-bottom: 12px;">
+            <div style="font-size: 0.9em; margin-bottom: 4px;">Today's Progress</div>
+            <div style="font-size: 1.8em; font-weight: bold;">820 cal remaining</div>
+            <div style="font-size: 0.85em; opacity: 0.9;">on track for -0.5kg this week</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+            <button class="mock-button" style="padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+              <span style="font-size: 1.5em;">📸</span>
+              <span style="font-size: 0.9em;">Log Meal</span>
+            </button>
+            <button class="mock-button" style="padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+              <span style="font-size: 1.5em;">💬</span>
+              <span style="font-size: 0.9em;">Ask Coach</span>
+            </button>
+          </div>
+
+          <div style="padding: 12px; background: #f5f5f5; border-radius: 8px;">
+            <div style="font-size: 0.85em; color: #666; margin-bottom: 6px;">AI Suggestion</div>
+            <div style="font-size: 0.95em;">
+              "You haven't logged water today. Staying hydrated helps with your evening energy. Would you like a reminder?"
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Best of both worlds</li>
+            <li>Quick visual overview</li>
+            <li>Multiple interaction modes</li>
+            <li>Proactive AI suggestions</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>More UI complexity</li>
+            <li>Need to design multiple flows</li>
+            <li>Could feel less cohesive</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px; padding: 16px; background: #fce4ec; border-left: 4px solid #e91e63; border-radius: 4px;">
+  <p><strong>Your lifestyle context:</strong></p>
+  <ul style="margin: 8px 0 0 20px; line-height: 1.6;">
+    <li>Busy with a baby - need quick interactions</li>
+    <li>Cooks meals at home (breakfast+lunch together, dinner separate)</li>
+    <li>Wants hands-off experience - minimal manual input</li>
+    <li>Prefers AI decisions over manual calorie counting</li>
+  </ul>
+</div>

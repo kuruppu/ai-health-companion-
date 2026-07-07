@@ -1,0 +1,155 @@
+<h2>How should the AI integration work?</h2>
+<p class="subtitle">Balancing intelligence, cost, and user experience</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Real-time AI for Everything</h3>
+      <div style="margin: 12px 0; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+        <div style="padding: 8px; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: white; border-radius: 4px; margin-bottom: 4px;">
+            <span style="color: #2196F3;">📸</span>
+            <span style="flex: 1;">Take food photo</span>
+            <span style="color: #4CAF50; font-weight: bold;">→ AI</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: white; border-radius: 4px; margin-bottom: 4px;">
+            <span style="color: #2196F3;">💬</span>
+            <span style="flex: 1;">"What should I eat for dinner?"</span>
+            <span style="color: #4CAF50; font-weight: bold;">→ AI</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: white; border-radius: 4px; margin-bottom: 4px;">
+            <span style="color: #2196F3;">⚖️</span>
+            <span style="flex: 1;">Log weight</span>
+            <span style="color: #4CAF50; font-weight: bold;">→ AI analyzes</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: white; border-radius: 4px;">
+            <span style="color: #2196F3;">🏋️</span>
+            <span style="flex: 1;">Workout recommendation</span>
+            <span style="color: #4CAF50; font-weight: bold;">→ AI decides</span>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Truly personalized experience</li>
+            <li>Contextual recommendations</li>
+            <li>Natural conversations</li>
+            <li>Adapts to your patterns in real-time</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Highest API costs (~$30-50/month)</li>
+            <li>Requires constant internet</li>
+            <li>Slower response times</li>
+            <li>Battery drain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Smart Caching with AI Planning</h3>
+      <div style="margin: 12px 0; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+        <div style="padding: 8px;">
+          <div style="padding: 12px; background: #4CAF50; color: white; border-radius: 4px; margin-bottom: 8px; text-align: center;">
+            <strong>Weekly AI Planning Session</strong><br/>
+            <span style="font-size: 0.9em;">Generates 7-day meal plan + workout schedule</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+            <div style="padding: 8px; background: white; border: 2px solid #2196F3; border-radius: 4px; text-align: center;">
+              <strong>Local Cache</strong><br/>
+              <span style="font-size: 0.85em;">Quick access to plans</span>
+            </div>
+            <div style="padding: 8px; background: white; border: 2px solid #FF9800; border-radius: 4px; text-align: center;">
+              <strong>AI Refinements</strong><br/>
+              <span style="font-size: 0.85em;">On-demand adjustments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Much lower costs (~$5-10/month)</li>
+            <li>Fast daily experience</li>
+            <li>Mostly works offline</li>
+            <li>Still gets AI intelligence</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Less real-time adaptation</li>
+            <li>Weekly planning sessions required</li>
+            <li>Not as conversational</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>AI Coach with Local Autopilot</h3>
+      <div style="margin: 12px 0; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+          <div style="flex: 2; padding: 12px; background: #673AB7; color: white; border-radius: 4px; text-align: center;">
+            <strong>Local Algorithms</strong><br/>
+            <span style="font-size: 0.85em;">Daily tracking & calculations</span>
+          </div>
+          <div style="flex: 1; padding: 12px; background: #4CAF50; color: white; border-radius: 4px; text-align: center;">
+            <strong>AI Coach</strong><br/>
+            <span style="font-size: 0.85em;">Weekly check-ins</span>
+          </div>
+        </div>
+        <div style="padding: 8px; background: white; border-radius: 4px;">
+          <div style="font-size: 0.9em; line-height: 1.6;">
+            <div style="padding: 4px 0;">📊 App calculates daily calories & macros</div>
+            <div style="padding: 4px 0;">🍽️ App suggests meals from database</div>
+            <div style="padding: 4px 0;">💬 AI reviews progress weekly</div>
+            <div style="padding: 4px 0;">🎯 AI adjusts strategy & motivation</div>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Lowest cost (~$2-3/month)</li>
+            <li>Fully offline daily use</li>
+            <li>Fast and reliable</li>
+            <li>AI for high-value coaching</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Less "magical" feeling</li>
+            <li>More manual meal database work</li>
+            <li>Not truly hands-off</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px; padding: 16px; background: #e3f2fd; border-left: 4px solid #2196F3; border-radius: 4px;">
+  <p><strong>Key considerations:</strong></p>
+  <ul style="margin: 8px 0 0 20px; line-height: 1.6;">
+    <li>You mentioned wanting AI to make decisions instead of manual tracking</li>
+    <li>Over 12 months, daily AI calls add up (365 days × multiple interactions)</li>
+    <li>Claude API: ~$0.015/1K input tokens, ~$0.075/1K output tokens</li>
+    <li>Typical meal planning conversation: ~2K-5K tokens per interaction</li>
+  </ul>
+</div>

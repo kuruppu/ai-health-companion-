@@ -1,0 +1,185 @@
+<h2>How should the AI handle meal planning?</h2>
+<p class="subtitle">You cook breakfast+lunch together in the morning, dinner separately in the evening</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Daily Morning Meal Planning Session</h3>
+      <div class="mockup" style="margin: 12px 0;">
+        <div class="mockup-body" style="padding: 16px; background: #f8f9fa; border-radius: 8px;">
+          <div style="padding: 12px; background: white; border-left: 4px solid #FF9800; border-radius: 4px; margin-bottom: 12px;">
+            <div style="font-size: 0.85em; color: #666; margin-bottom: 4px;">Every Morning (8 AM)</div>
+            <div style="font-weight: 600; margin-bottom: 8px;">AI: "Good morning! Let's plan your meals for today."</div>
+            <div style="font-size: 0.95em; line-height: 1.6; color: #444;">
+              Based on your progress:<br/>
+              • <strong>Breakfast:</strong> Oats with banana (320 cal)<br/>
+              • <strong>Lunch:</strong> Chicken rice bowl (480 cal)<br/>
+              • <strong>Dinner suggestion later:</strong> ~500 cal remaining<br/>
+            </div>
+          </div>
+
+          <div style="padding: 12px; background: #e3f2fd; border-radius: 4px; font-size: 0.9em;">
+            💬 <em>"Can I swap oats for bread?"</em><br/>
+            🤖 <em>"Sure! 2 slices whole wheat with egg (340 cal). I'll adjust your lunch slightly."</em>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Fresh daily plan based on latest progress</li>
+            <li>Interactive - you can request changes</li>
+            <li>Cooking guidance before you start</li>
+            <li>Dinner planned dynamically based on day</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Requires morning interaction</li>
+            <li>Might not fit rushed mornings with baby</li>
+            <li>Higher daily AI usage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Smart Recipe Database with AI Suggestions</h3>
+      <div class="mockup" style="margin: 12px 0;">
+        <div class="mockup-body" style="padding: 16px; background: #f8f9fa; border-radius: 8px;">
+          <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 12px;">
+            <div style="font-weight: 600; margin-bottom: 12px;">Your Meal Library (AI curated)</div>
+
+            <div style="margin-bottom: 12px; padding: 10px; background: #f5f5f5; border-radius: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 500;">Veggie Omelette</div>
+                  <div style="font-size: 0.85em; color: #666;">Breakfast • 280 cal</div>
+                </div>
+                <div style="padding: 4px 12px; background: #4CAF50; color: white; border-radius: 12px; font-size: 0.85em;">
+                  Fits Today
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 12px; padding: 10px; background: #f5f5f5; border-radius: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 500;">Chicken Rice Bowl</div>
+                  <div style="font-size: 0.85em; color: #666;">Lunch • 450 cal</div>
+                </div>
+                <div style="padding: 4px 12px; background: #4CAF50; color: white; border-radius: 12px; font-size: 0.85em;">
+                  Fits Today
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 10px; background: #fff3cd; border-radius: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 500;">Pasta Carbonara</div>
+                  <div style="font-size: 0.85em; color: #666;">Dinner • 680 cal</div>
+                </div>
+                <div style="padding: 4px 12px; background: #FF9800; color: white; border-radius: 12px; font-size: 0.85em;">
+                  Too High
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 12px; background: #e8f5e9; border-radius: 4px; font-size: 0.9em;">
+            🤖 AI suggests what fits your remaining calories in real-time
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Quick browsing - pick what you want</li>
+            <li>Build your favorite meals over time</li>
+            <li>No daily planning session needed</li>
+            <li>AI filters by calories automatically</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Need to build up recipe database</li>
+            <li>Less AI "thinking" for you</li>
+            <li>Manual selection required</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Ask When You Need + Smart Memory</h3>
+      <div class="mockup" style="margin: 12px 0;">
+        <div class="mockup-body" style="padding: 16px; background: #f8f9fa; border-radius: 8px;">
+          <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 12px;">
+            <div style="margin-bottom: 16px;">
+              <div style="font-size: 0.9em; color: #666; margin-bottom: 6px;">7:30 AM - You ask:</div>
+              <div style="padding: 10px; background: #2196F3; color: white; border-radius: 8px;">
+                "What should I cook for breakfast and lunch?"
+              </div>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <div style="font-size: 0.9em; color: #666; margin-bottom: 6px;">AI remembers your patterns:</div>
+              <div style="padding: 10px; background: #f5f5f5; border-radius: 8px; font-size: 0.95em; line-height: 1.6;">
+                "You usually like oats or eggs for breakfast. Today I recommend:<br/><br/>
+                <strong>Breakfast:</strong> Vegetable omelette (280 cal)<br/>
+                <strong>Lunch:</strong> Chicken fried rice (460 cal)<br/><br/>
+                This leaves you 560 cal for dinner. I remember you like lighter dinners on weekdays."
+              </div>
+            </div>
+
+            <div style="padding: 10px; background: #fff3e0; border-radius: 8px; font-size: 0.9em;">
+              💡 AI learns: cooking style, portion preferences, time constraints, baby's schedule
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Total flexibility - ask whenever</li>
+            <li>AI learns your habits over time</li>
+            <li>No forced daily routine</li>
+            <li>Personalized to your exact situation</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Requires you to initiate</li>
+            <li>Less structured than daily planning</li>
+            <li>Might forget to ask on busy days</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px; padding: 16px; background: #f3e5f5; border-left: 4px solid #9c27b0; border-radius: 4px;">
+  <p><strong>Your cooking routine:</strong></p>
+  <ul style="margin: 8px 0 0 20px; line-height: 1.6;">
+    <li>Morning: Cook breakfast + lunch together (batch cooking)</li>
+    <li>Evening: Cook dinner separately</li>
+    <li>Want 2 flex meals per week (eating out/social)</li>
+    <li>Occasionally drink alcohol (once a month)</li>
+    <li>Need to work around baby's schedule</li>
+  </ul>
+</div>

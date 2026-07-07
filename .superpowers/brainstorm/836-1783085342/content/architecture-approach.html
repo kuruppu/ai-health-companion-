@@ -1,0 +1,147 @@
+<h2>Which architectural approach feels right for this AI Health Companion?</h2>
+<p class="subtitle">Consider scalability, maintainability, and your 12-month weight loss journey needs</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>AI-First Architecture</h3>
+      <div class="mockup" style="margin: 12px 0; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+        <div style="text-align: center; padding: 8px; background: #4CAF50; color: white; border-radius: 4px; margin-bottom: 8px;">
+          <strong>AI Engine (Claude API)</strong><br/>
+          <span style="font-size: 0.9em;">Meal Planning • Calorie Calculation • Recommendations</span>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div style="flex: 1; padding: 8px; background: white; border: 2px solid #2196F3; border-radius: 4px; text-align: center;">
+            <strong>Flutter App</strong><br/>
+            <span style="font-size: 0.85em;">UI Layer Only</span>
+          </div>
+          <div style="flex: 1; padding: 8px; background: white; border: 2px solid #FF9800; border-radius: 4px; text-align: center;">
+            <strong>Local DB</strong><br/>
+            <span style="font-size: 0.85em;">Cache & History</span>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top: 12px;">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>AI makes all decisions (truly hands-off)</li>
+            <li>Continuously learns and improves</li>
+            <li>Natural language interactions</li>
+            <li>Minimal local business logic</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Requires internet for core features</li>
+            <li>Higher API costs over time</li>
+            <li>Response latency for AI calls</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Hybrid Intelligence Architecture</h3>
+      <div class="mockup" style="margin: 12px 0; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+          <div style="flex: 1; padding: 8px; background: #4CAF50; color: white; border-radius: 4px; text-align: center;">
+            <strong>AI Layer</strong><br/>
+            <span style="font-size: 0.85em;">Strategic Planning</span>
+          </div>
+          <div style="flex: 1; padding: 8px; background: #2196F3; color: white; border-radius: 4px; text-align: center;">
+            <strong>Business Logic</strong><br/>
+            <span style="font-size: 0.85em;">Rules & Calculations</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <div style="flex: 1; padding: 8px; background: white; border: 2px solid #673AB7; border-radius: 4px; text-align: center;">
+            <strong>Flutter App</strong><br/>
+            <span style="font-size: 0.85em;">Rich UI + Local Logic</span>
+          </div>
+          <div style="flex: 1; padding: 8px; background: white; border: 2px solid #FF9800; border-radius: 4px; text-align: center;">
+            <strong>SQLite</strong><br/>
+            <span style="font-size: 0.85em;">Full Data Store</span>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top: 12px;">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Works offline for daily tracking</li>
+            <li>Fast response for common tasks</li>
+            <li>Lower API costs (AI for planning only)</li>
+            <li>Balanced control vs automation</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>More complex business logic to maintain</li>
+            <li>Need to implement nutrition algorithms</li>
+            <li>Dual architecture complexity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Local-First with AI Assistance</h3>
+      <div class="mockup" style="margin: 12px 0; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+        <div style="padding: 8px; background: #673AB7; color: white; border-radius: 4px; text-align: center; margin-bottom: 8px;">
+          <strong>Flutter App (Core Engine)</strong><br/>
+          <span style="font-size: 0.9em;">All Business Logic • Nutrition Database • Algorithms</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <div style="flex: 1; padding: 8px; background: white; border: 2px solid #FF9800; border-radius: 4px; text-align: center;">
+            <strong>Local Storage</strong><br/>
+            <span style="font-size: 0.85em;">All Data Local</span>
+          </div>
+          <div style="flex: 1; padding: 8px; background: white; border: 2px dashed #4CAF50; border-radius: 4px; text-align: center;">
+            <strong>AI Assistant</strong><br/>
+            <span style="font-size: 0.85em;">Optional Insights</span>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top: 12px;">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>100% offline capable</li>
+            <li>No ongoing API costs</li>
+            <li>Lightning fast performance</li>
+            <li>Complete data privacy</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Heavy development effort</li>
+            <li>Need comprehensive nutrition database</li>
+            <li>AI features limited</li>
+            <li>Less "intelligent" decision making</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px; padding: 16px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+  <p><strong>Context for your decision:</strong></p>
+  <ul style="margin: 8px 0 0 20px; line-height: 1.6;">
+    <li>You want AI to make decisions, not manual calorie counting</li>
+    <li>You need automatic meal planning and calorie calculation</li>
+    <li>Budget consideration: Claude API costs ~$0.015 per 1K tokens (input)</li>
+    <li>12-month journey = daily interactions = cost implications</li>
+  </ul>
+</div>
