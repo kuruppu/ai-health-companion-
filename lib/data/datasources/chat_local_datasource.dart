@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/constants/app_constants.dart';
