@@ -7,6 +7,14 @@ abstract class AuthStatus extends Equatable {
 
   @override
   List<Object?> get props => [];
+
+  /// Get current user if authenticated, null otherwise
+  User? getCurrentUser() {
+    if (this is Authenticated) {
+      return (this as Authenticated).user;
+    }
+    return null;
+  }
 }
 
 class AuthInitial extends AuthStatus {

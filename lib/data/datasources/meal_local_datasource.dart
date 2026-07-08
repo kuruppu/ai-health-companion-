@@ -2,7 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../core/database/app_database.dart';
+import '../local/database/app_database.dart';
 import '../models/meal_model.dart';
 
 /// Local data source for meal persistence (SQLite + Hive)

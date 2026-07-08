@@ -10,7 +10,7 @@ import '../../presentation/onboarding/emotional_goal_screen.dart';
 import '../../presentation/splash/splash_screen.dart';
 import 'app_routes.dart';
 
-part 'app_router.g.dart';
+part 'app_router_milestone2.g.dart';
 
 @riverpod
 GoRouter appRouter(AppRouterRef ref) {
