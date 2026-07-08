@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/errors/exceptions.dart';
+import '../../domain/entities/chat_message.dart';
 import '../local/cache/hive_manager.dart';
 import '../local/database/app_database.dart';
 import '../models/chat_message_model.dart';

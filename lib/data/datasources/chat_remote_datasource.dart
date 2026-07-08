@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../../core/constants/api_endpoints.dart';
 import '../../core/errors/exceptions.dart';
 import '../../core/network/dio_client.dart';
+import '../../domain/entities/chat_message.dart';
 import '../models/chat_message_model.dart';
 
 abstract class ChatRemoteDataSource {

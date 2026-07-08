@@ -18,8 +18,8 @@ class MealLocalDataSource {
 
   /// Save meal to SQLite
   Future<void> saveMeal(MealModel meal) async {
-    await _database.into(_database.meals).insert(
-          MealsCompanion(
+    await _database.into(_database.mealsTable).insert(
+          MealsTableCompanion(
             mealId: Value(meal.mealId),
             userId: Value(meal.userId),
             mealType: Value(meal.mealType.name),
@@ -27,7 +27,7 @@ class MealLocalDataSource {
             userNotes: Value(meal.userNotes),
             analysisJson: Value(meal.analysis.toString()),
             timestamp: Value(meal.timestamp),
-            eatenAt: Value(meal.eatenAt),
+            loggedAt: Value(meal.loggedAt),
           ),
           mode: InsertMode.insertOrReplace,
         );
@@ -50,20 +50,20 @@ class MealLocalDataSource {
     }
 
     // Fallback to database
-    var query = _database.select(_database.meals)
+    var query = _database.select(_database.mealsTable)
       ..where((tbl) => tbl.userId.equals(userId))
       ..orderBy([
-        (tbl) => OrderingTerm(expression: tbl.eatenAt, mode: OrderingMode.desc)
+        (tbl) => OrderingTerm(expression: tbl.loggedAt, mode: OrderingMode.desc)
       ])
       ..limit(limit);
 
     if (startDate != null) {
       query = query
-        ..where((tbl) => tbl.eatenAt.isBiggerOrEqualValue(startDate));
+        ..where((tbl) => tbl.loggedAt.isBiggerOrEqualValue(startDate));
     }
 
     if (endDate != null) {
-      query = query..where((tbl) => tbl.eatenAt.isSmallerOrEqualValue(endDate));
+      query = query..where((tbl) => tbl.loggedAt.isSmallerOrEqualValue(endDate));
     }
 
     final rows = await query.get();
@@ -85,7 +85,7 @@ class MealLocalDataSource {
 
   /// Get meal by ID
   Future<MealModel?> getMealById({required String mealId}) async {
-    final query = _database.select(_database.meals)
+    final query = _database.select(_database.mealsTable)
       ..where((tbl) => tbl.mealId.equals(mealId));
 
     final row = await query.getSingleOrNull();
@@ -94,7 +94,7 @@ class MealLocalDataSource {
 
   /// Delete meal from SQLite
   Future<void> deleteMeal({required String mealId}) async {
-    await (_database.delete(_database.meals)
+    await (_database.delete(_database.mealsTable)
           ..where((tbl) => tbl.mealId.equals(mealId)))
         .go();
 
@@ -107,9 +107,9 @@ class MealLocalDataSource {
     required String mealId,
     required String userNotes,
   }) async {
-    await (_database.update(_database.meals)
+    await (_database.update(_database.mealsTable)
           ..where((tbl) => tbl.mealId.equals(mealId)))
-        .write(MealsCompanion(userNotes: Value(userNotes)));
+        .write(MealsTableCompanion(userNotes: Value(userNotes)));
 
     // Update cache
     final meal = await getMealById(mealId: mealId);
@@ -132,7 +132,7 @@ class MealLocalDataSource {
         ..sort((a, b) {
           final mealA = MealModel.fromJson(cached[a] as Map<String, dynamic>);
           final mealB = MealModel.fromJson(cached[b] as Map<String, dynamic>);
-          return mealB.eatenAt.compareTo(mealA.eatenAt);
+          return mealB.loggedAt.compareTo(mealA.loggedAt);
         });
 
       final keysToRemove = sortedKeys.skip(50);
@@ -154,7 +154,7 @@ class MealLocalDataSource {
         .map((json) => MealModel.fromJson(json as Map<String, dynamic>))
         .toList();
 
-    meals.sort((a, b) => b.eatenAt.compareTo(a.eatenAt));
+    meals.sort((a, b) => b.loggedAt.compareTo(a.loggedAt));
     return meals;
   }
 
@@ -181,7 +181,7 @@ class MealLocalDataSource {
       'user_notes': row.userNotes,
       'analysis': row.analysisJson,
       'timestamp': row.timestamp.millisecondsSinceEpoch,
-      'eaten_at': row.eatenAt.millisecondsSinceEpoch,
+      'eaten_at': row.loggedAt.millisecondsSinceEpoch,
     });
   }
 }

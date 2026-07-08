@@ -42,7 +42,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw const AuthException(message: 'Login failed');
       }
 
-      return await _getUserFromFirestore(credential.user!.uid);
+      final user = await _getUserFromFirestore(credential.user!.uid);
+      if (user == null) {
+        throw const AuthException(message: 'User data not found');
+      }
+      return user;
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthException(
         message: _getAuthErrorMessage(e.code),
