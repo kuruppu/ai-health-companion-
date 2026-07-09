@@ -37,7 +37,6 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(authProvider);
     final chatState = ref.watch(chatProvider);
 
     return Scaffold(

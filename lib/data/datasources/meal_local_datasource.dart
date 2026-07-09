@@ -172,16 +172,15 @@ class MealLocalDataSource {
   }
 
   /// Convert Drift row to MealModel
-  MealModel _mealFromDriftRow(MealsTableData row) { // Changed from Meal
-    return MealModel.fromDrift({
-      'meal_id': row.mealId,
-      'user_id': row.userId,
-      'meal_type': row.mealType,
-      'photo_url': row.photoUrl,
-      'user_notes': row.description, // Changed from row.userNotes
-      'analysis': row.aiAnalysis, // Changed from row.analysisJson
-      'timestamp': row.createdAt.millisecondsSinceEpoch, // Changed from row.timestamp
-      'eaten_at': row.loggedAt.millisecondsSinceEpoch,
-    });
-  }
+  MealModel _mealFromDriftRow(MealsTableData row) => // Changed from Meal
+      MealModel.fromDrift({
+        'meal_id': row.mealId,
+        'user_id': row.userId,
+        'meal_type': row.mealType,
+        'photo_url': row.photoUrl,
+        'user_notes': row.description, // Changed from row.userNotes
+        'analysis': row.aiAnalysis, // Changed from row.analysisJson
+        'timestamp': row.createdAt.millisecondsSinceEpoch, // Changed from row.timestamp
+        'eaten_at': row.loggedAt.millisecondsSinceEpoch,
+      });
 }

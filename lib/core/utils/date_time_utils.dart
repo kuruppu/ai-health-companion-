@@ -98,9 +98,9 @@ class DateTimeUtils {
 
   /// Get days difference between two dates
   static int daysBetween(DateTime from, DateTime to) {
-    from = startOfDay(from);
-    to = startOfDay(to);
-    return to.difference(from).inDays;
+    final fromDay = startOfDay(from);
+    final toDay = startOfDay(to);
+    return toDay.difference(fromDay).inDays;
   }
 
   /// Format duration to readable string (e.g., "1h 30m", "45m")

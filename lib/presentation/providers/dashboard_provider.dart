@@ -47,8 +47,8 @@ class Dashboard extends _$Dashboard {
       notes: notes,
     );
 
-    result.fold(
-      (failure) {
+    await result.fold(
+      (failure) async {
         state = AsyncValue.error(failure.message, StackTrace.current);
       },
       (_) async {

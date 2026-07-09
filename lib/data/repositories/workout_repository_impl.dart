@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
@@ -47,9 +49,11 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
       await _localDataSource.saveWorkout(workout);
 
       // Save to Firestore (fire and forget)
-      _remoteDataSource.saveWorkoutToFirestore(workout).catchError((error) {
-        AppLogger.e('Failed to save workout to Firestore', error: error);
-      });
+      unawaited(
+        _remoteDataSource.saveWorkoutToFirestore(workout).catchError((error) {
+          AppLogger.e('Failed to save workout to Firestore', error: error);
+        }),
+      );
 
       return Right(workout.toEntity());
     } catch (e) {
@@ -188,11 +192,11 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
     try {
       await _localDataSource.deleteWorkout(workoutId: workoutId);
 
-      _remoteDataSource
-          .deleteWorkoutFromFirestore(workoutId)
-          .catchError((error) {
-        AppLogger.e('Failed to delete workout from Firestore', error: error);
-      });
+      unawaited(
+        _remoteDataSource.deleteWorkoutFromFirestore(workoutId).catchError((error) {
+          AppLogger.e('Failed to delete workout from Firestore', error: error);
+        }),
+      );
 
       return const Right(unit);
     } catch (e) {

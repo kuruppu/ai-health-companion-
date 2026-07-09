@@ -143,7 +143,8 @@ class MealRemoteDataSource {
         userData?['emotional_goal'] as String? ?? 'feel healthier';
     final targetWeight = userData?['target_weight'] as num? ?? 55;
 
-    return '''Analyze this ${mealType.displayName.toLowerCase()} photo as a supportive AI health coach.
+    return '''
+Analyze this ${mealType.displayName.toLowerCase()} photo as a supportive AI health coach.
 
 ${userNotes != null ? 'User context: $userNotes\n' : ''}
 User's goal: $emotionalGoal (target: ${targetWeight}kg)

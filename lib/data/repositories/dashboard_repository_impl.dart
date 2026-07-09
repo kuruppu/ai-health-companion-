@@ -226,11 +226,10 @@ class DashboardRepositoryImpl implements DashboardRepository {
     }
   }
 
-  List<String> _getRecentMilestones(List<ProgressLogsTableData> logs) {
-    // TODO: Extract actual milestones from logs
-    return [
-      'Played with baby for 30 min straight',
-      'Climbed 3 flights without breathlessness',
-    ];
-  }
+  List<String> _getRecentMilestones(List<ProgressLogsTableData> logs) =>
+      // TODO: Extract actual milestones from logs
+      [
+        'Played with baby for 30 min straight',
+        'Climbed 3 flights without breathlessness',
+      ];
 }

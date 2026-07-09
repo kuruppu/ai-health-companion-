@@ -352,11 +352,13 @@ class _WorkoutInProgressSheetState
       if (mounted) {
         Navigator.pop(context);
 
-        showModalBottomSheet(
-          context: context,
-          backgroundColor: Colors.transparent,
-          isDismissible: false,
-          builder: (context) => WorkoutCompleteSheet(log: log),
+        unawaited(
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            isDismissible: false,
+            builder: (context) => WorkoutCompleteSheet(log: log),
+          ),
         );
       }
     } catch (e) {

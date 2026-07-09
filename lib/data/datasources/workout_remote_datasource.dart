@@ -133,7 +133,8 @@ class WorkoutRemoteDataSource {
         ? '\nFocus areas: ${targetMuscles.join(', ')}'
         : '';
 
-    return '''Generate a personalized workout plan as an AI fitness coach.
+    return '''
+Generate a personalized workout plan as an AI fitness coach.
 
 User Context:
 - Goal: $goalType (emotional goal: $emotionalGoal, target: ${targetWeight}kg)

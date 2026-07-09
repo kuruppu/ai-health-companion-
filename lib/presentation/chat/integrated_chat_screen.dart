@@ -39,7 +39,6 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(authProvider);
     final chatState = ref.watch(integratedChatProvider);
     final hasPendingCheckIn = ref.watch(hasPendingCheckInProvider);
 

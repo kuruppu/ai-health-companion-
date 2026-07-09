@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
@@ -54,10 +56,12 @@ class MealRepositoryImpl implements MealRepository {
       await _localDataSource.saveMeal(meal);
 
       // Save to Firestore (fire and forget)
-      _remoteDataSource.saveMealToFirestore(meal).catchError((error) {
-        // Log error but don't fail the operation
-        AppLogger.e('Failed to save meal to Firestore', error: error);
-      });
+      unawaited(
+        _remoteDataSource.saveMealToFirestore(meal).catchError((error) {
+          // Log error but don't fail the operation
+          AppLogger.e('Failed to save meal to Firestore', error: error);
+        }),
+      );
 
       return Right(meal.toEntity());
     } catch (e) {
@@ -142,9 +146,9 @@ class MealRepositoryImpl implements MealRepository {
       await _localDataSource.deleteMeal(mealId: mealId);
 
       // Delete from remote (fire and forget)
-      _remoteDataSource.deleteMealFromFirestore(mealId).catchError((error) {
+      unawaited(_remoteDataSource.deleteMealFromFirestore(mealId).catchError((error) {
         AppLogger.e('Failed to delete meal from Firestore', error: error);
-      });
+      }));
 
       return const Right(unit);
     } catch (e) {
