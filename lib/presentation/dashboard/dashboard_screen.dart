@@ -33,8 +33,7 @@ class DashboardScreen extends ConsumerWidget {
         ],
       ),
       body: authState.when(
-        data: (authStatus) {
-          return dashboardState.when(
+        data: (authStatus) => dashboardState.when(
             data: (summary) => RefreshIndicator(
               onRefresh: () => ref.read(dashboardProvider.notifier).refresh(),
               child: SingleChildScrollView(
@@ -119,8 +118,7 @@ class DashboardScreen extends ConsumerWidget {
                 ],
               ),
             ),
-          );
-        },
+          ),
         loading: () => const LoadingIndicator(),
         error: (error, stack) => Center(child: Text(error.toString())),
       ),

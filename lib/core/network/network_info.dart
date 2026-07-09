@@ -9,9 +9,9 @@ abstract class NetworkInfo {
 
 @LazySingleton(as: NetworkInfo)
 class NetworkInfoImpl implements NetworkInfo {
-  final Connectivity _connectivity;
 
   NetworkInfoImpl(this._connectivity);
+  final Connectivity _connectivity;
 
   @override
   Future<bool> get isConnected async {
@@ -20,11 +20,7 @@ class NetworkInfoImpl implements NetworkInfo {
   }
 
   @override
-  Stream<bool> get onConnectivityChanged {
-    return _connectivity.onConnectivityChanged.map(_isConnected);
-  }
+  Stream<bool> get onConnectivityChanged => _connectivity.onConnectivityChanged.map(_isConnected);
 
-  bool _isConnected(List<ConnectivityResult> results) {
-    return results.isNotEmpty && !results.contains(ConnectivityResult.none);
-  }
+  bool _isConnected(List<ConnectivityResult> results) => results.isNotEmpty && !results.contains(ConnectivityResult.none);
 }

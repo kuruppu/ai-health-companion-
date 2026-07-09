@@ -6,10 +6,6 @@ import '../../../domain/entities/meal.dart';
 
 /// Card showing today's meals with real data
 class TodayMealsCard extends StatelessWidget {
-  final List<Meal> meals;
-  final double avgHealthScore;
-  final int mealsSkipped;
-  final VoidCallback onTap;
 
   const TodayMealsCard({
     required this.meals,
@@ -18,10 +14,13 @@ class TodayMealsCard extends StatelessWidget {
     required this.onTap,
     super.key,
   });
+  final List<Meal> meals;
+  final double avgHealthScore;
+  final int mealsSkipped;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -36,7 +35,7 @@ class TodayMealsCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Icon(
@@ -50,7 +49,7 @@ class TodayMealsCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Today\'s Meals',
                           style: AppTextStyles.body1Medium,
                         ),
@@ -108,10 +107,10 @@ class TodayMealsCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppColors.warning.withOpacity(0.1),
+                    color: AppColors.warning.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: AppColors.warning.withOpacity(0.3),
+                      color: AppColors.warning.withValues(alpha: 0.3),
                     ),
                   ),
                   child: Row(
@@ -152,18 +151,16 @@ class TodayMealsCard extends StatelessWidget {
         ),
       ),
     );
-  }
 
   Widget _buildStat({
     required IconData icon,
     required String label,
     required String value,
     required Color color,
-  }) {
-    return Container(
+  }) => Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -184,7 +181,6 @@ class TodayMealsCard extends StatelessWidget {
         ],
       ),
     );
-  }
 
   Color _getHealthScoreColor(double score) {
     if (score >= 4.0) return AppColors.success;

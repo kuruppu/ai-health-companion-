@@ -1,6 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class DashboardSummary extends Equatable {
+
+  const DashboardSummary({
+    required this.todayEnergyMessage, required this.workoutsThisWeek, required this.avgEnergyThisWeek, required this.daysLoggedThisWeek, required this.goalProgress, required this.goalProgressMessage, required this.recentMilestones, required this.currentStreak, this.todayEnergyLevel,
+    this.emotionalGoal,
+    this.currentWeight,
+    this.goalWeight,
+    this.weightLostSoFar,
+  });
   // Today's metrics
   final int? todayEnergyLevel;
   final String todayEnergyMessage;
@@ -25,22 +33,6 @@ class DashboardSummary extends Equatable {
 
   // Streak
   final int currentStreak;
-
-  const DashboardSummary({
-    this.todayEnergyLevel,
-    required this.todayEnergyMessage,
-    required this.workoutsThisWeek,
-    required this.avgEnergyThisWeek,
-    required this.daysLoggedThisWeek,
-    this.emotionalGoal,
-    required this.goalProgress,
-    required this.goalProgressMessage,
-    this.currentWeight,
-    this.goalWeight,
-    this.weightLostSoFar,
-    required this.recentMilestones,
-    required this.currentStreak,
-  });
 
   @override
   List<Object?> get props => [

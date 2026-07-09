@@ -47,8 +47,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -62,16 +61,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ),
       ),
     );
-  }
 
-  Widget _buildFormView() {
-    return Form(
+  Widget _buildFormView() => Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 24),
-          Text(
+          const Text(
             'Forgot Password?',
             style: AppTextStyles.h2,
             textAlign: TextAlign.center,
@@ -90,7 +87,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             label: 'Email',
             hint: 'Enter your email',
             keyboardType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.done,
             prefixIcon: const Icon(Icons.email_outlined),
             onSubmitted: (_) => _handleResetPassword(),
             validator: (value) {
@@ -112,10 +108,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ],
       ),
     );
-  }
 
-  Widget _buildSuccessView() {
-    return Column(
+  Widget _buildSuccessView() => Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 60),
@@ -125,7 +119,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           color: AppColors.success,
         ),
         const SizedBox(height: 24),
-        Text(
+        const Text(
           'Check Your Email',
           style: AppTextStyles.h2,
           textAlign: TextAlign.center,
@@ -145,5 +139,4 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ),
       ],
     );
-  }
 }

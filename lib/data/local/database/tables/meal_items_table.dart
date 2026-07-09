@@ -14,19 +14,19 @@ class MealItemsTable extends Table {
   // Portion
   RealColumn get portionSize => real()(); // Standard serving size
   TextColumn get portionUnit => text()(); // cup, spoon, piece, plate
-  RealColumn get quantity => real().withDefault(const Constant(1.0))();
+  RealColumn get quantity => real().withDefault(const Constant(1))();
 
   // Nutritional values (per portion)
   RealColumn get caloriesPerPortion => real()();
-  RealColumn get proteinG => real().withDefault(const Constant(0.0))();
-  RealColumn get carbsG => real().withDefault(const Constant(0.0))();
-  RealColumn get fatsG => real().withDefault(const Constant(0.0))();
+  RealColumn get proteinG => real().withDefault(const Constant(0))();
+  RealColumn get carbsG => real().withDefault(const Constant(0))();
+  RealColumn get fatsG => real().withDefault(const Constant(0))();
 
   // Total values (portion * quantity)
   RealColumn get totalCalories => real()();
-  RealColumn get totalProteinG => real().withDefault(const Constant(0.0))();
-  RealColumn get totalCarbsG => real().withDefault(const Constant(0.0))();
-  RealColumn get totalFatsG => real().withDefault(const Constant(0.0))();
+  RealColumn get totalProteinG => real().withDefault(const Constant(0))();
+  RealColumn get totalCarbsG => real().withDefault(const Constant(0))();
+  RealColumn get totalFatsG => real().withDefault(const Constant(0))();
 
   // Metadata
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();

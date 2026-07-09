@@ -74,8 +74,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -91,7 +90,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 24),
-                Text(
+                const Text(
                   'Create Account',
                   style: AppTextStyles.h2,
                   textAlign: TextAlign.center,
@@ -146,7 +145,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   label: 'Password',
                   hint: 'Create a strong password',
                   obscureText: true,
-                  textInputAction: TextInputAction.done,
                   prefixIcon: const Icon(Icons.lock_outlined),
                   onSubmitted: (_) => _handleRegister(),
                   validator: (value) {
@@ -156,13 +154,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     if (value.length < 8) {
                       return 'Password must be at least 8 characters';
                     }
-                    if (!value.contains(RegExp(r'[A-Z]'))) {
+                    if (!value.contains(RegExp('[A-Z]'))) {
                       return 'Password must contain at least one uppercase letter';
                     }
-                    if (!value.contains(RegExp(r'[a-z]'))) {
+                    if (!value.contains(RegExp('[a-z]'))) {
                       return 'Password must contain at least one lowercase letter';
                     }
-                    if (!value.contains(RegExp(r'[0-9]'))) {
+                    if (!value.contains(RegExp('[0-9]'))) {
                       return 'Password must contain at least one number';
                     }
                     return null;
@@ -203,5 +201,4 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         ),
       ),
     );
-  }
 }

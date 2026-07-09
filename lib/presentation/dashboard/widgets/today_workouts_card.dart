@@ -6,9 +6,6 @@ import '../../../domain/entities/workout_log.dart';
 
 /// Card showing today's workouts with real data
 class TodayWorkoutsCard extends StatelessWidget {
-  final List<WorkoutLog> workouts;
-  final int minutesExercised;
-  final VoidCallback onTap;
 
   const TodayWorkoutsCard({
     required this.workouts,
@@ -16,10 +13,12 @@ class TodayWorkoutsCard extends StatelessWidget {
     required this.onTap,
     super.key,
   });
+  final List<WorkoutLog> workouts;
+  final int minutesExercised;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -34,7 +33,7 @@ class TodayWorkoutsCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppColors.secondary.withOpacity(0.1),
+                      color: AppColors.secondary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Icon(
@@ -48,7 +47,7 @@ class TodayWorkoutsCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Today\'s Workouts',
                           style: AppTextStyles.body1Medium,
                         ),
@@ -151,18 +150,16 @@ class TodayWorkoutsCard extends StatelessWidget {
         ),
       ),
     );
-  }
 
   Widget _buildStat({
     required IconData icon,
     required String label,
     required String value,
     required Color color,
-  }) {
-    return Container(
+  }) => Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -183,7 +180,6 @@ class TodayWorkoutsCard extends StatelessWidget {
         ],
       ),
     );
-  }
 
   int _getAvgCompletion() {
     if (workouts.isEmpty) return 0;

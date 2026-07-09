@@ -192,7 +192,7 @@ class WorkoutLogs extends _$WorkoutLogs {
       return [];
     }
 
-    final result = await _getWorkoutLogs(userId: user.userId, limit: 50);
+    final result = await _getWorkoutLogs(userId: user.userId);
 
     return result.fold(
       (failure) => throw Exception(failure.message),

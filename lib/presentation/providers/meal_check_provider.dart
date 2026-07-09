@@ -26,7 +26,7 @@ class MealCheckNotifier extends _$MealCheckNotifier {
   }
 
   /// Handle scheduled check-in trigger
-  void _handleScheduledCheckIn(MealPeriod period) async {
+  Future<void> _handleScheduledCheckIn(MealPeriod period) async {
     final authState = ref.read(authProvider);
     final user = authState.value?.getCurrentUser();
 
@@ -53,25 +53,19 @@ class MealCheckNotifier extends _$MealCheckNotifier {
     required bool hadEaten,
     String? response,
     String? mealId,
-  }) {
-    return _checkService.recordCheckIn(
+  }) => _checkService.recordCheckIn(
       userId: userId,
       period: period,
       hadEaten: hadEaten,
       response: response,
       mealId: mealId,
     );
-  }
 
   /// Get skip rate
-  double getSkipRate(String userId) {
-    return _checkService.getMealSkipRate(userId);
-  }
+  double getSkipRate(String userId) => _checkService.getMealSkipRate(userId);
 
   /// Get most skipped period
-  MealPeriod? getMostSkippedPeriod(String userId) {
-    return _checkService.getMostSkippedPeriod(userId);
-  }
+  MealPeriod? getMostSkippedPeriod(String userId) => _checkService.getMostSkippedPeriod(userId);
 
   /// Manually trigger check-in (for testing)
   void triggerManualCheckIn(MealPeriod period) {

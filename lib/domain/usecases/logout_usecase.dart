@@ -6,11 +6,9 @@ import '../repositories/auth_repository.dart';
 
 @injectable
 class LogoutUseCase {
-  final AuthRepository _repository;
 
   LogoutUseCase(this._repository);
+  final AuthRepository _repository;
 
-  Future<Either<Failure, void>> call() async {
-    return await _repository.logout();
-  }
+  Future<Either<Failure, void>> call() async => _repository.logout();
 }

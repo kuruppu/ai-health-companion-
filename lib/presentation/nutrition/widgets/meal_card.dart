@@ -7,16 +7,15 @@ import '../../../domain/entities/meal.dart';
 import 'meal_analysis_card.dart';
 
 class MealCard extends StatelessWidget {
-  final Meal meal;
 
   const MealCard({
     required this.meal,
     super.key,
   });
+  final Meal meal;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,16 +28,14 @@ class MealCard extends StatelessWidget {
                 child: Image.network(
                   meal.photoUrl,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
+                  errorBuilder: (context, error, stackTrace) => Container(
                       color: Colors.grey.shade300,
                       child: const Icon(
                         Icons.broken_image,
                         size: 64,
                         color: Colors.grey,
                       ),
-                    );
-                  },
+                    ),
                 ),
               ),
               // Meal type badge
@@ -51,7 +48,7 @@ class MealCard extends StatelessWidget {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
+                    color: Colors.black.withValues(alpha: 0.6),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
@@ -86,7 +83,7 @@ class MealCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withValues(alpha: 0.2),
                         offset: const Offset(0, 2),
                         blurRadius: 4,
                       ),
@@ -128,7 +125,7 @@ class MealCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 16),
-                    Icon(
+                    const Icon(
                       Icons.restaurant,
                       size: 16,
                       color: AppColors.textSecondary,
@@ -189,14 +186,13 @@ class MealCard extends StatelessWidget {
                   spacing: 6,
                   runSpacing: 6,
                   children:
-                      meal.analysis.foodCategories.take(3).map((category) {
-                    return Container(
+                      meal.analysis.foodCategories.take(3).map((category) => Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.1),
+                        color: AppColors.primary.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
@@ -206,8 +202,7 @@ class MealCard extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                    );
-                  }).toList(),
+                    ),).toList(),
                 ),
 
                 const SizedBox(height: 12),
@@ -231,7 +226,6 @@ class MealCard extends StatelessWidget {
         ],
       ),
     );
-  }
 
   IconData _getMealTypeIcon(MealType type) {
     switch (type) {

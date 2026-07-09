@@ -9,12 +9,12 @@ import '../../../domain/entities/meal.dart';
 import '../../providers/meal_provider.dart';
 
 class QuickLogSheet extends ConsumerStatefulWidget {
-  final File photoFile;
 
   const QuickLogSheet({
     required this.photoFile,
     super.key,
   });
+  final File photoFile;
 
   @override
   ConsumerState<QuickLogSheet> createState() => _QuickLogSheetState();
@@ -23,7 +23,7 @@ class QuickLogSheet extends ConsumerStatefulWidget {
 class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
   MealType _selectedMealType = MealType.lunch;
   final TextEditingController _notesController = TextEditingController();
-  DateTime _selectedTime = DateTime.now();
+  final DateTime _selectedTime = DateTime.now();
   bool _isLogging = false;
 
   @override
@@ -47,8 +47,7 @@ class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -78,7 +77,7 @@ class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
                 const SizedBox(height: 24),
 
                 // Title
-                Text(
+                const Text(
                   'Log Your Meal',
                   style: AppTextStyles.h5,
                 ),
@@ -104,26 +103,24 @@ class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
                 const SizedBox(height: 24),
 
                 // Meal type selector
-                Text(
+                const Text(
                   'Meal Type',
                   style: AppTextStyles.body1Medium,
                 ),
                 const SizedBox(height: 12),
                 Row(
-                  children: MealType.values.map((type) {
-                    return Expanded(
+                  children: MealType.values.map((type) => Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8),
                         child: _buildMealTypeChip(type),
                       ),
-                    );
-                  }).toList(),
+                    ),).toList(),
                 ),
 
                 const SizedBox(height: 24),
 
                 // Optional notes
-                Text(
+                const Text(
                   'Notes (Optional)',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -181,7 +178,6 @@ class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
         ),
       ),
     );
-  }
 
   Widget _buildMealTypeChip(MealType type) {
     final isSelected = _selectedMealType == type;
@@ -307,7 +303,7 @@ class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: AppColors.success.withOpacity(0.1),
+                  color: AppColors.success.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -320,7 +316,7 @@ class _QuickLogSheetState extends ConsumerState<QuickLogSheet> {
             const SizedBox(height: 24),
 
             // Title
-            Center(
+            const Center(
               child: Text(
                 'Meal Analyzed!',
                 style: AppTextStyles.h5,

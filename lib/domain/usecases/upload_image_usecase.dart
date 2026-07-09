@@ -9,9 +9,9 @@ import '../repositories/storage_repository.dart';
 /// Use case for uploading images to storage
 @injectable
 class UploadImageUseCase {
-  final StorageRepository _repository;
 
   const UploadImageUseCase(this._repository);
+  final StorageRepository _repository;
 
   /// Execute the use case
   ///
@@ -22,11 +22,9 @@ class UploadImageUseCase {
     required File file,
     required String userId,
     required String path,
-  }) async {
-    return await _repository.uploadImage(
+  }) async => _repository.uploadImage(
       file: file,
       userId: userId,
       path: path,
     );
-  }
 }

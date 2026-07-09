@@ -6,7 +6,7 @@ class UserModel extends User {
     required super.firebaseUid,
     required super.email,
     required super.displayName,
-    super.photoUrl,
+    required super.createdAt, required super.updatedAt, required super.isActive, super.photoUrl,
     super.age,
     super.heightCm,
     super.currentWeightKg,
@@ -20,65 +20,9 @@ class UserModel extends User {
     super.carbsGrams,
     super.fatsGrams,
     super.waterIntakeMl,
-    required super.createdAt,
-    required super.updatedAt,
-    required super.isActive,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      userId: json['userId'] as String,
-      firebaseUid: json['firebaseUid'] as String,
-      email: json['email'] as String,
-      displayName: json['displayName'] as String,
-      photoUrl: json['photoUrl'] as String?,
-      age: json['age'] as int?,
-      heightCm: json['heightCm'] as double?,
-      currentWeightKg: json['currentWeightKg'] as double?,
-      goalWeightKg: json['goalWeightKg'] as double?,
-      gender: json['gender'] as String?,
-      emotionalGoal: json['emotionalGoal'] as String?,
-      activityLevel: json['activityLevel'] as String?,
-      dietaryPreferences: json['dietaryPreferences'] as String?,
-      dailyCaloricTarget: json['dailyCaloricTarget'] as double?,
-      proteinGrams: json['proteinGrams'] as double?,
-      carbsGrams: json['carbsGrams'] as double?,
-      fatsGrams: json['fatsGrams'] as double?,
-      waterIntakeMl: json['waterIntakeMl'] as double?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
-      isActive: json['isActive'] as bool? ?? true,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'userId': userId,
-      'firebaseUid': firebaseUid,
-      'email': email,
-      'displayName': displayName,
-      'photoUrl': photoUrl,
-      'age': age,
-      'heightCm': heightCm,
-      'currentWeightKg': currentWeightKg,
-      'goalWeightKg': goalWeightKg,
-      'gender': gender,
-      'emotionalGoal': emotionalGoal,
-      'activityLevel': activityLevel,
-      'dietaryPreferences': dietaryPreferences,
-      'dailyCaloricTarget': dailyCaloricTarget,
-      'proteinGrams': proteinGrams,
-      'carbsGrams': carbsGrams,
-      'fatsGrams': fatsGrams,
-      'waterIntakeMl': waterIntakeMl,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt.toIso8601String(),
-      'isActive': isActive,
-    };
-  }
-
-  factory UserModel.fromEntity(User user) {
-    return UserModel(
+  factory UserModel.fromEntity(User user) => UserModel(
       userId: user.userId,
       firebaseUid: user.firebaseUid,
       email: user.email,
@@ -101,10 +45,56 @@ class UserModel extends User {
       updatedAt: user.updatedAt,
       isActive: user.isActive,
     );
-  }
 
-  User toEntity() {
-    return User(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+      userId: json['userId'] as String,
+      firebaseUid: json['firebaseUid'] as String,
+      email: json['email'] as String,
+      displayName: json['displayName'] as String,
+      photoUrl: json['photoUrl'] as String?,
+      age: json['age'] as int?,
+      heightCm: json['heightCm'] as double?,
+      currentWeightKg: json['currentWeightKg'] as double?,
+      goalWeightKg: json['goalWeightKg'] as double?,
+      gender: json['gender'] as String?,
+      emotionalGoal: json['emotionalGoal'] as String?,
+      activityLevel: json['activityLevel'] as String?,
+      dietaryPreferences: json['dietaryPreferences'] as String?,
+      dailyCaloricTarget: json['dailyCaloricTarget'] as double?,
+      proteinGrams: json['proteinGrams'] as double?,
+      carbsGrams: json['carbsGrams'] as double?,
+      fatsGrams: json['fatsGrams'] as double?,
+      waterIntakeMl: json['waterIntakeMl'] as double?,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      isActive: json['isActive'] as bool? ?? true,
+    );
+
+  Map<String, dynamic> toJson() => {
+      'userId': userId,
+      'firebaseUid': firebaseUid,
+      'email': email,
+      'displayName': displayName,
+      'photoUrl': photoUrl,
+      'age': age,
+      'heightCm': heightCm,
+      'currentWeightKg': currentWeightKg,
+      'goalWeightKg': goalWeightKg,
+      'gender': gender,
+      'emotionalGoal': emotionalGoal,
+      'activityLevel': activityLevel,
+      'dietaryPreferences': dietaryPreferences,
+      'dailyCaloricTarget': dailyCaloricTarget,
+      'proteinGrams': proteinGrams,
+      'carbsGrams': carbsGrams,
+      'fatsGrams': fatsGrams,
+      'waterIntakeMl': waterIntakeMl,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'isActive': isActive,
+    };
+
+  User toEntity() => User(
       userId: userId,
       firebaseUid: firebaseUid,
       email: email,
@@ -127,5 +117,4 @@ class UserModel extends User {
       updatedAt: updatedAt,
       isActive: isActive,
     );
-  }
 }

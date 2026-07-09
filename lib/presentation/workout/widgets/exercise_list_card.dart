@@ -5,21 +5,19 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../domain/entities/workout.dart';
 
 class ExerciseListCard extends StatelessWidget {
-  final Workout workout;
 
   const ExerciseListCard({
     required this.workout,
     super.key,
   });
+  final Workout workout;
 
   @override
-  Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
+  Widget build(BuildContext context) => DraggableScrollableSheet(
       initialChildSize: 0.8,
       minChildSize: 0.5,
       maxChildSize: 0.95,
-      builder: (context, scrollController) {
-        return Container(
+      builder: (context, scrollController) => Container(
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -60,7 +58,7 @@ class ExerciseListCard extends StatelessWidget {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.timer,
                           size: 16,
                           color: AppColors.textSecondary,
@@ -73,7 +71,7 @@ class ExerciseListCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 16),
-                        Icon(
+                        const Icon(
                           Icons.fitness_center,
                           size: 16,
                           color: AppColors.textSecondary,
@@ -111,24 +109,21 @@ class ExerciseListCard extends StatelessWidget {
               ),
             ],
           ),
-        );
-      },
+        ),
     );
-  }
 }
 
 class _ExerciseItem extends StatelessWidget {
-  final dynamic exercise; // Exercise entity
-  final int index;
 
   const _ExerciseItem({
     required this.exercise,
     required this.index,
   });
+  final dynamic exercise; // Exercise entity
+  final int index;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -140,7 +135,7 @@ class _ExerciseItem extends StatelessWidget {
                   width: 32,
                   height: 32,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withOpacity(0.1),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -200,11 +195,10 @@ class _ExerciseItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )),
+                  ),),
             ],
           ],
         ),
       ),
     );
-  }
 }

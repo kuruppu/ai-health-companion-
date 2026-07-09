@@ -9,9 +9,9 @@ import '../datasources/storage_remote_datasource.dart';
 
 @Injectable(as: StorageRepository)
 class StorageRepositoryImpl implements StorageRepository {
-  final StorageRemoteDataSource _remoteDataSource;
 
   const StorageRepositoryImpl(this._remoteDataSource);
+  final StorageRemoteDataSource _remoteDataSource;
 
   @override
   Future<Either<Failure, String>> uploadImage({

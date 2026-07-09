@@ -27,7 +27,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Nutrition',
               style: AppTextStyles.body1Medium,
             ),
@@ -111,8 +111,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
     );
   }
 
-  Widget _buildEmptyState() {
-    return Center(
+  Widget _buildEmptyState() => Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
@@ -122,7 +121,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -132,7 +131,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            Text(
+            const Text(
               'No meals logged today',
               style: AppTextStyles.h5,
               textAlign: TextAlign.center,
@@ -161,7 +160,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
                     size: 32,
                   ),
                   const SizedBox(height: 8),
-                  Text(
+                  const Text(
                     'Photo-First Logging',
                     style: AppTextStyles.body1Medium,
                   ),
@@ -179,7 +178,6 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
         ),
       ),
     );
-  }
 
   Widget _buildTodaySummary(List<Meal> meals) {
     final totalMeals = meals.length;
@@ -195,7 +193,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Today\'s Summary',
               style: AppTextStyles.body1Medium,
             ),
@@ -232,11 +230,10 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
     required String label,
     required String value,
     required Color color,
-  }) {
-    return Container(
+  }) => Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -261,7 +258,6 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
         ],
       ),
     );
-  }
 
   Color _getHealthScoreColor(double score) {
     if (score >= 4.0) return AppColors.success;
@@ -284,7 +280,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
       'Thursday',
       'Friday',
       'Saturday',
-      'Sunday'
+      'Sunday',
     ];
     return weekdays[weekday - 1];
   }
@@ -302,7 +298,7 @@ class _NutritionScreenState extends ConsumerState<NutritionScreen> {
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     return months[month - 1];
   }

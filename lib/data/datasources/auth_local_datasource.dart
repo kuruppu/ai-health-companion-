@@ -15,9 +15,9 @@ abstract class AuthLocalDataSource {
 
 @LazySingleton(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
-  final HiveManager _hiveManager;
 
   AuthLocalDataSourceImpl(this._hiveManager);
+  final HiveManager _hiveManager;
 
   @override
   Future<UserModel?> getCachedUser() async {

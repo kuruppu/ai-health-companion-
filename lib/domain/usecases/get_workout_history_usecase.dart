@@ -8,9 +8,9 @@ import '../repositories/workout_repository.dart';
 /// Use case for fetching workout history
 @injectable
 class GetWorkoutHistoryUseCase {
-  final WorkoutRepository _repository;
 
   const GetWorkoutHistoryUseCase(this._repository);
+  final WorkoutRepository _repository;
 
   /// Execute the use case
   ///
@@ -19,10 +19,8 @@ class GetWorkoutHistoryUseCase {
   Future<Either<Failure, List<Workout>>> call({
     required String userId,
     int limit = 20,
-  }) async {
-    return await _repository.getWorkoutHistory(
+  }) async => _repository.getWorkoutHistory(
       userId: userId,
       limit: limit,
     );
-  }
 }

@@ -7,10 +7,10 @@ import 'package:uuid/uuid.dart';
 /// Remote data source for Firebase Storage operations
 @injectable
 class StorageRemoteDataSource {
-  final FirebaseStorage _storage;
-  final Uuid _uuid;
 
   const StorageRemoteDataSource(this._storage, this._uuid);
+  final FirebaseStorage _storage;
+  final Uuid _uuid;
 
   /// Upload image to Firebase Storage
   ///

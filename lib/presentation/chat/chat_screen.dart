@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
-import '../../domain/entities/chat_message.dart';
 import '../../shared/widgets/loading_indicator.dart';
 import '../providers/auth_provider.dart';
 import '../providers/chat_provider.dart';
@@ -50,7 +49,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.2),
+                color: AppColors.primary.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -63,7 +62,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'AI Coach',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -153,9 +152,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                   );
 
               // Scroll to bottom after sending
-              Future.delayed(const Duration(milliseconds: 100), () {
-                _scrollToBottom();
-              });
+              Future.delayed(const Duration(milliseconds: 100), _scrollToBottom);
             },
           ),
         ],
@@ -163,8 +160,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     );
   }
 
-  Widget _buildEmptyState() {
-    return Center(
+  Widget _buildEmptyState() => Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
@@ -174,7 +170,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -184,7 +180,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            Text(
+            const Text(
               'Hi! I\'m your AI health coach',
               style: AppTextStyles.h5,
               textAlign: TextAlign.center,
@@ -233,21 +229,19 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         ),
       ),
     );
-  }
 }
 
 class _SuggestionChip extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
 
   const _SuggestionChip({
     required this.label,
     required this.onTap,
   });
+  final String label;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
+  Widget build(BuildContext context) => InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
       child: Container(
@@ -266,5 +260,4 @@ class _SuggestionChip extends StatelessWidget {
         ),
       ),
     );
-  }
 }

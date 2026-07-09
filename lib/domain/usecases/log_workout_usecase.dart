@@ -8,9 +8,9 @@ import '../repositories/workout_repository.dart';
 /// Use case for logging completed workouts
 @injectable
 class LogWorkoutUseCase {
-  final WorkoutRepository _repository;
 
   const LogWorkoutUseCase(this._repository);
+  final WorkoutRepository _repository;
 
   /// Execute the use case
   ///
@@ -33,8 +33,7 @@ class LogWorkoutUseCase {
     required int totalExercises,
     int? energyRating,
     String? notes,
-  }) async {
-    return await _repository.logWorkout(
+  }) async => _repository.logWorkout(
       userId: userId,
       workoutId: workoutId,
       workoutName: workoutName,
@@ -45,5 +44,4 @@ class LogWorkoutUseCase {
       energyRating: energyRating,
       notes: notes,
     );
-  }
 }

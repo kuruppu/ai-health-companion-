@@ -44,8 +44,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColors.primary,
       body: Center(
         child: Column(
@@ -75,7 +74,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             Text(
               'Your personal health coach',
               style: AppTextStyles.body1.copyWith(
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
               ),
             ),
             const SizedBox(height: 48),
@@ -86,5 +85,4 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         ),
       ),
     );
-  }
 }

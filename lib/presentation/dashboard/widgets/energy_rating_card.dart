@@ -4,9 +4,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 
 class EnergyRatingCard extends StatelessWidget {
-  final int? currentLevel;
-  final String message;
-  final Function(int) onRatingChanged;
 
   const EnergyRatingCard({
     required this.currentLevel,
@@ -14,10 +11,12 @@ class EnergyRatingCard extends StatelessWidget {
     required this.onRatingChanged,
     super.key,
   });
+  final int? currentLevel;
+  final String message;
+  final Function(int) onRatingChanged;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
@@ -31,7 +30,7 @@ class EnergyRatingCard extends StatelessWidget {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: _getEnergyColor(currentLevel).withOpacity(0.2),
+                    color: _getEnergyColor(currentLevel).withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -45,7 +44,7 @@ class EnergyRatingCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Today\'s Energy',
                         style: AppTextStyles.body1Medium,
                       ),
@@ -118,7 +117,6 @@ class EnergyRatingCard extends StatelessWidget {
         ),
       ),
     );
-  }
 
   Color _getEnergyColor(int? level) {
     if (level == null) return AppColors.primary;

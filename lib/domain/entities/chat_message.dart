@@ -1,6 +1,19 @@
 import 'package:equatable/equatable.dart';
 
 class ChatMessage extends Equatable {
+
+  const ChatMessage({
+    required this.messageId,
+    required this.userId,
+    required this.role,
+    required this.content,
+    required this.messageType,
+    required this.timestamp, this.imageUrl,
+    this.audioUrl,
+    this.tokenCount,
+    this.context,
+    this.isImportant = false,
+  });
   final String messageId;
   final String userId;
   final String role; // 'user' or 'assistant'
@@ -17,20 +30,6 @@ class ChatMessage extends Equatable {
   final bool isImportant;
 
   final DateTime timestamp;
-
-  const ChatMessage({
-    required this.messageId,
-    required this.userId,
-    required this.role,
-    required this.content,
-    required this.messageType,
-    this.imageUrl,
-    this.audioUrl,
-    this.tokenCount,
-    this.context,
-    this.isImportant = false,
-    required this.timestamp,
-  });
 
   bool get isUser => role == 'user';
   bool get isAssistant => role == 'assistant';
@@ -49,8 +48,7 @@ class ChatMessage extends Equatable {
     Map<String, dynamic>? context,
     bool? isImportant,
     DateTime? timestamp,
-  }) {
-    return ChatMessage(
+  }) => ChatMessage(
       messageId: messageId ?? this.messageId,
       userId: userId ?? this.userId,
       role: role ?? this.role,
@@ -63,7 +61,6 @@ class ChatMessage extends Equatable {
       isImportant: isImportant ?? this.isImportant,
       timestamp: timestamp ?? this.timestamp,
     );
-  }
 
   @override
   List<Object?> get props => [

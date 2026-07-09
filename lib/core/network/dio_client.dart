@@ -9,7 +9,6 @@ import '../errors/exceptions.dart';
 
 @lazySingleton
 class DioClient {
-  final Dio _dio;
 
   DioClient(this._dio) {
     _dio
@@ -25,13 +24,10 @@ class DioClient {
         PrettyDioLogger(
           requestHeader: true,
           requestBody: true,
-          responseBody: true,
-          responseHeader: false,
-          error: true,
-          compact: true,
         ),
       );
   }
+  final Dio _dio;
 
   /// GET request
   Future<Response> get(
@@ -153,7 +149,7 @@ class DioClient {
 
       case DioExceptionType.connectionError:
         return const NetworkException(
-          message: 'No internet connection',
+          
         );
 
       case DioExceptionType.badResponse:

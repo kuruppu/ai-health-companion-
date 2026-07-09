@@ -26,27 +26,27 @@ class AuthLoading extends AuthStatus {
 }
 
 class Authenticated extends AuthStatus {
-  final User user;
 
   const Authenticated(this.user);
+  final User user;
 
   @override
   List<Object?> get props => [user];
 }
 
 class Unauthenticated extends AuthStatus {
-  final String? message;
 
   const Unauthenticated({this.message});
+  final String? message;
 
   @override
   List<Object?> get props => [message];
 }
 
 class AuthError extends AuthStatus {
-  final String message;
 
   const AuthError(this.message);
+  final String message;
 
   @override
   List<Object?> get props => [message];

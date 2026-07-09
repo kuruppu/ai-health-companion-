@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import '../../domain/entities/chat_message.dart';
 
@@ -9,16 +8,28 @@ class ChatMessageModel extends ChatMessage {
     required super.role,
     required super.content,
     required super.messageType,
-    super.imageUrl,
+    required super.timestamp, super.imageUrl,
     super.audioUrl,
     super.tokenCount,
     super.context,
     super.isImportant,
-    required super.timestamp,
   });
 
-  factory ChatMessageModel.fromJson(Map<String, dynamic> json) {
-    return ChatMessageModel(
+  factory ChatMessageModel.fromEntity(ChatMessage message) => ChatMessageModel(
+      messageId: message.messageId,
+      userId: message.userId,
+      role: message.role,
+      content: message.content,
+      messageType: message.messageType,
+      imageUrl: message.imageUrl,
+      audioUrl: message.audioUrl,
+      tokenCount: message.tokenCount,
+      context: message.context,
+      isImportant: message.isImportant,
+      timestamp: message.timestamp,
+    );
+
+  factory ChatMessageModel.fromJson(Map<String, dynamic> json) => ChatMessageModel(
       messageId: json['messageId'] as String,
       userId: json['userId'] as String,
       role: json['role'] as String,
@@ -36,10 +47,8 @@ class ChatMessageModel extends ChatMessage {
       isImportant: json['isImportant'] as bool? ?? false,
       timestamp: DateTime.parse(json['timestamp'] as String),
     );
-  }
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'messageId': messageId,
       'userId': userId,
       'role': role,
@@ -52,26 +61,8 @@ class ChatMessageModel extends ChatMessage {
       'isImportant': isImportant,
       'timestamp': timestamp.toIso8601String(),
     };
-  }
 
-  factory ChatMessageModel.fromEntity(ChatMessage message) {
-    return ChatMessageModel(
-      messageId: message.messageId,
-      userId: message.userId,
-      role: message.role,
-      content: message.content,
-      messageType: message.messageType,
-      imageUrl: message.imageUrl,
-      audioUrl: message.audioUrl,
-      tokenCount: message.tokenCount,
-      context: message.context,
-      isImportant: message.isImportant,
-      timestamp: message.timestamp,
-    );
-  }
-
-  ChatMessage toEntity() {
-    return ChatMessage(
+  ChatMessage toEntity() => ChatMessage(
       messageId: messageId,
       userId: userId,
       role: role,
@@ -84,5 +75,4 @@ class ChatMessageModel extends ChatMessage {
       isImportant: isImportant,
       timestamp: timestamp,
     );
-  }
 }

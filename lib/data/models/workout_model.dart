@@ -1,4 +1,3 @@
-import 'package:drift/drift.dart' as drift;
 
 import '../../domain/entities/exercise.dart';
 import '../../domain/entities/workout.dart';
@@ -15,48 +14,12 @@ class WorkoutModel extends Workout {
     required super.durationMinutes,
     required super.targetMuscles,
     required super.exercises,
-    super.isAiGenerated,
+    required super.createdAt, super.isAiGenerated,
     super.aiContext,
-    required super.createdAt,
   });
 
-  /// Create from entity
-  factory WorkoutModel.fromEntity(Workout workout) {
-    return WorkoutModel(
-      workoutId: workout.workoutId,
-      userId: workout.userId,
-      name: workout.name,
-      description: workout.description,
-      difficulty: workout.difficulty,
-      durationMinutes: workout.durationMinutes,
-      targetMuscles: workout.targetMuscles,
-      exercises: workout.exercises,
-      isAiGenerated: workout.isAiGenerated,
-      aiContext: workout.aiContext,
-      createdAt: workout.createdAt,
-    );
-  }
-
-  /// Convert to entity
-  Workout toEntity() {
-    return Workout(
-      workoutId: workoutId,
-      userId: userId,
-      name: name,
-      description: description,
-      difficulty: difficulty,
-      durationMinutes: durationMinutes,
-      targetMuscles: targetMuscles,
-      exercises: exercises,
-      isAiGenerated: isAiGenerated,
-      aiContext: aiContext,
-      createdAt: createdAt,
-    );
-  }
-
   /// Create from JSON (Firestore/Claude API)
-  factory WorkoutModel.fromJson(Map<String, dynamic> json) {
-    return WorkoutModel(
+  factory WorkoutModel.fromJson(Map<String, dynamic> json) => WorkoutModel(
       workoutId: json['workout_id'] as String,
       userId: json['user_id'] as String,
       name: json['name'] as String,
@@ -72,29 +35,9 @@ class WorkoutModel extends Workout {
       aiContext: json['ai_context'] as String?,
       createdAt: DateTime.parse(json['created_at'] as String),
     );
-  }
-
-  /// Convert to JSON (Firestore)
-  Map<String, dynamic> toJson() {
-    return {
-      'workout_id': workoutId,
-      'user_id': userId,
-      'name': name,
-      'description': description,
-      'difficulty': difficulty.name,
-      'duration_minutes': durationMinutes,
-      'target_muscles': targetMuscles,
-      'exercises':
-          exercises.map((e) => ExerciseModel.fromEntity(e).toJson()).toList(),
-      'is_ai_generated': isAiGenerated,
-      'ai_context': aiContext,
-      'created_at': createdAt.toIso8601String(),
-    };
-  }
 
   /// Create from Drift table row
-  factory WorkoutModel.fromDrift(Map<String, dynamic> row) {
-    return WorkoutModel(
+  factory WorkoutModel.fromDrift(Map<String, dynamic> row) => WorkoutModel(
       workoutId: row['workout_id'] as String,
       userId: row['user_id'] as String,
       name: row['name'] as String,
@@ -109,11 +52,55 @@ class WorkoutModel extends Workout {
       aiContext: row['ai_context'] as String?,
       createdAt: DateTime.fromMillisecondsSinceEpoch(row['created_at'] as int),
     );
-  }
+
+  /// Create from entity
+  factory WorkoutModel.fromEntity(Workout workout) => WorkoutModel(
+      workoutId: workout.workoutId,
+      userId: workout.userId,
+      name: workout.name,
+      description: workout.description,
+      difficulty: workout.difficulty,
+      durationMinutes: workout.durationMinutes,
+      targetMuscles: workout.targetMuscles,
+      exercises: workout.exercises,
+      isAiGenerated: workout.isAiGenerated,
+      aiContext: workout.aiContext,
+      createdAt: workout.createdAt,
+    );
+
+  /// Convert to entity
+  Workout toEntity() => Workout(
+      workoutId: workoutId,
+      userId: userId,
+      name: name,
+      description: description,
+      difficulty: difficulty,
+      durationMinutes: durationMinutes,
+      targetMuscles: targetMuscles,
+      exercises: exercises,
+      isAiGenerated: isAiGenerated,
+      aiContext: aiContext,
+      createdAt: createdAt,
+    );
+
+  /// Convert to JSON (Firestore)
+  Map<String, dynamic> toJson() => {
+      'workout_id': workoutId,
+      'user_id': userId,
+      'name': name,
+      'description': description,
+      'difficulty': difficulty.name,
+      'duration_minutes': durationMinutes,
+      'target_muscles': targetMuscles,
+      'exercises':
+          exercises.map((e) => ExerciseModel.fromEntity(e).toJson()).toList(),
+      'is_ai_generated': isAiGenerated,
+      'ai_context': aiContext,
+      'created_at': createdAt.toIso8601String(),
+    };
 
   /// Convert to Drift companion
-  Map<String, dynamic> toDrift() {
-    return {
+  Map<String, dynamic> toDrift() => {
       'workout_id': workoutId,
       'user_id': userId,
       'name': name,
@@ -127,7 +114,6 @@ class WorkoutModel extends Workout {
       'ai_context': aiContext,
       'created_at': createdAt.millisecondsSinceEpoch,
     };
-  }
 }
 
 /// Data model for Exercise entity
@@ -138,18 +124,16 @@ class ExerciseModel extends Exercise {
     required super.description,
     required super.type,
     required super.targetMuscles,
-    super.sets,
+    required super.orderIndex, super.sets,
     super.repsPerSet,
     super.durationSeconds,
     super.restSeconds = 60,
-    required super.orderIndex,
     super.demonstrationUrl,
     super.formTips = const [],
   });
 
   /// Create from entity
-  factory ExerciseModel.fromEntity(Exercise exercise) {
-    return ExerciseModel(
+  factory ExerciseModel.fromEntity(Exercise exercise) => ExerciseModel(
       exerciseId: exercise.exerciseId,
       name: exercise.name,
       description: exercise.description,
@@ -163,11 +147,9 @@ class ExerciseModel extends Exercise {
       demonstrationUrl: exercise.demonstrationUrl,
       formTips: exercise.formTips,
     );
-  }
 
   /// Create from JSON
-  factory ExerciseModel.fromJson(Map<String, dynamic> json) {
-    return ExerciseModel(
+  factory ExerciseModel.fromJson(Map<String, dynamic> json) => ExerciseModel(
       exerciseId: json['exercise_id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -184,11 +166,9 @@ class ExerciseModel extends Exercise {
           ? (json['form_tips'] as List).map((e) => e as String).toList()
           : const [],
     );
-  }
 
   /// Convert to JSON
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'exercise_id': exerciseId,
       'name': name,
       'description': description,
@@ -202,7 +182,6 @@ class ExerciseModel extends Exercise {
       'demonstration_url': demonstrationUrl,
       'form_tips': formTips,
     };
-  }
 }
 
 /// Data model for WorkoutLog entity
@@ -221,43 +200,8 @@ class WorkoutLogModel extends WorkoutLog {
     super.notes,
   });
 
-  /// Create from entity
-  factory WorkoutLogModel.fromEntity(WorkoutLog log) {
-    return WorkoutLogModel(
-      logId: log.logId,
-      userId: log.userId,
-      workoutId: log.workoutId,
-      workoutName: log.workoutName,
-      startedAt: log.startedAt,
-      completedAt: log.completedAt,
-      durationMinutes: log.durationMinutes,
-      exercisesCompleted: log.exercisesCompleted,
-      totalExercises: log.totalExercises,
-      energyRating: log.energyRating,
-      notes: log.notes,
-    );
-  }
-
-  /// Convert to entity
-  WorkoutLog toEntity() {
-    return WorkoutLog(
-      logId: logId,
-      userId: userId,
-      workoutId: workoutId,
-      workoutName: workoutName,
-      startedAt: startedAt,
-      completedAt: completedAt,
-      durationMinutes: durationMinutes,
-      exercisesCompleted: exercisesCompleted,
-      totalExercises: totalExercises,
-      energyRating: energyRating,
-      notes: notes,
-    );
-  }
-
   /// Create from JSON (Firestore)
-  factory WorkoutLogModel.fromJson(Map<String, dynamic> json) {
-    return WorkoutLogModel(
+  factory WorkoutLogModel.fromJson(Map<String, dynamic> json) => WorkoutLogModel(
       logId: json['log_id'] as String,
       userId: json['user_id'] as String,
       workoutId: json['workout_id'] as String,
@@ -270,28 +214,9 @@ class WorkoutLogModel extends WorkoutLog {
       energyRating: json['energy_rating'] as int?,
       notes: json['notes'] as String?,
     );
-  }
-
-  /// Convert to JSON (Firestore)
-  Map<String, dynamic> toJson() {
-    return {
-      'log_id': logId,
-      'user_id': userId,
-      'workout_id': workoutId,
-      'workout_name': workoutName,
-      'started_at': startedAt.toIso8601String(),
-      'completed_at': completedAt.toIso8601String(),
-      'duration_minutes': durationMinutes,
-      'exercises_completed': exercisesCompleted,
-      'total_exercises': totalExercises,
-      'energy_rating': energyRating,
-      'notes': notes,
-    };
-  }
 
   /// Create from Drift table row
-  factory WorkoutLogModel.fromDrift(Map<String, dynamic> row) {
-    return WorkoutLogModel(
+  factory WorkoutLogModel.fromDrift(Map<String, dynamic> row) => WorkoutLogModel(
       logId: row['log_id'] as String,
       userId: row['user_id'] as String,
       workoutId: row['workout_id'] as String,
@@ -305,11 +230,54 @@ class WorkoutLogModel extends WorkoutLog {
       energyRating: row['energy_rating'] as int?,
       notes: row['notes'] as String?,
     );
-  }
+
+  /// Create from entity
+  factory WorkoutLogModel.fromEntity(WorkoutLog log) => WorkoutLogModel(
+      logId: log.logId,
+      userId: log.userId,
+      workoutId: log.workoutId,
+      workoutName: log.workoutName,
+      startedAt: log.startedAt,
+      completedAt: log.completedAt,
+      durationMinutes: log.durationMinutes,
+      exercisesCompleted: log.exercisesCompleted,
+      totalExercises: log.totalExercises,
+      energyRating: log.energyRating,
+      notes: log.notes,
+    );
+
+  /// Convert to entity
+  WorkoutLog toEntity() => WorkoutLog(
+      logId: logId,
+      userId: userId,
+      workoutId: workoutId,
+      workoutName: workoutName,
+      startedAt: startedAt,
+      completedAt: completedAt,
+      durationMinutes: durationMinutes,
+      exercisesCompleted: exercisesCompleted,
+      totalExercises: totalExercises,
+      energyRating: energyRating,
+      notes: notes,
+    );
+
+  /// Convert to JSON (Firestore)
+  Map<String, dynamic> toJson() => {
+      'log_id': logId,
+      'user_id': userId,
+      'workout_id': workoutId,
+      'workout_name': workoutName,
+      'started_at': startedAt.toIso8601String(),
+      'completed_at': completedAt.toIso8601String(),
+      'duration_minutes': durationMinutes,
+      'exercises_completed': exercisesCompleted,
+      'total_exercises': totalExercises,
+      'energy_rating': energyRating,
+      'notes': notes,
+    };
 
   /// Convert to Drift companion
-  Map<String, dynamic> toDrift() {
-    return {
+  Map<String, dynamic> toDrift() => {
       'log_id': logId,
       'user_id': userId,
       'workout_id': workoutId,
@@ -322,5 +290,4 @@ class WorkoutLogModel extends WorkoutLog {
       'energy_rating': energyRating,
       'notes': notes,
     };
-  }
 }

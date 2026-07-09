@@ -53,11 +53,11 @@ class AppConstants {
   static const Duration defaultMealReminderInterval = Duration(hours: 4);
 
   // Nutrition
-  static const double defaultDailyCaloricIntake = 1500.0;
+  static const double defaultDailyCaloricIntake = 1500;
   static const double defaultProteinPercentage = 0.30;
   static const double defaultCarbsPercentage = 0.40;
   static const double defaultFatsPercentage = 0.30;
-  static const double defaultWaterIntakeMl = 2000.0;
+  static const double defaultWaterIntakeMl = 2000;
 
   // Workout
   static const int defaultWorkoutDurationMinutes = 30;
@@ -68,7 +68,7 @@ class AppConstants {
   // Goals
   static const double defaultWeightLossRateKgPerWeek = 0.5;
   static const double minWeightLossRateKgPerWeek = 0.25;
-  static const double maxWeightLossRateKgPerWeek = 1.0;
+  static const double maxWeightLossRateKgPerWeek = 1;
 
   // UI
   static const Duration defaultAnimationDuration = Duration(milliseconds: 300);

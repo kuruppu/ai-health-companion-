@@ -4,10 +4,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 
 class WeeklySummaryCard extends StatelessWidget {
-  final int workoutsCompleted;
-  final double avgEnergy;
-  final int daysLogged;
-  final int currentStreak;
 
   const WeeklySummaryCard({
     required this.workoutsCompleted,
@@ -16,10 +12,13 @@ class WeeklySummaryCard extends StatelessWidget {
     required this.currentStreak,
     super.key,
   });
+  final int workoutsCompleted;
+  final double avgEnergy;
+  final int daysLogged;
+  final int currentStreak;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
@@ -33,7 +32,7 @@ class WeeklySummaryCard extends StatelessWidget {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: AppColors.success.withOpacity(0.2),
+                    color: AppColors.success.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
@@ -47,7 +46,7 @@ class WeeklySummaryCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'This Week',
                         style: AppTextStyles.body1Medium,
                       ),
@@ -111,7 +110,6 @@ class WeeklySummaryCard extends StatelessWidget {
         ),
       ),
     );
-  }
 
   String _getWeeklySummaryMessage() {
     if (workoutsCompleted == 0 && daysLogged == 0) {
@@ -127,10 +125,6 @@ class WeeklySummaryCard extends StatelessWidget {
 }
 
 class _StatItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String value;
-  final Color color;
 
   const _StatItem({
     required this.icon,
@@ -138,13 +132,16 @@ class _StatItem extends StatelessWidget {
     required this.value,
     required this.color,
   });
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -166,5 +163,4 @@ class _StatItem extends StatelessWidget {
         ],
       ),
     );
-  }
 }

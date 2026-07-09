@@ -114,7 +114,7 @@ class IntegratedDashboardScreen extends ConsumerWidget {
                 color: AppColors.error,
               ),
               const SizedBox(height: 16),
-              Text(
+              const Text(
                 'Failed to load dashboard',
                 style: AppTextStyles.body1,
               ),
@@ -139,14 +139,13 @@ class IntegratedDashboardScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildWeeklySummary(IntegratedDashboardData data) {
-    return Card(
+  Widget _buildWeeklySummary(IntegratedDashboardData data) => Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'This Week',
               style: AppTextStyles.body1Medium,
             ),
@@ -178,18 +177,16 @@ class IntegratedDashboardScreen extends ConsumerWidget {
         ),
       ),
     );
-  }
 
   Widget _buildWeekStat({
     required IconData icon,
     required String label,
     required String value,
     required Color color,
-  }) {
-    return Container(
+  }) => Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -210,10 +207,8 @@ class IntegratedDashboardScreen extends ConsumerWidget {
         ],
       ),
     );
-  }
 
-  Widget _buildQuickStats(IntegratedDashboardData data) {
-    return Card(
+  Widget _buildQuickStats(IntegratedDashboardData data) => Card(
       color: AppColors.surfaceLight,
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -249,14 +244,12 @@ class IntegratedDashboardScreen extends ConsumerWidget {
         ),
       ),
     );
-  }
 
   Widget _buildQuickStat({
     required IconData icon,
     required String value,
     required String label,
-  }) {
-    return Column(
+  }) => Column(
       children: [
         Icon(icon, color: AppColors.primary, size: 24),
         const SizedBox(height: 4),
@@ -272,7 +265,6 @@ class IntegratedDashboardScreen extends ConsumerWidget {
         ),
       ],
     );
-  }
 
   String _getGreeting(String? name) {
     final hour = DateTime.now().hour;

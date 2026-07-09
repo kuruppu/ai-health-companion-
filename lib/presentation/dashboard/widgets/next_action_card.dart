@@ -5,18 +5,17 @@ import '../../../core/theme/app_text_styles.dart';
 
 /// Card showing AI-suggested next action
 class NextActionCard extends StatelessWidget {
-  final String suggestion;
-  final VoidCallback onTap;
 
   const NextActionCard({
     required this.suggestion,
     required this.onTap,
     super.key,
   });
+  final String suggestion;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       color: AppColors.primary,
       child: InkWell(
         onTap: onTap,
@@ -28,7 +27,7 @@ class NextActionCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -45,7 +44,7 @@ class NextActionCard extends StatelessWidget {
                     Text(
                       'Next Up',
                       style: AppTextStyles.caption.copyWith(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -63,7 +62,7 @@ class NextActionCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -77,5 +76,4 @@ class NextActionCard extends StatelessWidget {
         ),
       ),
     );
-  }
 }

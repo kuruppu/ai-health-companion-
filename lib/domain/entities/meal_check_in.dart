@@ -2,6 +2,16 @@ import 'package:equatable/equatable.dart';
 
 /// Represents a meal check-in event
 class MealCheckIn extends Equatable {
+
+  const MealCheckIn({
+    required this.checkInId,
+    required this.userId,
+    required this.mealPeriod,
+    required this.checkInTime,
+    required this.hadEaten,
+    this.response,
+    this.mealId,
+  });
   /// Unique identifier
   final String checkInId;
 
@@ -22,16 +32,6 @@ class MealCheckIn extends Equatable {
 
   /// Meal ID if they logged one
   final String? mealId;
-
-  const MealCheckIn({
-    required this.checkInId,
-    required this.userId,
-    required this.mealPeriod,
-    required this.checkInTime,
-    required this.hadEaten,
-    this.response,
-    this.mealId,
-  });
 
   @override
   List<Object?> get props => [

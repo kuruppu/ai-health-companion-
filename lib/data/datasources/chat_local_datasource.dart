@@ -18,10 +18,10 @@ abstract class ChatLocalDataSource {
 
 @LazySingleton(as: ChatLocalDataSource)
 class ChatLocalDataSourceImpl implements ChatLocalDataSource {
-  final AppDatabase _database;
-  final HiveManager _hiveManager;
 
   ChatLocalDataSourceImpl(this._database, this._hiveManager);
+  final AppDatabase _database;
+  final HiveManager _hiveManager;
 
   @override
   Future<List<ChatMessageModel>> getChatHistory(
@@ -34,8 +34,7 @@ class ChatLocalDataSourceImpl implements ChatLocalDataSource {
           .first
           .then((list) => list.reversed.take(limit).toList().reversed.toList());
 
-      return messages.map((msg) {
-        return ChatMessageModel(
+      return messages.map((msg) => ChatMessageModel(
           messageId: msg.messageId,
           userId: msg.userId,
           role: msg.role,
@@ -46,8 +45,7 @@ class ChatLocalDataSourceImpl implements ChatLocalDataSource {
           tokenCount: msg.tokenCount,
           isImportant: msg.isImportant,
           timestamp: msg.timestamp,
-        );
-      }).toList();
+        ),).toList();
     } catch (e) {
       throw DatabaseException(message: e.toString());
     }
@@ -95,7 +93,7 @@ class ChatLocalDataSourceImpl implements ChatLocalDataSource {
       }
 
       return cached
-          .map((json) => ChatMessageModel.fromJson(json))
+          .map(ChatMessageModel.fromJson)
           .take(AppConstants.maxChatHistoryMessages)
           .toList();
     } catch (e) {

@@ -25,10 +25,10 @@ abstract class AuthRemoteDataSource {
 
 @LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  final firebase_auth.FirebaseAuth _firebaseAuth;
-  final FirebaseFirestore _firestore;
 
   AuthRemoteDataSourceImpl(this._firebaseAuth, this._firestore);
+  final firebase_auth.FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firestore;
 
   @override
   Future<UserModel> loginWithEmail(String email, String password) async {
@@ -81,7 +81,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         firebaseUid: credential.user!.uid,
         email: email,
         displayName: displayName,
-        photoUrl: null,
         createdAt: now,
         updatedAt: now,
         isActive: true,
@@ -108,19 +107,19 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted:
-            (firebase_auth.PhoneAuthCredential credential) async {
+            (credential) async {
           await _firebaseAuth.signInWithCredential(credential);
         },
-        verificationFailed: (firebase_auth.FirebaseAuthException e) {
+        verificationFailed: (e) {
           throw AuthException(
             message: _getAuthErrorMessage(e.code),
             code: e.code,
           );
         },
-        codeSent: (String verId, int? resendToken) {
+        codeSent: (verId, resendToken) {
           verificationId = verId;
         },
-        codeAutoRetrievalTimeout: (String verId) {
+        codeAutoRetrievalTimeout: (verId) {
           verificationId = verId;
         },
       );
@@ -281,8 +280,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Stream<UserModel?> get authStateChanges {
-    return _firebaseAuth.authStateChanges().asyncMap((firebaseUser) async {
+  Stream<UserModel?> get authStateChanges => _firebaseAuth.authStateChanges().asyncMap((firebaseUser) async {
       if (firebaseUser == null) {
         return null;
       }
@@ -293,7 +291,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return null;
       }
     });
-  }
 
   Future<UserModel?> _getUserFromFirestore(String userId) async {
     try {

@@ -74,8 +74,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -85,7 +84,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 60),
-                Text(
+                const Text(
                   'Welcome Back',
                   style: AppTextStyles.h2,
                   textAlign: TextAlign.center,
@@ -122,7 +121,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   label: 'Password',
                   hint: 'Enter your password',
                   obscureText: true,
-                  textInputAction: TextInputAction.done,
                   prefixIcon: const Icon(Icons.lock_outlined),
                   onSubmitted: (_) => _handleLogin(),
                   validator: (value) {
@@ -185,5 +183,4 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
-  }
 }

@@ -8,13 +8,13 @@ import '../models/workout_model.dart';
 /// Local data source for workout persistence (SQLite + Hive)
 @injectable
 class WorkoutLocalDataSource {
-  final AppDatabase _database;
-  final Box<Map<dynamic, dynamic>> _workoutCache;
 
   const WorkoutLocalDataSource(
     this._database,
     @Named('workoutCache') this._workoutCache,
   );
+  final AppDatabase _database;
+  final Box<Map<dynamic, dynamic>> _workoutCache;
 
   /// Save workout to SQLite
   /// TODO: Fix schema mismatch - table uses workoutName/intensity, not name/difficulty
@@ -24,7 +24,7 @@ class WorkoutLocalDataSource {
             workoutId: Value(workout.workoutId),
             userId: Value(workout.userId),
             workoutName: Value(workout.name),
-            workoutType: Value('strength'), // TODO: Map from workout type
+            workoutType: const Value('strength'), // TODO: Map from workout type
             intensity: Value(workout.difficulty.name),
             durationMinutes: Value(workout.durationMinutes),
             description: Value(workout.description),
@@ -57,12 +57,12 @@ class WorkoutLocalDataSource {
       ..where((tbl) => tbl.userId.equals(userId))
       ..orderBy([
         (tbl) =>
-            OrderingTerm(expression: tbl.createdAt, mode: OrderingMode.desc)
+            OrderingTerm(expression: tbl.createdAt, mode: OrderingMode.desc),
       ])
       ..limit(limit);
 
     final rows = await query.get();
-    return rows.map((row) => _workoutFromDriftRow(row)).toList();
+    return rows.map(_workoutFromDriftRow).toList();
   }
 
   /// Get workout by ID
@@ -98,7 +98,7 @@ class WorkoutLocalDataSource {
             completedExercises: Value(log.exercisesCompleted),
             totalExercises: Value(log.totalExercises),
             completionPercentage: Value(log.exercisesCompleted / log.totalExercises * 100),
-            intensity: Value('moderate'), // TODO: Map from log data
+            intensity: const Value('moderate'), // TODO: Map from log data
             energyAfter: Value(log.energyRating),
             userNotes: Value(log.notes),
           ),
@@ -117,7 +117,7 @@ class WorkoutLocalDataSource {
       ..where((tbl) => tbl.userId.equals(userId))
       ..orderBy([
         (tbl) =>
-            OrderingTerm(expression: tbl.completedAt, mode: OrderingMode.desc)
+            OrderingTerm(expression: tbl.completedAt, mode: OrderingMode.desc),
       ])
       ..limit(limit);
 
@@ -132,15 +132,14 @@ class WorkoutLocalDataSource {
     }
 
     final rows = await query.get();
-    return rows.map((row) => _workoutLogFromDriftRow(row)).toList();
+    return rows.map(_workoutLogFromDriftRow).toList();
   }
 
   /// Cache workout in Hive
   Future<void> _cacheWorkout(WorkoutModel workout) async {
     final cacheKey = '${workout.userId}_workouts';
     final cached =
-        _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
-            as Map<dynamic, dynamic>;
+        _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})!;
 
     cached[workout.workoutId] = workout.toJson();
 
@@ -168,8 +167,7 @@ class WorkoutLocalDataSource {
   Future<List<WorkoutModel>> _getCachedWorkouts(String userId) async {
     final cacheKey = '${userId}_workouts';
     final cached =
-        _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
-            as Map<dynamic, dynamic>;
+        _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})!;
 
     final workouts = cached.values
         .map((json) => WorkoutModel.fromJson(json as Map<String, dynamic>))
@@ -183,7 +181,7 @@ class WorkoutLocalDataSource {
   Future<void> _removeCachedWorkout(String workoutId) async {
     for (final key in _workoutCache.keys) {
       final cached =
-          _workoutCache.get(key, defaultValue: <dynamic, dynamic>{}) as Map;
+          _workoutCache.get(key, defaultValue: <dynamic, dynamic>{})!;
       if (cached.containsKey(workoutId)) {
         cached.remove(workoutId);
         await _workoutCache.put(key, cached);
@@ -194,8 +192,7 @@ class WorkoutLocalDataSource {
 
   /// Convert Drift row to WorkoutModel
   /// TODO: Fix field name mismatches
-  WorkoutModel _workoutFromDriftRow(WorkoutsTableData row) {
-    return WorkoutModel.fromDrift({
+  WorkoutModel _workoutFromDriftRow(WorkoutsTableData row) => WorkoutModel.fromDrift({
       'workout_id': row.workoutId,
       'user_id': row.userId,
       'name': row.workoutName, // Changed from row.name
@@ -208,12 +205,10 @@ class WorkoutLocalDataSource {
       'ai_context': row.aiContext,
       'created_at': row.createdAt.millisecondsSinceEpoch,
     });
-  }
 
   /// Convert Drift row to WorkoutLogModel
   /// TODO: Fix field name mismatches
-  WorkoutLogModel _workoutLogFromDriftRow(WorkoutLogsTableData row) {
-    return WorkoutLogModel.fromDrift({
+  WorkoutLogModel _workoutLogFromDriftRow(WorkoutLogsTableData row) => WorkoutLogModel.fromDrift({
       'log_id': row.logId,
       'user_id': row.userId,
       'workout_id': row.workoutId,
@@ -226,5 +221,4 @@ class WorkoutLocalDataSource {
       'energy_rating': row.energyAfter ?? 3, // Changed from row.energyRating
       'notes': row.userNotes, // Changed from row.notes
     });
-  }
 }

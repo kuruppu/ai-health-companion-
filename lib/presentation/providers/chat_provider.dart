@@ -26,7 +26,6 @@ class Chat extends _$Chat {
 
     final result = await _getChatHistoryUseCase(
       userId: user.userId,
-      limit: 50,
     );
 
     return result.fold(
@@ -95,12 +94,11 @@ class Chat extends _$Chat {
 
     final result = await _getChatHistoryUseCase(
       userId: user.userId,
-      limit: 50,
     );
 
     state = result.fold(
       (failure) => AsyncValue.error(failure.message, StackTrace.current),
-      (messages) => AsyncValue.data(messages),
+      AsyncValue.data,
     );
   }
 }

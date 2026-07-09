@@ -2,6 +2,14 @@ import 'package:equatable/equatable.dart';
 
 /// Represents a meal logged by the user with AI analysis
 class Meal extends Equatable {
+
+  const Meal({
+    required this.mealId,
+    required this.userId,
+    required this.mealType,
+    required this.photoUrl,
+    required this.analysis, required this.timestamp, required this.eatenAt, this.userNotes,
+  });
   /// Unique identifier for the meal
   final String mealId;
 
@@ -26,17 +34,6 @@ class Meal extends Equatable {
   /// When the meal was actually eaten (can differ from timestamp)
   final DateTime eatenAt;
 
-  const Meal({
-    required this.mealId,
-    required this.userId,
-    required this.mealType,
-    required this.photoUrl,
-    this.userNotes,
-    required this.analysis,
-    required this.timestamp,
-    required this.eatenAt,
-  });
-
   @override
   List<Object?> get props => [
         mealId,
@@ -58,8 +55,7 @@ class Meal extends Equatable {
     MealAnalysis? analysis,
     DateTime? timestamp,
     DateTime? eatenAt,
-  }) {
-    return Meal(
+  }) => Meal(
       mealId: mealId ?? this.mealId,
       userId: userId ?? this.userId,
       mealType: mealType ?? this.mealType,
@@ -69,11 +65,20 @@ class Meal extends Equatable {
       timestamp: timestamp ?? this.timestamp,
       eatenAt: eatenAt ?? this.eatenAt,
     );
-  }
 }
 
 /// AI-generated analysis of the meal
 class MealAnalysis extends Equatable {
+
+  const MealAnalysis({
+    required this.description,
+    required this.portionSize,
+    required this.foodCategories,
+    required this.healthScore,
+    required this.feedback,
+    this.suggestions,
+    this.nutritionalEstimate,
+  });
   /// What Claude identified in the photo
   final String description;
 
@@ -95,16 +100,6 @@ class MealAnalysis extends Equatable {
   /// Estimated nutritional info (optional, not emphasized)
   final NutritionalEstimate? nutritionalEstimate;
 
-  const MealAnalysis({
-    required this.description,
-    required this.portionSize,
-    required this.foodCategories,
-    required this.healthScore,
-    required this.feedback,
-    this.suggestions,
-    this.nutritionalEstimate,
-  });
-
   @override
   List<Object?> get props => [
         description,
@@ -119,10 +114,6 @@ class MealAnalysis extends Equatable {
 
 /// Nutritional estimate (de-emphasized, not the focus)
 class NutritionalEstimate extends Equatable {
-  final int? estimatedCalories;
-  final String? proteinLevel; // 'low', 'moderate', 'high'
-  final String? carbLevel;
-  final String? fatLevel;
 
   const NutritionalEstimate({
     this.estimatedCalories,
@@ -130,6 +121,10 @@ class NutritionalEstimate extends Equatable {
     this.carbLevel,
     this.fatLevel,
   });
+  final int? estimatedCalories;
+  final String? proteinLevel; // 'low', 'moderate', 'high'
+  final String? carbLevel;
+  final String? fatLevel;
 
   @override
   List<Object?> get props => [

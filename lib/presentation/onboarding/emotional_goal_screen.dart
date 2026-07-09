@@ -6,7 +6,6 @@ import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../shared/widgets/custom_button.dart';
-import '../providers/auth_provider.dart';
 
 class EmotionalGoalScreen extends ConsumerStatefulWidget {
   const EmotionalGoalScreen({super.key});
@@ -69,8 +68,7 @@ class _EmotionalGoalScreenState extends ConsumerState<EmotionalGoalScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         title: const Text('What\'s your goal?'),
       ),
@@ -82,7 +80,7 @@ class _EmotionalGoalScreenState extends ConsumerState<EmotionalGoalScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'What would make you feel healthier?',
                     style: AppTextStyles.h4,
                   ),
@@ -130,41 +128,39 @@ class _EmotionalGoalScreenState extends ConsumerState<EmotionalGoalScreen> {
         ),
       ),
     );
-  }
 }
 
 class EmotionalGoalOption {
-  final String icon;
-  final String title;
-  final String description;
 
   EmotionalGoalOption({
     required this.icon,
     required this.title,
     required this.description,
   });
+  final String icon;
+  final String title;
+  final String description;
 }
 
 class _GoalCard extends StatelessWidget {
-  final EmotionalGoalOption goal;
-  final bool isSelected;
-  final VoidCallback onTap;
 
   const _GoalCard({
     required this.goal,
     required this.isSelected,
     required this.onTap,
   });
+  final EmotionalGoalOption goal;
+  final bool isSelected;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
+  Widget build(BuildContext context) => InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary.withOpacity(0.1) : Colors.white,
+          color: isSelected ? AppColors.primary.withValues(alpha: 0.1) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isSelected ? AppColors.primary : AppColors.divider,
@@ -178,7 +174,7 @@ class _GoalCard extends StatelessWidget {
               height: 56,
               decoration: BoxDecoration(
                 color: isSelected
-                    ? AppColors.primary.withOpacity(0.2)
+                    ? AppColors.primary.withValues(alpha: 0.2)
                     : AppColors.surfaceLight,
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -222,5 +218,4 @@ class _GoalCard extends StatelessWidget {
         ),
       ),
     );
-  }
 }

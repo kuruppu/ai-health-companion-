@@ -29,7 +29,7 @@ class RemindersTable extends Table {
   // Smart features
   BoolColumn get skipWeekends => boolean().withDefault(const Constant(false))();
   BoolColumn get contextAware => boolean().withDefault(
-      const Constant(false))(); // Adapt based on location, activity
+      const Constant(false),)(); // Adapt based on location, activity
 
   // Tracking
   IntColumn get totalSent => integer().withDefault(const Constant(0))();

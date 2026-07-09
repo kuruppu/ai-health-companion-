@@ -6,13 +6,13 @@ import '../../../domain/entities/chat_message.dart';
 import 'voice_input_button.dart';
 
 class ChatInputField extends StatefulWidget {
-  final Future<void> Function(String content, MessageType messageType)
-      onSendMessage;
 
   const ChatInputField({
     required this.onSendMessage,
     super.key,
   });
+  final Future<void> Function(String content, MessageType messageType)
+      onSendMessage;
 
   @override
   State<ChatInputField> createState() => _ChatInputFieldState();
@@ -81,13 +81,12 @@ class _ChatInputFieldState extends State<ChatInputField> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             offset: const Offset(0, -2),
             blurRadius: 8,
           ),
@@ -119,11 +118,11 @@ class _ChatInputFieldState extends State<ChatInputField> {
                   maxLines: null,
                   maxLength: 500,
                   style: AppTextStyles.inputText,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Type a message...',
                     hintStyle: AppTextStyles.inputHint,
                     border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(
+                    contentPadding: EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 10,
                     ),
@@ -153,5 +152,4 @@ class _ChatInputFieldState extends State<ChatInputField> {
         ),
       ),
     );
-  }
 }

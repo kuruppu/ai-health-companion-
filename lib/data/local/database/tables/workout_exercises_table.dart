@@ -25,7 +25,7 @@ class WorkoutExercisesTable extends Table {
 
   // Progression
   RealColumn get difficultyLevel =>
-      real().withDefault(const Constant(1.0))(); // 1.0 to 5.0
+      real().withDefault(const Constant(1))(); // 1.0 to 5.0
   TextColumn get progressionNotes => text().nullable()();
 
   // Order in workout

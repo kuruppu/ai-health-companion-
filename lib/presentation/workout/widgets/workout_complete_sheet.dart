@@ -5,12 +5,12 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../domain/entities/workout_log.dart';
 
 class WorkoutCompleteSheet extends StatefulWidget {
-  final WorkoutLog log;
 
   const WorkoutCompleteSheet({
     required this.log,
     super.key,
   });
+  final WorkoutLog log;
 
   @override
   State<WorkoutCompleteSheet> createState() => _WorkoutCompleteSheetState();
@@ -40,8 +40,7 @@ class _WorkoutCompleteSheetState extends State<WorkoutCompleteSheet>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -53,7 +52,7 @@ class _WorkoutCompleteSheetState extends State<WorkoutCompleteSheet>
           children: [
             // Success animation
             ScaleTransition(
-              scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+              scale: Tween<double>(begin: 0, end: 1).animate(
                 CurvedAnimation(
                   parent: _animationController,
                   curve: Curves.elasticOut,
@@ -63,7 +62,7 @@ class _WorkoutCompleteSheetState extends State<WorkoutCompleteSheet>
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: AppColors.success.withOpacity(0.1),
+                  color: AppColors.success.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -76,7 +75,7 @@ class _WorkoutCompleteSheetState extends State<WorkoutCompleteSheet>
             const SizedBox(height: 24),
 
             // Title
-            Text(
+            const Text(
               'Workout Complete!',
               style: AppTextStyles.h4,
             ),
@@ -117,7 +116,7 @@ class _WorkoutCompleteSheetState extends State<WorkoutCompleteSheet>
             const SizedBox(height: 24),
 
             // Energy rating
-            Text(
+            const Text(
               'How do you feel?',
               style: AppTextStyles.body1Medium,
             ),
@@ -182,28 +181,26 @@ class _WorkoutCompleteSheetState extends State<WorkoutCompleteSheet>
         ),
       ),
     );
-  }
 }
 
 class _StatItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String value;
 
   const _StatItem({
     required this.icon,
     required this.label,
     required this.value,
   });
+  final IconData icon;
+  final String label;
+  final String value;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       children: [
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(icon, color: AppColors.primary),
@@ -221,5 +218,4 @@ class _StatItem extends StatelessWidget {
         ),
       ],
     );
-  }
 }

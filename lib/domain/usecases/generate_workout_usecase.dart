@@ -8,9 +8,9 @@ import '../repositories/workout_repository.dart';
 /// Use case for generating AI-powered personalized workouts
 @injectable
 class GenerateWorkoutUseCase {
-  final WorkoutRepository _repository;
 
   const GenerateWorkoutUseCase(this._repository);
+  final WorkoutRepository _repository;
 
   /// Execute the use case
   ///
@@ -27,8 +27,7 @@ class GenerateWorkoutUseCase {
     required int durationMinutes,
     required WorkoutDifficulty difficulty,
     List<String>? targetMuscles,
-  }) async {
-    return await _repository.generateWorkout(
+  }) async => _repository.generateWorkout(
       userId: userId,
       goalType: goalType,
       energyLevel: energyLevel,
@@ -36,5 +35,4 @@ class GenerateWorkoutUseCase {
       difficulty: difficulty,
       targetMuscles: targetMuscles,
     );
-  }
 }

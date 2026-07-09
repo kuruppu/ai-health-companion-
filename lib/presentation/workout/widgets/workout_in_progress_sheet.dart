@@ -10,12 +10,12 @@ import '../../providers/workout_provider.dart';
 import 'workout_complete_sheet.dart';
 
 class WorkoutInProgressSheet extends ConsumerStatefulWidget {
-  final Workout workout;
 
   const WorkoutInProgressSheet({
     required this.workout,
     super.key,
   });
+  final Workout workout;
 
   @override
   ConsumerState<WorkoutInProgressSheet> createState() =>
@@ -52,8 +52,17 @@ class _WorkoutInProgressSheetState
   Widget build(BuildContext context) {
     final currentExercise = widget.workout.exercises[_currentExerciseIndex];
 
-    return WillPopScope(
-      onWillPop: () => _showQuitConfirmation(),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) {
+          return;
+        }
+        final shouldPop = await _showQuitConfirmation();
+        if (shouldPop && context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
       child: Container(
         height: MediaQuery.of(context).size.height * 0.9,
         decoration: const BoxDecoration(
@@ -65,7 +74,7 @@ class _WorkoutInProgressSheetState
             // Header
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.surfaceLight,
                 border: Border(
                   bottom: BorderSide(color: AppColors.divider),
@@ -78,7 +87,7 @@ class _WorkoutInProgressSheetState
                     Row(
                       children: [
                         IconButton(
-                          onPressed: () => _showQuitConfirmation(),
+                          onPressed: _showQuitConfirmation,
                           icon: const Icon(Icons.close),
                         ),
                         Expanded(
@@ -127,8 +136,7 @@ class _WorkoutInProgressSheetState
     );
   }
 
-  Widget _buildExerciseScreen(dynamic exercise) {
-    return SingleChildScrollView(
+  Widget _buildExerciseScreen(dynamic exercise) => SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +152,7 @@ class _WorkoutInProgressSheetState
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: AppColors.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
@@ -158,7 +166,7 @@ class _WorkoutInProgressSheetState
           const SizedBox(height: 24),
 
           // Description
-          Text(
+          const Text(
             'How to Perform',
             style: AppTextStyles.body1Medium,
           ),
@@ -171,7 +179,7 @@ class _WorkoutInProgressSheetState
           // Form tips
           if (exercise.formTips.isNotEmpty) ...[
             const SizedBox(height: 20),
-            Text(
+            const Text(
               'Form Tips',
               style: AppTextStyles.body1Medium,
             ),
@@ -195,7 +203,7 @@ class _WorkoutInProgressSheetState
                       ),
                     ],
                   ),
-                )),
+                ),),
           ],
 
           const SizedBox(height: 32),
@@ -228,10 +236,8 @@ class _WorkoutInProgressSheetState
         ],
       ),
     );
-  }
 
-  Widget _buildRestScreen() {
-    return Center(
+  Widget _buildRestScreen() => Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
@@ -241,7 +247,7 @@ class _WorkoutInProgressSheetState
               width: 150,
               height: 150,
               decoration: BoxDecoration(
-                color: AppColors.secondary.withOpacity(0.1),
+                color: AppColors.secondary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -255,7 +261,7 @@ class _WorkoutInProgressSheetState
               ),
             ),
             const SizedBox(height: 24),
-            Text(
+            const Text(
               'Rest Time',
               style: AppTextStyles.h5,
             ),
@@ -279,7 +285,6 @@ class _WorkoutInProgressSheetState
         ),
       ),
     );
-  }
 
   void _completeExercise() {
     if (_isLastExercise) {
@@ -390,7 +395,7 @@ class _WorkoutInProgressSheetState
       ),
     );
 
-    if (result == true && mounted) {
+    if ((result ?? false) && mounted) {
       Navigator.pop(context);
     }
 

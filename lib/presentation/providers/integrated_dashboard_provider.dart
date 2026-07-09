@@ -11,6 +11,21 @@ part 'integrated_dashboard_provider.g.dart';
 
 /// Integrated dashboard data combining meals, workouts, and check-ins
 class IntegratedDashboardData {
+
+  const IntegratedDashboardData({
+    required this.todaysMeals,
+    required this.avgHealthScore,
+    required this.mealsLogged,
+    required this.todaysWorkouts,
+    required this.workoutsCompleted,
+    required this.minutesExercised,
+    required this.hadBreakfast,
+    required this.hadLunch,
+    required this.hadDinner,
+    required this.mealsSkipped,
+    required this.weeklyMealSkipRate,
+    required this.weeklyWorkoutCount,
+  });
   // Today's meals
   final List<Meal> todaysMeals;
   final double avgHealthScore;
@@ -30,21 +45,6 @@ class IntegratedDashboardData {
   // Weekly stats
   final double weeklyMealSkipRate;
   final int weeklyWorkoutCount;
-
-  const IntegratedDashboardData({
-    required this.todaysMeals,
-    required this.avgHealthScore,
-    required this.mealsLogged,
-    required this.todaysWorkouts,
-    required this.workoutsCompleted,
-    required this.minutesExercised,
-    required this.hadBreakfast,
-    required this.hadLunch,
-    required this.hadDinner,
-    required this.mealsSkipped,
-    required this.weeklyMealSkipRate,
-    required this.weeklyWorkoutCount,
-  });
 
   /// Get status message for meals
   String get mealStatusMessage {
@@ -180,9 +180,9 @@ class IntegratedDashboard extends _$IntegratedDashboard {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
 
-    bool hadBreakfast = false;
-    bool hadLunch = false;
-    bool hadDinner = false;
+    var hadBreakfast = false;
+    var hadLunch = false;
+    var hadDinner = false;
 
     for (final meal in meals) {
       final hour = meal.eatenAt.hour;
@@ -197,13 +197,13 @@ class IntegratedDashboard extends _$IntegratedDashboard {
     }
 
     // Calculate skipped meals
-    int mealsSkipped = 0;
+    var mealsSkipped = 0;
     if (now.hour >= 11 && !hadBreakfast) mealsSkipped++;
     if (now.hour >= 15 && !hadLunch) mealsSkipped++;
     if (now.hour >= 21 && !hadDinner) mealsSkipped++;
 
     // Calculate weekly workout count
-    final weekStart = now.subtract(Duration(days: 7));
+    final weekStart = now.subtract(const Duration(days: 7));
     final allWorkoutLogsState = ref.watch(workoutLogsProvider);
     final weeklyWorkoutCount = allWorkoutLogsState.maybeWhen(
       data: (logs) =>

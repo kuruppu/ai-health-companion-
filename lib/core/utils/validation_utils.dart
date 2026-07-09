@@ -22,9 +22,9 @@ class ValidationUtils {
       return false;
     }
 
-    final hasUppercase = password.contains(RegExp(r'[A-Z]'));
-    final hasLowercase = password.contains(RegExp(r'[a-z]'));
-    final hasNumber = password.contains(RegExp(r'[0-9]'));
+    final hasUppercase = password.contains(RegExp('[A-Z]'));
+    final hasLowercase = password.contains(RegExp('[a-z]'));
+    final hasNumber = password.contains(RegExp('[0-9]'));
 
     return hasUppercase && hasLowercase && hasNumber;
   }
@@ -37,13 +37,13 @@ class ValidationUtils {
     if (password.length < 8) {
       return 'Password must be at least 8 characters';
     }
-    if (!password.contains(RegExp(r'[A-Z]'))) {
+    if (!password.contains(RegExp('[A-Z]'))) {
       return 'Password must contain at least one uppercase letter';
     }
-    if (!password.contains(RegExp(r'[a-z]'))) {
+    if (!password.contains(RegExp('[a-z]'))) {
       return 'Password must contain at least one lowercase letter';
     }
-    if (!password.contains(RegExp(r'[0-9]'))) {
+    if (!password.contains(RegExp('[0-9]'))) {
       return 'Password must contain at least one number';
     }
     return '';
@@ -59,44 +59,28 @@ class ValidationUtils {
   }
 
   /// Validate age (1-120 years)
-  static bool isValidAge(int age) {
-    return age >= 1 && age <= 120;
-  }
+  static bool isValidAge(int age) => age >= 1 && age <= 120;
 
   /// Validate height (50-250 cm)
-  static bool isValidHeight(double height) {
-    return height >= 50 && height <= 250;
-  }
+  static bool isValidHeight(double height) => height >= 50 && height <= 250;
 
   /// Validate weight (20-300 kg)
-  static bool isValidWeight(double weight) {
-    return weight >= 20 && weight <= 300;
-  }
+  static bool isValidWeight(double weight) => weight >= 20 && weight <= 300;
 
   /// Validate goal weight (20-300 kg and less than current weight for weight loss)
-  static bool isValidGoalWeight(double goalWeight, double currentWeight) {
-    return goalWeight >= 20 && goalWeight <= 300 && goalWeight < currentWeight;
-  }
+  static bool isValidGoalWeight(double goalWeight, double currentWeight) => goalWeight >= 20 && goalWeight <= 300 && goalWeight < currentWeight;
 
   /// Validate caloric intake (500-5000 calories)
-  static bool isValidCaloricIntake(double calories) {
-    return calories >= 500 && calories <= 5000;
-  }
+  static bool isValidCaloricIntake(double calories) => calories >= 500 && calories <= 5000;
 
   /// Validate water intake (500-10000 ml)
-  static bool isValidWaterIntake(double waterMl) {
-    return waterMl >= 500 && waterMl <= 10000;
-  }
+  static bool isValidWaterIntake(double waterMl) => waterMl >= 500 && waterMl <= 10000;
 
   /// Validate workout duration (1-300 minutes)
-  static bool isValidWorkoutDuration(int minutes) {
-    return minutes >= 1 && minutes <= 300;
-  }
+  static bool isValidWorkoutDuration(int minutes) => minutes >= 1 && minutes <= 300;
 
   /// Validate not empty string
-  static bool isNotEmpty(String? value) {
-    return value != null && value.trim().isNotEmpty;
-  }
+  static bool isNotEmpty(String? value) => value != null && value.trim().isNotEmpty;
 
   /// Validate string length
   static bool isValidLength(String value, int minLength, int maxLength) {
@@ -105,20 +89,14 @@ class ValidationUtils {
   }
 
   /// Validate numeric string
-  static bool isNumeric(String value) {
-    return double.tryParse(value) != null;
-  }
+  static bool isNumeric(String value) => double.tryParse(value) != null;
 
   /// Validate positive number
-  static bool isPositive(num value) {
-    return value > 0;
-  }
+  static bool isPositive(num value) => value > 0;
 
   /// Validate date is not in the future
-  static bool isNotFutureDate(DateTime date) {
-    return date.isBefore(DateTime.now()) ||
+  static bool isNotFutureDate(DateTime date) => date.isBefore(DateTime.now()) ||
         date.isAtSameMomentAs(DateTime.now());
-  }
 
   /// Validate date of birth (age between 13 and 120)
   static bool isValidDateOfBirth(DateTime dateOfBirth) {

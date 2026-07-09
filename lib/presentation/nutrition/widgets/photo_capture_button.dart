@@ -6,12 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import '../../../core/theme/app_colors.dart';
 
 class PhotoCaptureButton extends StatefulWidget {
-  final Function(File) onPhotoSelected;
 
   const PhotoCaptureButton({
     required this.onPhotoSelected,
     super.key,
   });
+  final Function(File) onPhotoSelected;
 
   @override
   State<PhotoCaptureButton> createState() => _PhotoCaptureButtonState();
@@ -38,11 +38,10 @@ class _PhotoCaptureButtonState extends State<PhotoCaptureButton>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton.large(
+  Widget build(BuildContext context) => FloatingActionButton.large(
       onPressed: _showImageSourceOptions,
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: AppColors.primaryGradient,
             begin: Alignment.topLeft,
@@ -59,7 +58,6 @@ class _PhotoCaptureButtonState extends State<PhotoCaptureButton>
         ),
       ),
     );
-  }
 
   void _showImageSourceOptions() {
     showModalBottomSheet(
@@ -68,8 +66,7 @@ class _PhotoCaptureButtonState extends State<PhotoCaptureButton>
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) {
-        return SafeArea(
+      builder: (context) => SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -89,7 +86,7 @@ class _PhotoCaptureButtonState extends State<PhotoCaptureButton>
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -113,7 +110,7 @@ class _PhotoCaptureButtonState extends State<PhotoCaptureButton>
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: AppColors.secondary.withOpacity(0.1),
+                      color: AppColors.secondary.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -135,14 +132,13 @@ class _PhotoCaptureButtonState extends State<PhotoCaptureButton>
               ],
             ),
           ),
-        );
-      },
+        ),
     );
   }
 
   Future<void> _capturePhoto(ImageSource source) async {
     try {
-      final XFile? image = await _picker.pickImage(
+      final image = await _picker.pickImage(
         source: source,
         maxWidth: 1920,
         maxHeight: 1920,

@@ -19,9 +19,9 @@ abstract class ChatRemoteDataSource {
 
 @LazySingleton(as: ChatRemoteDataSource)
 class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
-  final DioClient _dioClient;
 
   ChatRemoteDataSourceImpl(this._dioClient);
+  final DioClient _dioClient;
 
   @override
   Future<ChatMessageModel> sendMessageToClaude({
@@ -145,8 +145,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
     return messages;
   }
 
-  String _buildSystemPrompt(String userId) {
-    return '''You are an AI health coach for the AI Health Companion app. Your role is to help users achieve their wellness goals through personalized guidance, motivation, and support.
+  String _buildSystemPrompt(String userId) => '''You are an AI health coach for the AI Health Companion app. Your role is to help users achieve their wellness goals through personalized guidance, motivation, and support.
 
 Key Responsibilities:
 1. Provide nutrition advice tailored to Sri Lankan cuisine
@@ -176,5 +175,4 @@ User Context:
 - Preferences: Sri Lankan cuisine, home workouts, practical advice
 
 Your responses should feel like talking to a supportive friend who happens to be a health expert.''';
-  }
 }

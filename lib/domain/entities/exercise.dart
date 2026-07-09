@@ -2,6 +2,20 @@ import 'package:equatable/equatable.dart';
 
 /// Represents an individual exercise within a workout
 class Exercise extends Equatable {
+
+  const Exercise({
+    required this.exerciseId,
+    required this.name,
+    required this.description,
+    required this.type,
+    required this.targetMuscles,
+    required this.orderIndex, this.sets,
+    this.repsPerSet,
+    this.durationSeconds,
+    this.restSeconds = 60,
+    this.demonstrationUrl,
+    this.formTips = const [],
+  });
   /// Unique identifier for the exercise
   final String exerciseId;
 
@@ -38,21 +52,6 @@ class Exercise extends Equatable {
   /// Tips for proper form
   final List<String> formTips;
 
-  const Exercise({
-    required this.exerciseId,
-    required this.name,
-    required this.description,
-    required this.type,
-    required this.targetMuscles,
-    this.sets,
-    this.repsPerSet,
-    this.durationSeconds,
-    this.restSeconds = 60,
-    required this.orderIndex,
-    this.demonstrationUrl,
-    this.formTips = const [],
-  });
-
   @override
   List<Object?> get props => [
         exerciseId,
@@ -82,8 +81,7 @@ class Exercise extends Equatable {
     int? orderIndex,
     String? demonstrationUrl,
     List<String>? formTips,
-  }) {
-    return Exercise(
+  }) => Exercise(
       exerciseId: exerciseId ?? this.exerciseId,
       name: name ?? this.name,
       description: description ?? this.description,
@@ -97,7 +95,6 @@ class Exercise extends Equatable {
       demonstrationUrl: demonstrationUrl ?? this.demonstrationUrl,
       formTips: formTips ?? this.formTips,
     );
-  }
 
   /// Get formatted workout string (e.g., "3 sets x 12 reps")
   String get workString {

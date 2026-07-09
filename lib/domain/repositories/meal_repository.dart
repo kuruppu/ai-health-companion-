@@ -18,8 +18,7 @@ abstract class MealRepository {
     required String userId,
     required String photoUrl,
     required MealType mealType,
-    String? userNotes,
-    required DateTime eatenAt,
+    required DateTime eatenAt, String? userNotes,
   });
 
   /// Get meal history for a user

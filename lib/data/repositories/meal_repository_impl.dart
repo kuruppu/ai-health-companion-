@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../core/errors/failures.dart';
+import '../../core/utils/logger.dart';
 import '../../domain/entities/meal.dart';
 import '../../domain/repositories/meal_repository.dart';
 import '../datasources/meal_local_datasource.dart';
@@ -11,23 +12,22 @@ import '../models/meal_model.dart';
 
 @Injectable(as: MealRepository)
 class MealRepositoryImpl implements MealRepository {
-  final MealRemoteDataSource _remoteDataSource;
-  final MealLocalDataSource _localDataSource;
-  final Uuid _uuid;
 
   const MealRepositoryImpl(
     this._remoteDataSource,
     this._localDataSource,
     this._uuid,
   );
+  final MealRemoteDataSource _remoteDataSource;
+  final MealLocalDataSource _localDataSource;
+  final Uuid _uuid;
 
   @override
   Future<Either<Failure, Meal>> logMeal({
     required String userId,
     required String photoUrl,
     required MealType mealType,
-    String? userNotes,
-    required DateTime eatenAt,
+    required DateTime eatenAt, String? userNotes,
   }) async {
     try {
       // Analyze meal photo using Claude Vision
@@ -56,7 +56,7 @@ class MealRepositoryImpl implements MealRepository {
       // Save to Firestore (fire and forget)
       _remoteDataSource.saveMealToFirestore(meal).catchError((error) {
         // Log error but don't fail the operation
-        print('Failed to save meal to Firestore: $error');
+        AppLogger.e('Failed to save meal to Firestore', error: error);
       });
 
       return Right(meal.toEntity());
@@ -124,7 +124,7 @@ class MealRepositoryImpl implements MealRepository {
       final meal = await _localDataSource.getMealById(mealId: mealId);
 
       if (meal == null) {
-        return Left(CacheFailure(message: 'Meal not found'));
+        return const Left(CacheFailure(message: 'Meal not found'));
       }
 
       return Right(meal.toEntity());
@@ -166,7 +166,7 @@ class MealRepositoryImpl implements MealRepository {
       final meal = await _localDataSource.getMealById(mealId: mealId);
 
       if (meal == null) {
-        return Left(CacheFailure(message: 'Meal not found'));
+        return const Left(CacheFailure(message: 'Meal not found'));
       }
 
       return Right(meal.toEntity());

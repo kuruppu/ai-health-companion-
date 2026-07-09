@@ -7,12 +7,11 @@ class QuickActionsCard extends StatelessWidget {
   const QuickActionsCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4),
           child: Text(
             'Quick Actions',
             style: AppTextStyles.h6,
@@ -93,14 +92,9 @@ class QuickActionsCard extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class _QuickActionButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final Color color;
-  final VoidCallback onTap;
 
   const _QuickActionButton({
     required this.icon,
@@ -108,20 +102,22 @@ class _QuickActionButton extends StatelessWidget {
     required this.color,
     required this.onTap,
   });
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
+  Widget build(BuildContext context) => InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: color.withOpacity(0.3),
-            width: 1,
+            color: color.withValues(alpha: 0.3),
           ),
         ),
         child: Column(
@@ -140,5 +136,4 @@ class _QuickActionButton extends StatelessWidget {
         ),
       ),
     );
-  }
 }

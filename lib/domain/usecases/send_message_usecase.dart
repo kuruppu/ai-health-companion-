@@ -7,9 +7,9 @@ import '../repositories/chat_repository.dart';
 
 @injectable
 class SendMessageUseCase {
-  final ChatRepository _repository;
 
   SendMessageUseCase(this._repository);
+  final ChatRepository _repository;
 
   Future<Either<Failure, ChatMessage>> call({
     required String userId,
@@ -36,7 +36,7 @@ class SendMessageUseCase {
       );
     }
 
-    return await _repository.sendMessage(
+    return _repository.sendMessage(
       userId: userId,
       content: content,
       messageType: messageType,

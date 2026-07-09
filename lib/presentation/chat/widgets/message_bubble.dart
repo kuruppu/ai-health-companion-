@@ -6,18 +6,17 @@ import '../../../core/utils/date_time_utils.dart';
 import '../../../domain/entities/chat_message.dart';
 
 class MessageBubble extends StatelessWidget {
-  final ChatMessage message;
-  final bool isUser;
 
   const MessageBubble({
     required this.message,
     required this.isUser,
     super.key,
   });
+  final ChatMessage message;
+  final bool isUser;
 
   @override
-  Widget build(BuildContext context) {
-    return Align(
+  Widget build(BuildContext context) => Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         constraints: BoxConstraints(
@@ -52,14 +51,12 @@ class MessageBubble extends StatelessWidget {
                         width: 200,
                         height: 200,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
+                        errorBuilder: (context, error, stackTrace) => Container(
                             width: 200,
                             height: 200,
                             color: Colors.grey.shade300,
                             child: const Icon(Icons.broken_image),
-                          );
-                        },
+                          ),
                       ),
                     ),
                     if (message.content.isNotEmpty) const SizedBox(height: 8),
@@ -86,5 +83,4 @@ class MessageBubble extends StatelessWidget {
         ),
       ),
     );
-  }
 }

@@ -3,16 +3,15 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 
 import '../domain/entities/meal_check_in.dart';
-import '../presentation/providers/integrated_chat_provider.dart';
 import 'meal_check_service.dart';
 
 /// Integrated scheduler that triggers check-ins through chat
 @singleton
 class IntegratedMealCheckScheduler {
-  final MealCheckService _checkService;
-  Timer? _timer;
 
   IntegratedMealCheckScheduler(this._checkService);
+  final MealCheckService _checkService;
+  Timer? _timer;
 
   /// Start scheduling check-ins
   void start({

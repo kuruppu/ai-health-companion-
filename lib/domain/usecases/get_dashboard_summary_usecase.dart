@@ -7,9 +7,9 @@ import '../repositories/dashboard_repository.dart';
 
 @injectable
 class GetDashboardSummaryUseCase {
-  final DashboardRepository _repository;
 
   GetDashboardSummaryUseCase(this._repository);
+  final DashboardRepository _repository;
 
   Future<Either<Failure, DashboardSummary>> call(String userId) async {
     if (userId.isEmpty) {
@@ -18,6 +18,6 @@ class GetDashboardSummaryUseCase {
       );
     }
 
-    return await _repository.getDashboardSummary(userId);
+    return _repository.getDashboardSummary(userId);
   }
 }

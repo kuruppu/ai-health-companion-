@@ -8,21 +8,19 @@ import '../repositories/workout_repository.dart';
 /// Use case for getting workout logs
 @injectable
 class GetWorkoutLogsUseCase {
-  final WorkoutRepository _repository;
 
   GetWorkoutLogsUseCase(this._repository);
+  final WorkoutRepository _repository;
 
   Future<Either<Failure, List<WorkoutLog>>> call({
     required String userId,
     DateTime? startDate,
     DateTime? endDate,
     int limit = 50,
-  }) {
-    return _repository.getWorkoutLogs(
+  }) => _repository.getWorkoutLogs(
       userId: userId,
       startDate: startDate,
       endDate: endDate,
       limit: limit,
     );
-  }
 }

@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_text_styles.dart';
 
 class VoiceInputButton extends StatefulWidget {
-  final Function(String) onTranscript;
-  final bool isEnabled;
 
   const VoiceInputButton({
     required this.onTranscript,
     this.isEnabled = true,
     super.key,
   });
+  final Function(String) onTranscript;
+  final bool isEnabled;
 
   @override
   State<VoiceInputButton> createState() => _VoiceInputButtonState();
@@ -86,10 +85,11 @@ class _VoiceInputButtonState extends State<VoiceInputButton>
           _transcript = result.recognizedWords;
         });
       },
-      listenFor: const Duration(seconds: 30),
-      pauseFor: const Duration(seconds: 3),
-      cancelOnError: true,
-      partialResults: true,
+      listenOptions: SpeechListenOptions(
+        listenFor: const Duration(seconds: 30),
+        pauseFor: const Duration(seconds: 3),
+        cancelOnError: true,
+      ),
     );
   }
 
@@ -115,8 +115,7 @@ class _VoiceInputButtonState extends State<VoiceInputButton>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
+  Widget build(BuildContext context) => GestureDetector(
       onLongPress: widget.isEnabled ? _startListening : null,
       onLongPressEnd: (_) {
         if (_isListening) {
@@ -129,7 +128,7 @@ class _VoiceInputButtonState extends State<VoiceInputButton>
         height: 56,
         decoration: BoxDecoration(
           gradient: _isListening
-              ? LinearGradient(
+              ? const LinearGradient(
                   colors: AppColors.primaryGradient,
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -139,7 +138,7 @@ class _VoiceInputButtonState extends State<VoiceInputButton>
           borderRadius: BorderRadius.circular(28),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(_isListening ? 0.4 : 0.2),
+              color: AppColors.primary.withValues(alpha: _isListening ? 0.4 : 0.2),
               offset: const Offset(0, 4),
               blurRadius: _isListening ? 16 : 8,
             ),
@@ -147,8 +146,7 @@ class _VoiceInputButtonState extends State<VoiceInputButton>
         ),
         child: AnimatedBuilder(
           animation: _animationController,
-          builder: (context, child) {
-            return Stack(
+          builder: (context, child) => Stack(
               alignment: Alignment.center,
               children: [
                 if (_isListening)
@@ -158,8 +156,8 @@ class _VoiceInputButtonState extends State<VoiceInputButton>
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: Colors.white.withOpacity(
-                          0.3 * (1 - _animationController.value),
+                        color: Colors.white.withValues(
+                          alpha: 0.3 * (1 - _animationController.value),
                         ),
                         width: 2,
                       ),
@@ -171,10 +169,8 @@ class _VoiceInputButtonState extends State<VoiceInputButton>
                   size: 28,
                 ),
               ],
-            );
-          },
+            ),
         ),
       ),
     );
-  }
 }

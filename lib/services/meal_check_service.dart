@@ -6,11 +6,11 @@ import '../domain/entities/meal_check_in.dart';
 /// Service to handle meal check-in logic
 @singleton
 class MealCheckService {
+
+  MealCheckService(this._uuid);
   final Uuid _uuid;
   final Map<String, DateTime> _lastMealTimes = {};
   final List<MealCheckIn> _checkInHistory = [];
-
-  MealCheckService(this._uuid);
 
   /// Record that user logged a meal
   void recordMealLogged(String userId, DateTime mealTime) {
@@ -18,9 +18,7 @@ class MealCheckService {
   }
 
   /// Get last meal time for user
-  DateTime? getLastMealTime(String userId) {
-    return _lastMealTimes[userId];
-  }
+  DateTime? getLastMealTime(String userId) => _lastMealTimes[userId];
 
   /// Check if user needs a check-in for this meal period
   bool needsCheckIn(String userId, MealPeriod period) {
@@ -104,8 +102,8 @@ class MealCheckService {
 
   /// Get meal skip rate for user (last 7 days)
   double getMealSkipRate(String userId) {
-    final history = getCheckInHistory(userId, days: 7);
-    if (history.isEmpty) return 0.0;
+    final history = getCheckInHistory(userId);
+    if (history.isEmpty) return 0;
 
     final skipped = history.where((c) => !c.hadEaten).length;
     return skipped / history.length;
@@ -113,7 +111,7 @@ class MealCheckService {
 
   /// Get most commonly skipped meal period
   MealPeriod? getMostSkippedPeriod(String userId) {
-    final history = getCheckInHistory(userId, days: 7);
+    final history = getCheckInHistory(userId);
     if (history.isEmpty) return null;
 
     final skippedByPeriod = <MealPeriod, int>{};

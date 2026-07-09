@@ -14,13 +14,9 @@ abstract class AppModule {
 
   @Named('mealCache')
   @preResolve
-  Future<Box<Map<dynamic, dynamic>>> get mealCache async {
-    return await Hive.openBox<Map<dynamic, dynamic>>('meals_cache');
-  }
+  Future<Box<Map<dynamic, dynamic>>> get mealCache async => Hive.openBox<Map<dynamic, dynamic>>('meals_cache');
 
   @Named('workoutCache')
   @preResolve
-  Future<Box<Map<dynamic, dynamic>>> get workoutCache async {
-    return await Hive.openBox<Map<dynamic, dynamic>>('workouts_cache');
-  }
+  Future<Box<Map<dynamic, dynamic>>> get workoutCache async => Hive.openBox<Map<dynamic, dynamic>>('workouts_cache');
 }

@@ -15,12 +15,6 @@ import '../models/chat_message_model.dart';
 
 @LazySingleton(as: ChatRepository)
 class ChatRepositoryImpl implements ChatRepository {
-  final ChatRemoteDataSource _remoteDataSource;
-  final ChatLocalDataSource _localDataSource;
-  final NetworkInfo _networkInfo;
-  final Uuid _uuid;
-
-  final _messageStreamController = StreamController<ChatMessage>.broadcast();
 
   ChatRepositoryImpl(
     this._remoteDataSource,
@@ -28,6 +22,12 @@ class ChatRepositoryImpl implements ChatRepository {
     this._networkInfo,
     this._uuid,
   );
+  final ChatRemoteDataSource _remoteDataSource;
+  final ChatLocalDataSource _localDataSource;
+  final NetworkInfo _networkInfo;
+  final Uuid _uuid;
+
+  final _messageStreamController = StreamController<ChatMessage>.broadcast();
 
   @override
   Future<Either<Failure, ChatMessage>> sendMessage({

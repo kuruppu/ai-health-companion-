@@ -234,27 +234,21 @@ class HiveManager {
     await saveSetting('theme_mode', themeMode);
   }
 
-  String getThemeMode() {
-    return getSetting('theme_mode', defaultValue: 'light') as String;
-  }
+  String getThemeMode() => getSetting('theme_mode', defaultValue: 'light') as String;
 
   // Onboarding status
   Future<void> setOnboardingCompleted(bool completed) async {
     await saveSetting('onboarding_completed', completed);
   }
 
-  bool isOnboardingCompleted() {
-    return getSetting('onboarding_completed', defaultValue: false) as bool;
-  }
+  bool isOnboardingCompleted() => getSetting('onboarding_completed', defaultValue: false) as bool;
 
   // First launch
   Future<void> setFirstLaunch(bool firstLaunch) async {
     await saveSetting('first_launch', firstLaunch);
   }
 
-  bool isFirstLaunch() {
-    return getSetting('first_launch', defaultValue: true) as bool;
-  }
+  bool isFirstLaunch() => getSetting('first_launch', defaultValue: true) as bool;
 
   // Clear all data
   Future<void> clearAll() async {

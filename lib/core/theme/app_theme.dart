@@ -8,13 +8,11 @@ import 'app_text_styles.dart';
 final appThemeProvider = Provider<AppTheme>((ref) => AppTheme());
 
 class AppTheme {
-  ThemeData get lightTheme {
-    return ThemeData(
+  ThemeData get lightTheme => ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
-        brightness: Brightness.light,
       ),
       scaffoldBackgroundColor: AppColors.backgroundLight,
       fontFamily: AssetPaths.fontFamilyInter,
@@ -72,7 +70,7 @@ class AppTheme {
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.error, width: 1),
+          borderSide: const BorderSide(color: AppColors.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -134,7 +132,7 @@ class AppTheme {
       // Chip Theme
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.surfaceLight,
-        selectedColor: AppColors.primary.withOpacity(0.2),
+        selectedColor: AppColors.primary.withValues(alpha: 0.2),
         labelStyle: AppTextStyles.caption.copyWith(
           color: AppColors.textPrimary,
         ),
@@ -204,7 +202,7 @@ class AppTheme {
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primary.withOpacity(0.5);
+            return AppColors.primary.withValues(alpha: 0.5);
           }
           return AppColors.divider;
         }),
@@ -215,13 +213,11 @@ class AppTheme {
         activeTrackColor: AppColors.primary,
         inactiveTrackColor: AppColors.divider,
         thumbColor: AppColors.primary,
-        overlayColor: AppColors.primary.withOpacity(0.2),
+        overlayColor: AppColors.primary.withValues(alpha: 0.2),
       ),
     );
-  }
 
-  ThemeData get darkTheme {
-    return ThemeData(
+  ThemeData get darkTheme => ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
@@ -235,5 +231,4 @@ class AppTheme {
       // For MVP, we'll focus on light theme
       // Dark theme can be fully implemented in v1.1
     );
-  }
 }

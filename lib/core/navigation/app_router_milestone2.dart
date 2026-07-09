@@ -13,8 +13,7 @@ import 'app_routes.dart';
 part 'app_router_milestone2.g.dart';
 
 @riverpod
-GoRouter appRouter(AppRouterRef ref) {
-  return GoRouter(
+GoRouter appRouter(AppRouterRef ref) => GoRouter(
     initialLocation: AppRoutes.splash,
     debugLogDiagnostics: true,
     routes: [
@@ -85,19 +84,16 @@ GoRouter appRouter(AppRouterRef ref) {
     ],
     errorBuilder: (context, state) => ErrorScreen(error: state.error),
   );
-}
 
 class ErrorScreen extends StatelessWidget {
-  final Exception? error;
 
   const ErrorScreen({this.error, super.key});
+  final Exception? error;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Center(
         child: Text('Error: ${error?.toString() ?? "Unknown error"}'),
       ),
     );
-  }
 }

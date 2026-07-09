@@ -31,8 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -69,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
-  }
 }
 
 // Placeholder screens for tabs not yet implemented
@@ -77,50 +75,43 @@ class ChatPlaceholderScreen extends StatelessWidget {
   const ChatPlaceholderScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(title: const Text('Chat')),
       body: const Center(
         child: Text('AI Chat - Coming in Milestone 3'),
       ),
     );
-  }
 }
 
 class NutritionPlaceholderScreen extends StatelessWidget {
   const NutritionPlaceholderScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(title: const Text('Nutrition')),
       body: const Center(
         child: Text('Photo-First Meal Logging - Coming in Milestone 4'),
       ),
     );
-  }
 }
 
 class WorkoutPlaceholderScreen extends StatelessWidget {
   const WorkoutPlaceholderScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(title: const Text('Workout')),
       body: const Center(
         child: Text('Personalized Workouts - Coming in Milestone 5'),
       ),
     );
-  }
 }
 
 class ProfilePlaceholderScreen extends StatelessWidget {
   const ProfilePlaceholderScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(title: const Text('Profile')),
       body: Center(
         child: Column(
@@ -139,5 +130,4 @@ class ProfilePlaceholderScreen extends StatelessWidget {
         ),
       ),
     );
-  }
 }

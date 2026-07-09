@@ -12,15 +12,15 @@ import '../models/user_model.dart';
 
 @LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSource _remoteDataSource;
-  final AuthLocalDataSource _localDataSource;
-  final NetworkInfo _networkInfo;
 
   AuthRepositoryImpl(
     this._remoteDataSource,
     this._localDataSource,
     this._networkInfo,
   );
+  final AuthRemoteDataSource _remoteDataSource;
+  final AuthLocalDataSource _localDataSource;
+  final NetworkInfo _networkInfo;
 
   @override
   Future<Either<Failure, User>> loginWithEmail({
@@ -29,7 +29,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     if (!await _networkInfo.isConnected) {
       return const Left(
-        NetworkFailure(message: 'No internet connection'),
+        NetworkFailure(),
       );
     }
 
@@ -59,7 +59,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     if (!await _networkInfo.isConnected) {
       return const Left(
-        NetworkFailure(message: 'No internet connection'),
+        NetworkFailure(),
       );
     }
 
@@ -86,7 +86,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, String>> loginWithPhone(String phoneNumber) async {
     if (!await _networkInfo.isConnected) {
       return const Left(
-        NetworkFailure(message: 'No internet connection'),
+        NetworkFailure(),
       );
     }
 
@@ -108,7 +108,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     if (!await _networkInfo.isConnected) {
       return const Left(
-        NetworkFailure(message: 'No internet connection'),
+        NetworkFailure(),
       );
     }
 
@@ -183,7 +183,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, void>> sendPasswordResetEmail(String email) async {
     if (!await _networkInfo.isConnected) {
       return const Left(
-        NetworkFailure(message: 'No internet connection'),
+        NetworkFailure(),
       );
     }
 
@@ -201,7 +201,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, User>> updateUserProfile(User user) async {
     if (!await _networkInfo.isConnected) {
       return const Left(
-        NetworkFailure(message: 'No internet connection'),
+        NetworkFailure(),
       );
     }
 
@@ -225,7 +225,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, void>> deleteAccount() async {
     if (!await _networkInfo.isConnected) {
       return const Left(
-        NetworkFailure(message: 'No internet connection'),
+        NetworkFailure(),
       );
     }
 
@@ -243,13 +243,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Stream<User?> get authStateChanges {
-    return _remoteDataSource.authStateChanges.map((userModel) {
+  Stream<User?> get authStateChanges => _remoteDataSource.authStateChanges.map((userModel) {
       if (userModel != null) {
         _localDataSource.cacheUser(userModel);
         return userModel.toEntity();
       }
       return null;
     });
-  }
 }

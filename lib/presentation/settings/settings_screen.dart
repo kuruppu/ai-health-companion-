@@ -11,8 +11,7 @@ class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
       ),
@@ -20,7 +19,7 @@ class SettingsScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         children: [
           // App settings section
-          Text(
+          const Text(
             'App Settings',
             style: AppTextStyles.h6,
           ),
@@ -57,20 +56,20 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: 32),
 
           // Testing section (ONLY for development)
-          Text(
+          const Text(
             'Testing (Dev Only)',
             style: AppTextStyles.h6,
           ),
           const SizedBox(height: 16),
 
           Card(
-            color: AppColors.warning.withOpacity(0.1),
+            color: AppColors.warning.withValues(alpha: 0.1),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Meal Check-In Testing',
                     style: AppTextStyles.body1Medium,
                   ),
@@ -138,7 +137,7 @@ class SettingsScreen extends ConsumerWidget {
 
           // Info card
           Card(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha: 0.1),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -175,7 +174,7 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: 32),
 
           // About section
-          Text(
+          const Text(
             'About',
             style: AppTextStyles.h6,
           ),
@@ -184,10 +183,10 @@ class SettingsScreen extends ConsumerWidget {
           Card(
             child: Column(
               children: [
-                ListTile(
-                  leading: const Icon(Icons.info),
-                  title: const Text('Version'),
-                  subtitle: const Text('1.0.0 (MVP)'),
+                const ListTile(
+                  leading: Icon(Icons.info),
+                  title: Text('Version'),
+                  subtitle: Text('1.0.0 (MVP)'),
                 ),
                 const Divider(height: 1),
                 ListTile(
@@ -213,7 +212,6 @@ class SettingsScreen extends ConsumerWidget {
         ],
       ),
     );
-  }
 
   void _triggerCheckIn(
     BuildContext context,

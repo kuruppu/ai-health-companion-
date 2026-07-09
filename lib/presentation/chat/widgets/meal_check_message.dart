@@ -9,18 +9,17 @@ import '../../providers/meal_check_provider.dart';
 
 /// Widget to display AI meal check-in message with quick response buttons
 class MealCheckMessage extends ConsumerWidget {
-  final String message;
-  final MealPeriod period;
 
   const MealCheckMessage({
     required this.message,
     required this.period,
     super.key,
   });
+  final String message;
+  final MealPeriod period;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
+  Widget build(BuildContext context, WidgetRef ref) => Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,9 +30,9 @@ class MealCheckMessage extends ConsumerWidget {
               maxWidth: MediaQuery.of(context).size.width * 0.75,
             ),
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.surfaceLight,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(16),
                 bottomLeft: Radius.circular(4),
@@ -103,7 +102,6 @@ class MealCheckMessage extends ConsumerWidget {
         ],
       ),
     );
-  }
 
   void _handleResponse(
     BuildContext context,

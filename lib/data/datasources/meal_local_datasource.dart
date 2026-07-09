@@ -8,13 +8,13 @@ import '../models/meal_model.dart';
 /// Local data source for meal persistence (SQLite + Hive)
 @injectable
 class MealLocalDataSource {
-  final AppDatabase _database;
-  final Box<Map<dynamic, dynamic>> _mealCache;
 
   const MealLocalDataSource(
     this._database,
     @Named('mealCache') this._mealCache,
   );
+  final AppDatabase _database;
+  final Box<Map<dynamic, dynamic>> _mealCache;
 
   /// Save meal to SQLite
   /// TODO: Fix schema mismatch - table expects different fields
@@ -24,8 +24,8 @@ class MealLocalDataSource {
             mealId: Value(meal.mealId),
             userId: Value(meal.userId),
             mealType: Value(meal.mealType.name),
-            mealName: Value('Meal'), // TODO: Get from analysis or user input
-            totalCalories: Value(0.0), // TODO: Calculate from analysis
+            mealName: const Value('Meal'), // TODO: Get from analysis or user input
+            totalCalories: const Value(0), // TODO: Calculate from analysis
             photoUrl: Value(meal.photoUrl),
             description: Value(meal.userNotes), // Map userNotes to description
             aiAnalysis: Value(meal.analysis.toString()), // Changed from analysisJson
@@ -55,7 +55,7 @@ class MealLocalDataSource {
     var query = _database.select(_database.mealsTable)
       ..where((tbl) => tbl.userId.equals(userId))
       ..orderBy([
-        (tbl) => OrderingTerm(expression: tbl.loggedAt, mode: OrderingMode.desc)
+        (tbl) => OrderingTerm(expression: tbl.loggedAt, mode: OrderingMode.desc),
       ])
       ..limit(limit);
 
@@ -69,7 +69,7 @@ class MealLocalDataSource {
     }
 
     final rows = await query.get();
-    return rows.map((row) => _mealFromDriftRow(row)).toList();
+    return rows.map(_mealFromDriftRow).toList();
   }
 
   /// Get today's meals
@@ -78,7 +78,7 @@ class MealLocalDataSource {
     final startOfDay = DateTime(now.year, now.month, now.day);
     final endOfDay = startOfDay.add(const Duration(days: 1));
 
-    return await getMeals(
+    return getMeals(
       userId: userId,
       startDate: startOfDay,
       endDate: endOfDay,
@@ -123,8 +123,7 @@ class MealLocalDataSource {
   /// Cache meal in Hive
   Future<void> _cacheMeal(MealModel meal) async {
     final cacheKey = '${meal.userId}_meals';
-    final cached = _mealCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
-        as Map<dynamic, dynamic>;
+    final cached = _mealCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})!;
 
     cached[meal.mealId] = meal.toJson();
 
@@ -149,8 +148,7 @@ class MealLocalDataSource {
   /// Get cached meals
   Future<List<MealModel>> _getCachedMeals(String userId) async {
     final cacheKey = '${userId}_meals';
-    final cached = _mealCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})
-        as Map<dynamic, dynamic>;
+    final cached = _mealCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})!;
 
     final meals = cached.values
         .map((json) => MealModel.fromJson(json as Map<String, dynamic>))
@@ -164,7 +162,7 @@ class MealLocalDataSource {
   Future<void> _removeCachedMeal(String mealId) async {
     for (final key in _mealCache.keys) {
       final cached =
-          _mealCache.get(key, defaultValue: <dynamic, dynamic>{}) as Map;
+          _mealCache.get(key, defaultValue: <dynamic, dynamic>{})!;
       if (cached.containsKey(mealId)) {
         cached.remove(mealId);
         await _mealCache.put(key, cached);

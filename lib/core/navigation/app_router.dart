@@ -9,8 +9,7 @@ import 'app_routes.dart';
 part 'app_router.g.dart';
 
 @riverpod
-GoRouter appRouter(AppRouterRef ref) {
-  return GoRouter(
+GoRouter appRouter(AppRouterRef ref) => GoRouter(
     initialLocation: AppRoutes.splash,
     debugLogDiagnostics: true,
     routes: [
@@ -158,248 +157,205 @@ GoRouter appRouter(AppRouterRef ref) {
     ],
     errorBuilder: (context, state) => ErrorScreen(error: state.error),
   );
-}
 
 // Placeholder screens - will be implemented in respective milestones
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: CircularProgressIndicator()),
     );
-  }
 }
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Onboarding')),
     );
-  }
 }
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Login')),
     );
-  }
 }
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Register')),
     );
-  }
 }
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Forgot Password')),
     );
-  }
 }
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Home')),
     );
-  }
 }
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Dashboard')),
     );
-  }
 }
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Chat')),
     );
-  }
 }
 
 class NutritionScreen extends StatelessWidget {
   const NutritionScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Nutrition')),
     );
-  }
 }
 
 class MealDetailsScreen extends StatelessWidget {
-  final String mealId;
 
   const MealDetailsScreen({required this.mealId, super.key});
+  final String mealId;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Center(child: Text('Meal Details: $mealId')),
     );
-  }
 }
 
 class AddMealScreen extends StatelessWidget {
   const AddMealScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Add Meal')),
     );
-  }
 }
 
 class WorkoutScreen extends StatelessWidget {
   const WorkoutScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Workout')),
     );
-  }
 }
 
 class WorkoutDetailsScreen extends StatelessWidget {
-  final String workoutId;
 
   const WorkoutDetailsScreen({required this.workoutId, super.key});
+  final String workoutId;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Center(child: Text('Workout Details: $workoutId')),
     );
-  }
 }
 
 class StartWorkoutScreen extends StatelessWidget {
-  final String workoutId;
 
   const StartWorkoutScreen({required this.workoutId, super.key});
+  final String workoutId;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Center(child: Text('Start Workout: $workoutId')),
     );
-  }
 }
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Profile')),
     );
-  }
 }
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Edit Profile')),
     );
-  }
 }
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Settings')),
     );
-  }
 }
 
 class ProgressScreen extends StatelessWidget {
   const ProgressScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Progress')),
     );
-  }
 }
 
 class GoalsScreen extends StatelessWidget {
   const GoalsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: Center(child: Text('Goals')),
     );
-  }
 }
 
 class GoalDetailsScreen extends StatelessWidget {
-  final String goalId;
 
   const GoalDetailsScreen({required this.goalId, super.key});
+  final String goalId;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Center(child: Text('Goal Details: $goalId')),
     );
-  }
 }
 
 class ErrorScreen extends StatelessWidget {
-  final Exception? error;
 
   const ErrorScreen({this.error, super.key});
+  final Exception? error;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Center(
         child: Text('Error: ${error?.toString() ?? "Unknown error"}'),
       ),
     );
-  }
 }

@@ -79,9 +79,7 @@ class Auth extends _$Auth {
     );
   }
 
-  User? getCurrentUser() {
-    return state.value is Authenticated
-        ? (state.value as Authenticated).user
+  User? getCurrentUser() => state.value is Authenticated
+        ? (state.value! as Authenticated).user
         : null;
-  }
 }

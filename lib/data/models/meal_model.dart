@@ -1,4 +1,3 @@
-import 'package:drift/drift.dart' as drift;
 
 import '../../domain/entities/meal.dart';
 
@@ -9,18 +8,11 @@ class MealModel extends Meal {
     required super.userId,
     required super.mealType,
     required super.photoUrl,
-    super.userNotes,
-    required super.analysis,
-    required super.timestamp,
-    required super.eatenAt,
+    required super.analysis, required super.timestamp, required super.eatenAt, super.userNotes,
   });
 
-  /// Alias for database compatibility (table uses loggedAt)
-  DateTime get loggedAt => eatenAt;
-
   /// Create from entity
-  factory MealModel.fromEntity(Meal meal) {
-    return MealModel(
+  factory MealModel.fromEntity(Meal meal) => MealModel(
       mealId: meal.mealId,
       userId: meal.userId,
       mealType: meal.mealType,
@@ -30,25 +22,9 @@ class MealModel extends Meal {
       timestamp: meal.timestamp,
       eatenAt: meal.eatenAt,
     );
-  }
-
-  /// Convert to entity
-  Meal toEntity() {
-    return Meal(
-      mealId: mealId,
-      userId: userId,
-      mealType: mealType,
-      photoUrl: photoUrl,
-      userNotes: userNotes,
-      analysis: analysis,
-      timestamp: timestamp,
-      eatenAt: eatenAt,
-    );
-  }
 
   /// Create from JSON (Firestore)
-  factory MealModel.fromJson(Map<String, dynamic> json) {
-    return MealModel(
+  factory MealModel.fromJson(Map<String, dynamic> json) => MealModel(
       mealId: json['meal_id'] as String,
       userId: json['user_id'] as String,
       mealType: MealType.values.byName(json['meal_type'] as String),
@@ -60,25 +36,9 @@ class MealModel extends Meal {
       timestamp: DateTime.parse(json['timestamp'] as String),
       eatenAt: DateTime.parse(json['eaten_at'] as String),
     );
-  }
-
-  /// Convert to JSON (Firestore)
-  Map<String, dynamic> toJson() {
-    return {
-      'meal_id': mealId,
-      'user_id': userId,
-      'meal_type': mealType.name,
-      'photo_url': photoUrl,
-      'user_notes': userNotes,
-      'analysis': MealAnalysisModel.fromEntity(analysis).toJson(),
-      'timestamp': timestamp.toIso8601String(),
-      'eaten_at': eatenAt.toIso8601String(),
-    };
-  }
 
   /// Create from Drift table row
-  factory MealModel.fromDrift(Map<String, dynamic> row) {
-    return MealModel(
+  factory MealModel.fromDrift(Map<String, dynamic> row) => MealModel(
       mealId: row['meal_id'] as String,
       userId: row['user_id'] as String,
       mealType: MealType.values.byName(row['meal_type'] as String),
@@ -90,11 +50,36 @@ class MealModel extends Meal {
       timestamp: DateTime.fromMillisecondsSinceEpoch(row['timestamp'] as int),
       eatenAt: DateTime.fromMillisecondsSinceEpoch(row['eaten_at'] as int),
     );
-  }
+
+  /// Alias for database compatibility (table uses loggedAt)
+  DateTime get loggedAt => eatenAt;
+
+  /// Convert to entity
+  Meal toEntity() => Meal(
+      mealId: mealId,
+      userId: userId,
+      mealType: mealType,
+      photoUrl: photoUrl,
+      userNotes: userNotes,
+      analysis: analysis,
+      timestamp: timestamp,
+      eatenAt: eatenAt,
+    );
+
+  /// Convert to JSON (Firestore)
+  Map<String, dynamic> toJson() => {
+      'meal_id': mealId,
+      'user_id': userId,
+      'meal_type': mealType.name,
+      'photo_url': photoUrl,
+      'user_notes': userNotes,
+      'analysis': MealAnalysisModel.fromEntity(analysis).toJson(),
+      'timestamp': timestamp.toIso8601String(),
+      'eaten_at': eatenAt.toIso8601String(),
+    };
 
   /// Convert to Drift companion (for inserts/updates)
-  Map<String, dynamic> toDrift() {
-    return {
+  Map<String, dynamic> toDrift() => {
       'meal_id': mealId,
       'user_id': userId,
       'meal_type': mealType.name,
@@ -104,7 +89,6 @@ class MealModel extends Meal {
       'timestamp': timestamp.millisecondsSinceEpoch,
       'eaten_at': eatenAt.millisecondsSinceEpoch,
     };
-  }
 }
 
 /// Data model for MealAnalysis
@@ -120,8 +104,7 @@ class MealAnalysisModel extends MealAnalysis {
   });
 
   /// Create from entity
-  factory MealAnalysisModel.fromEntity(MealAnalysis analysis) {
-    return MealAnalysisModel(
+  factory MealAnalysisModel.fromEntity(MealAnalysis analysis) => MealAnalysisModel(
       description: analysis.description,
       portionSize: analysis.portionSize,
       foodCategories: analysis.foodCategories,
@@ -132,11 +115,9 @@ class MealAnalysisModel extends MealAnalysis {
           ? NutritionalEstimateModel.fromEntity(analysis.nutritionalEstimate!)
           : null,
     );
-  }
 
   /// Create from JSON
-  factory MealAnalysisModel.fromJson(Map<String, dynamic> json) {
-    return MealAnalysisModel(
+  factory MealAnalysisModel.fromJson(Map<String, dynamic> json) => MealAnalysisModel(
       description: json['description'] as String,
       portionSize: PortionSize.values.byName(json['portion_size'] as String),
       foodCategories:
@@ -150,11 +131,9 @@ class MealAnalysisModel extends MealAnalysis {
             )
           : null,
     );
-  }
 
   /// Convert to JSON
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'description': description,
       'portion_size': portionSize.name,
       'food_categories': foodCategories,
@@ -165,7 +144,6 @@ class MealAnalysisModel extends MealAnalysis {
           ? NutritionalEstimateModel.fromEntity(nutritionalEstimate!).toJson()
           : null,
     };
-  }
 }
 
 /// Data model for NutritionalEstimate
@@ -178,32 +156,26 @@ class NutritionalEstimateModel extends NutritionalEstimate {
   });
 
   /// Create from entity
-  factory NutritionalEstimateModel.fromEntity(NutritionalEstimate estimate) {
-    return NutritionalEstimateModel(
+  factory NutritionalEstimateModel.fromEntity(NutritionalEstimate estimate) => NutritionalEstimateModel(
       estimatedCalories: estimate.estimatedCalories,
       proteinLevel: estimate.proteinLevel,
       carbLevel: estimate.carbLevel,
       fatLevel: estimate.fatLevel,
     );
-  }
 
   /// Create from JSON
-  factory NutritionalEstimateModel.fromJson(Map<String, dynamic> json) {
-    return NutritionalEstimateModel(
+  factory NutritionalEstimateModel.fromJson(Map<String, dynamic> json) => NutritionalEstimateModel(
       estimatedCalories: json['estimated_calories'] as int?,
       proteinLevel: json['protein_level'] as String?,
       carbLevel: json['carb_level'] as String?,
       fatLevel: json['fat_level'] as String?,
     );
-  }
 
   /// Convert to JSON
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'estimated_calories': estimatedCalories,
       'protein_level': proteinLevel,
       'carb_level': carbLevel,
       'fat_level': fatLevel,
     };
-  }
 }

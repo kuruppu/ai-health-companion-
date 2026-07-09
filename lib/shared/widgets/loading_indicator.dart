@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 
 class LoadingIndicator extends StatelessWidget {
-  final double size;
-  final Color? color;
-  final double strokeWidth;
 
   const LoadingIndicator({
     this.size = 40,
@@ -13,10 +10,12 @@ class LoadingIndicator extends StatelessWidget {
     this.strokeWidth = 3,
     super.key,
   });
+  final double size;
+  final Color? color;
+  final double strokeWidth;
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
+  Widget build(BuildContext context) => Center(
       child: SizedBox(
         width: size,
         height: size,
@@ -28,17 +27,15 @@ class LoadingIndicator extends StatelessWidget {
         ),
       ),
     );
-  }
 }
 
 class LoadingOverlay extends StatelessWidget {
-  final String? message;
 
   const LoadingOverlay({this.message, super.key});
+  final String? message;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       color: AppColors.overlay,
       child: Center(
         child: Card(
@@ -61,5 +58,4 @@ class LoadingOverlay extends StatelessWidget {
         ),
       ),
     );
-  }
 }

@@ -11,15 +11,15 @@ import '../models/meal_model.dart';
 /// Remote data source for meal operations (Claude API + Firestore)
 @injectable
 class MealRemoteDataSource {
-  final Dio _dioClient;
-  final FirebaseFirestore _firestore;
-  final String _apiKey;
 
   const MealRemoteDataSource(
     this._dioClient,
     this._firestore,
     @Named('claudeApiKey') this._apiKey,
   );
+  final Dio _dioClient;
+  final FirebaseFirestore _firestore;
+  final String _apiKey;
 
   /// Analyze meal photo using Claude Vision API
   ///
@@ -106,18 +106,18 @@ class MealRemoteDataSource {
 
       if (startDate != null) {
         query = query.where('eaten_at',
-            isGreaterThanOrEqualTo: startDate.toIso8601String());
+            isGreaterThanOrEqualTo: startDate.toIso8601String(),);
       }
 
       if (endDate != null) {
         query = query.where('eaten_at',
-            isLessThanOrEqualTo: endDate.toIso8601String());
+            isLessThanOrEqualTo: endDate.toIso8601String(),);
       }
 
       final snapshot = await query.get();
 
       return snapshot.docs
-          .map((doc) => MealModel.fromJson(doc.data() as Map<String, dynamic>))
+          .map((doc) => MealModel.fromJson(doc.data()! as Map<String, dynamic>))
           .toList();
     } catch (e) {
       throw Exception('Failed to fetch meals: $e');

@@ -5,14 +5,14 @@ import '../../../core/theme/app_text_styles.dart';
 
 /// Quick response buttons for meal check-ins
 class QuickResponseButtons extends StatelessWidget {
-  final Function(String) onResponse;
-  final bool hasPendingCheckIn;
 
   const QuickResponseButtons({
     required this.onResponse,
     required this.hasPendingCheckIn,
     super.key,
   });
+  final Function(String) onResponse;
+  final bool hasPendingCheckIn;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class QuickResponseButtons extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColors.surfaceLight,
         border: Border(
           top: BorderSide(color: AppColors.divider),
@@ -71,16 +71,15 @@ class QuickResponseButtons extends StatelessWidget {
     String label,
     IconData icon,
     Color color,
-  ) {
-    return InkWell(
+  ) => InkWell(
       onTap: () => onResponse(label),
       borderRadius: BorderRadius.circular(20),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: color.withOpacity(0.3)),
+          border: Border.all(color: color.withValues(alpha: 0.3)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -98,5 +97,4 @@ class QuickResponseButtons extends StatelessWidget {
         ),
       ),
     );
-  }
 }

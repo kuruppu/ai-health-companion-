@@ -6,7 +6,6 @@ import '../../domain/entities/meal_check_in.dart';
 import '../../services/meal_check_service.dart';
 import 'auth_provider.dart';
 import 'chat_provider.dart';
-import 'meal_check_provider.dart';
 
 part 'integrated_chat_provider.g.dart';
 
@@ -66,7 +65,7 @@ class IntegratedChat extends _$IntegratedChat {
 
     // Detect response type
     final responseLower = userResponse.toLowerCase();
-    bool hadEaten = false;
+    var hadEaten = false;
 
     if (responseLower.contains('yes') ||
         responseLower.contains('ate') ||
@@ -134,9 +133,7 @@ class IntegratedChat extends _$IntegratedChat {
   MealPeriod? get pendingCheckIn => _pendingCheckIn;
 
   /// Check if last message was a check-in
-  bool isLastMessageCheckIn() {
-    return _lastCheckInMessageId != null;
-  }
+  bool isLastMessageCheckIn() => _lastCheckInMessageId != null;
 
   String _generatePositiveResponse() {
     final responses = [
@@ -171,6 +168,4 @@ class IntegratedChat extends _$IntegratedChat {
 
 /// Provider to expose if there's a pending check-in
 @riverpod
-bool hasPendingCheckIn(HasPendingCheckInRef ref) {
-  return ref.watch(integratedChatProvider.notifier).pendingCheckIn != null;
-}
+bool hasPendingCheckIn(HasPendingCheckInRef ref) => ref.watch(integratedChatProvider.notifier).pendingCheckIn != null;

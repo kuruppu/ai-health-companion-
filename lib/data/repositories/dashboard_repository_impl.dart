@@ -12,10 +12,10 @@ import '../models/progress_log_model.dart';
 
 @LazySingleton(as: DashboardRepository)
 class DashboardRepositoryImpl implements DashboardRepository {
-  final AppDatabase _database;
-  final Uuid _uuid;
 
   DashboardRepositoryImpl(this._database, this._uuid);
+  final AppDatabase _database;
+  final Uuid _uuid;
 
   @override
   Future<Either<Failure, DashboardSummary>> getDashboardSummary(
@@ -38,10 +38,8 @@ class DashboardRepositoryImpl implements DashboardRepository {
       // Get today's log
       final todayStart = DateTime(now.year, now.month, now.day);
       final todayEnd = todayStart.add(const Duration(days: 1));
-      final todayLogs = logs.where((log) {
-        return log.loggedAt.isAfter(todayStart) &&
-            log.loggedAt.isBefore(todayEnd);
-      }).toList();
+      final todayLogs = logs.where((log) => log.loggedAt.isAfter(todayStart) &&
+            log.loggedAt.isBefore(todayEnd),).toList();
 
       final todayLog = todayLogs.isNotEmpty ? todayLogs.first : null;
 
@@ -54,13 +52,13 @@ class DashboardRepositoryImpl implements DashboardRepository {
           : 0.0;
 
       // TODO: Get workout count from workouts table
-      final workoutsThisWeek = 0;
+      const workoutsThisWeek = 0;
 
       // Get user profile for goal info
       final profile = await _database.getUserProfile(userId);
 
       // Calculate goal progress (mock for now)
-      final goalProgress = 0.6; // 60%
+      const goalProgress = 0.6; // 60%
 
       final summary = DashboardSummary(
         todayEnergyLevel: todayLog?.energyLevel,
@@ -137,8 +135,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
           )
           .first;
 
-      return Right(logs.map((log) {
-        return ProgressLog(
+      return Right(logs.map((log) => ProgressLog(
           logId: log.logId,
           userId: log.userId,
           weightKg: log.weightKg,
@@ -149,8 +146,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
           notes: log.notes,
           loggedAt: log.loggedAt,
           createdAt: log.createdAt,
-        );
-      }).toList());
+        ),).toList(),);
     } catch (e) {
       return Left(DatabaseFailure(message: e.toString()));
     }
@@ -189,7 +185,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
         notes: log.notes,
         loggedAt: log.loggedAt,
         createdAt: log.createdAt,
-      ));
+      ),);
     } catch (e) {
       return Left(DatabaseFailure(message: e.toString()));
     }

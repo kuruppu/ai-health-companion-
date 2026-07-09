@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_text_styles.dart';
 
 class EmptyState extends StatelessWidget {
-  final String imagePath;
-  final String title;
-  final String message;
-  final String? actionText;
-  final VoidCallback? onActionPressed;
 
   const EmptyState({
     required this.imagePath,
@@ -17,10 +12,14 @@ class EmptyState extends StatelessWidget {
     this.onActionPressed,
     super.key,
   });
+  final String imagePath;
+  final String title;
+  final String message;
+  final String? actionText;
+  final VoidCallback? onActionPressed;
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
+  Widget build(BuildContext context) => Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
@@ -54,5 +53,4 @@ class EmptyState extends StatelessWidget {
         ),
       ),
     );
-  }
 }

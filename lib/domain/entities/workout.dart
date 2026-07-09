@@ -4,6 +4,19 @@ import 'exercise.dart';
 
 /// Represents a workout plan with exercises
 class Workout extends Equatable {
+
+  const Workout({
+    required this.workoutId,
+    required this.userId,
+    required this.name,
+    required this.description,
+    required this.difficulty,
+    required this.durationMinutes,
+    required this.targetMuscles,
+    required this.exercises,
+    required this.createdAt, this.isAiGenerated = false,
+    this.aiContext,
+  });
   /// Unique identifier for the workout
   final String workoutId;
 
@@ -37,20 +50,6 @@ class Workout extends Equatable {
   /// When this workout was created
   final DateTime createdAt;
 
-  const Workout({
-    required this.workoutId,
-    required this.userId,
-    required this.name,
-    required this.description,
-    required this.difficulty,
-    required this.durationMinutes,
-    required this.targetMuscles,
-    required this.exercises,
-    this.isAiGenerated = false,
-    this.aiContext,
-    required this.createdAt,
-  });
-
   @override
   List<Object?> get props => [
         workoutId,
@@ -78,8 +77,7 @@ class Workout extends Equatable {
     bool? isAiGenerated,
     String? aiContext,
     DateTime? createdAt,
-  }) {
-    return Workout(
+  }) => Workout(
       workoutId: workoutId ?? this.workoutId,
       userId: userId ?? this.userId,
       name: name ?? this.name,
@@ -92,7 +90,6 @@ class Workout extends Equatable {
       aiContext: aiContext ?? this.aiContext,
       createdAt: createdAt ?? this.createdAt,
     );
-  }
 }
 
 /// Difficulty level of a workout

@@ -56,7 +56,7 @@ class Dashboard extends _$Dashboard {
         final summaryResult = await _getDashboardSummaryUseCase(user.userId);
         state = summaryResult.fold(
           (failure) => AsyncValue.error(failure.message, StackTrace.current),
-          (summary) => AsyncValue.data(summary),
+          AsyncValue.data,
         );
       },
     );
@@ -75,7 +75,7 @@ class Dashboard extends _$Dashboard {
 
     state = result.fold(
       (failure) => AsyncValue.error(failure.message, StackTrace.current),
-      (summary) => AsyncValue.data(summary),
+      AsyncValue.data,
     );
   }
 }

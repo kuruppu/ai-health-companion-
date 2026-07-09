@@ -17,9 +17,9 @@ class MealsTable extends Table {
 
   // Nutritional info (aggregated from meal items)
   RealColumn get totalCalories => real()();
-  RealColumn get totalProteinG => real().withDefault(const Constant(0.0))();
-  RealColumn get totalCarbsG => real().withDefault(const Constant(0.0))();
-  RealColumn get totalFatsG => real().withDefault(const Constant(0.0))();
+  RealColumn get totalProteinG => real().withDefault(const Constant(0))();
+  RealColumn get totalCarbsG => real().withDefault(const Constant(0))();
+  RealColumn get totalFatsG => real().withDefault(const Constant(0))();
 
   // AI analysis
   TextColumn get aiAnalysis => text().nullable()(); // JSON string from Claude

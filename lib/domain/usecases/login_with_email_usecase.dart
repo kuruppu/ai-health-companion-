@@ -7,9 +7,9 @@ import '../repositories/auth_repository.dart';
 
 @injectable
 class LoginWithEmailUseCase {
-  final AuthRepository _repository;
 
   LoginWithEmailUseCase(this._repository);
+  final AuthRepository _repository;
 
   Future<Either<Failure, User>> call({
     required String email,
@@ -29,7 +29,7 @@ class LoginWithEmailUseCase {
       );
     }
 
-    return await _repository.loginWithEmail(
+    return _repository.loginWithEmail(
       email: email,
       password: password,
     );

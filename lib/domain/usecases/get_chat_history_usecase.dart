@@ -7,9 +7,9 @@ import '../repositories/chat_repository.dart';
 
 @injectable
 class GetChatHistoryUseCase {
-  final ChatRepository _repository;
 
   GetChatHistoryUseCase(this._repository);
+  final ChatRepository _repository;
 
   Future<Either<Failure, List<ChatMessage>>> call({
     required String userId,
@@ -27,7 +27,7 @@ class GetChatHistoryUseCase {
       );
     }
 
-    return await _repository.getChatHistory(
+    return _repository.getChatHistory(
       userId: userId,
       limit: limit,
     );

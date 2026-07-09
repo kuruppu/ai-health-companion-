@@ -14,7 +14,7 @@ class ImageUtils {
   /// Pick image from camera
   static Future<File?> pickFromCamera() async {
     try {
-      final XFile? image = await _picker.pickImage(
+      final image = await _picker.pickImage(
         source: ImageSource.camera,
         maxWidth: AppConstants.maxImageWidth.toDouble(),
         maxHeight: AppConstants.maxImageHeight.toDouble(),
@@ -34,7 +34,7 @@ class ImageUtils {
   /// Pick image from gallery
   static Future<File?> pickFromGallery() async {
     try {
-      final XFile? image = await _picker.pickImage(
+      final image = await _picker.pickImage(
         source: ImageSource.gallery,
         maxWidth: AppConstants.maxImageWidth.toDouble(),
         maxHeight: AppConstants.maxImageHeight.toDouble(),
@@ -54,7 +54,7 @@ class ImageUtils {
   /// Pick multiple images from gallery
   static Future<List<File>> pickMultipleFromGallery() async {
     try {
-      final List<XFile> images = await _picker.pickMultiImage(
+      final images = await _picker.pickMultiImage(
         maxWidth: AppConstants.maxImageWidth.toDouble(),
         maxHeight: AppConstants.maxImageHeight.toDouble(),
         imageQuality: (AppConstants.imageQuality * 100).toInt(),
@@ -73,9 +73,7 @@ class ImageUtils {
   }
 
   /// Get file size in bytes
-  static Future<int> getFileSize(File file) async {
-    return await file.length();
-  }
+  static Future<int> getFileSize(File file) async => file.length();
 
   /// Get file size in readable format (e.g., "2.5 MB")
   static Future<String> getReadableFileSize(File file) async {
@@ -96,7 +94,7 @@ class ImageUtils {
   ) async {
     final directory = await getApplicationDocumentsDirectory();
     final path = '${directory.path}/$fileName';
-    return await imageFile.copy(path);
+    return imageFile.copy(path);
   }
 
   /// Save bytes to app directory
@@ -119,9 +117,7 @@ class ImageUtils {
   }
 
   /// Check if file exists
-  static Future<bool> fileExists(String path) async {
-    return await File(path).exists();
-  }
+  static Future<bool> fileExists(String path) async => File(path).exists();
 
   /// Generate unique file name
   static String generateUniqueFileName(String extension) {
@@ -130,9 +126,7 @@ class ImageUtils {
   }
 
   /// Get file extension
-  static String getFileExtension(String path) {
-    return path.split('.').last.toLowerCase();
-  }
+  static String getFileExtension(String path) => path.split('.').last.toLowerCase();
 
   /// Check if file is image
   static bool isImageFile(String path) {
@@ -147,9 +141,7 @@ class ImageUtils {
   }
 
   /// Get temporary directory
-  static Future<Directory> getTempDirectory() async {
-    return await getTemporaryDirectory();
-  }
+  static Future<Directory> getTempDirectory() async => getTemporaryDirectory();
 
   /// Clear temporary images
   static Future<void> clearTempImages() async {

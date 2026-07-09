@@ -4,29 +4,19 @@ class DateTimeUtils {
   DateTimeUtils._();
 
   /// Format DateTime to readable string (e.g., "Jan 15, 2024")
-  static String formatDate(DateTime dateTime) {
-    return DateFormat('MMM d, y').format(dateTime);
-  }
+  static String formatDate(DateTime dateTime) => DateFormat('MMM d, y').format(dateTime);
 
   /// Format DateTime to time string (e.g., "2:30 PM")
-  static String formatTime(DateTime dateTime) {
-    return DateFormat('h:mm a').format(dateTime);
-  }
+  static String formatTime(DateTime dateTime) => DateFormat('h:mm a').format(dateTime);
 
   /// Format DateTime to full string (e.g., "Jan 15, 2024 at 2:30 PM")
-  static String formatDateTime(DateTime dateTime) {
-    return DateFormat('MMM d, y \'at\' h:mm a').format(dateTime);
-  }
+  static String formatDateTime(DateTime dateTime) => DateFormat('MMM d, y \'at\' h:mm a').format(dateTime);
 
   /// Format DateTime to ISO 8601 string
-  static String formatIso8601(DateTime dateTime) {
-    return dateTime.toIso8601String();
-  }
+  static String formatIso8601(DateTime dateTime) => dateTime.toIso8601String();
 
   /// Parse ISO 8601 string to DateTime
-  static DateTime parseIso8601(String dateTimeString) {
-    return DateTime.parse(dateTimeString);
-  }
+  static DateTime parseIso8601(String dateTimeString) => DateTime.parse(dateTimeString);
 
   /// Get time ago string (e.g., "2 hours ago", "3 days ago")
   static String timeAgo(DateTime dateTime) {
@@ -70,13 +60,10 @@ class DateTimeUtils {
   }
 
   /// Get start of day
-  static DateTime startOfDay(DateTime dateTime) {
-    return DateTime(dateTime.year, dateTime.month, dateTime.day);
-  }
+  static DateTime startOfDay(DateTime dateTime) => DateTime(dateTime.year, dateTime.month, dateTime.day);
 
   /// Get end of day
-  static DateTime endOfDay(DateTime dateTime) {
-    return DateTime(
+  static DateTime endOfDay(DateTime dateTime) => DateTime(
       dateTime.year,
       dateTime.month,
       dateTime.day,
@@ -85,7 +72,6 @@ class DateTimeUtils {
       59,
       999,
     );
-  }
 
   /// Get start of week (Monday)
   static DateTime startOfWeek(DateTime dateTime) {
@@ -100,21 +86,15 @@ class DateTimeUtils {
   }
 
   /// Get start of month
-  static DateTime startOfMonth(DateTime dateTime) {
-    return DateTime(dateTime.year, dateTime.month);
-  }
+  static DateTime startOfMonth(DateTime dateTime) => DateTime(dateTime.year, dateTime.month);
 
   /// Get end of month
-  static DateTime endOfMonth(DateTime dateTime) {
-    return DateTime(dateTime.year, dateTime.month + 1, 0, 23, 59, 59, 999);
-  }
+  static DateTime endOfMonth(DateTime dateTime) => DateTime(dateTime.year, dateTime.month + 1, 0, 23, 59, 59, 999);
 
   /// Check if two dates are on the same day
-  static bool isSameDay(DateTime date1, DateTime date2) {
-    return date1.year == date2.year &&
+  static bool isSameDay(DateTime date1, DateTime date2) => date1.year == date2.year &&
         date1.month == date2.month &&
         date1.day == date2.day;
-  }
 
   /// Get days difference between two dates
   static int daysBetween(DateTime from, DateTime to) {

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
-import '../../domain/entities/chat_message.dart';
 import '../../shared/widgets/loading_indicator.dart';
 import '../providers/auth_provider.dart';
 import '../providers/integrated_chat_provider.dart';
@@ -54,7 +53,7 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.2),
+                color: AppColors.primary.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -67,7 +66,7 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'AI Coach',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -99,7 +98,7 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
           if (hasPendingCheckIn)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              color: AppColors.warning.withOpacity(0.1),
+              color: AppColors.warning.withValues(alpha: 0.1),
               child: Row(
                 children: [
                   const Icon(
@@ -185,9 +184,7 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
                   );
 
               // Scroll to bottom after sending
-              Future.delayed(const Duration(milliseconds: 100), () {
-                _scrollToBottom();
-              });
+              Future.delayed(const Duration(milliseconds: 100), _scrollToBottom);
             },
           ),
         ],
@@ -195,8 +192,7 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
     );
   }
 
-  Widget _buildEmptyState() {
-    return Center(
+  Widget _buildEmptyState() => Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
@@ -206,7 +202,7 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -216,7 +212,7 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            Text(
+            const Text(
               'Hi! I\'m your AI health coach',
               style: AppTextStyles.h5,
               textAlign: TextAlign.center,
@@ -240,14 +236,14 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.schedule,
                         color: AppColors.primary,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         'I\'ll check in at:',
                         style: AppTextStyles.body1Medium,
@@ -265,10 +261,8 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
         ),
       ),
     );
-  }
 
-  Widget _buildCheckInTime(String time, String label) {
-    return Padding(
+  Widget _buildCheckInTime(String time, String label) => Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
@@ -293,5 +287,4 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
         ],
       ),
     );
-  }
 }

@@ -21,7 +21,7 @@ class GoalsTable extends Table {
 
   // Progress tracking
   RealColumn get progressPercentage =>
-      real().withDefault(const Constant(0.0))();
+      real().withDefault(const Constant(0))();
   TextColumn get status => text()
       .withDefault(const Constant('active'))(); // active, completed, abandoned
 

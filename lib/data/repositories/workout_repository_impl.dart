@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../core/errors/failures.dart';
+import '../../core/utils/logger.dart';
 import '../../domain/entities/workout.dart';
 import '../../domain/entities/workout_log.dart';
 import '../../domain/repositories/workout_repository.dart';
@@ -12,15 +13,15 @@ import '../models/workout_model.dart';
 
 @Injectable(as: WorkoutRepository)
 class WorkoutRepositoryImpl implements WorkoutRepository {
-  final WorkoutRemoteDataSource _remoteDataSource;
-  final WorkoutLocalDataSource _localDataSource;
-  final Uuid _uuid;
 
   const WorkoutRepositoryImpl(
     this._remoteDataSource,
     this._localDataSource,
     this._uuid,
   );
+  final WorkoutRemoteDataSource _remoteDataSource;
+  final WorkoutLocalDataSource _localDataSource;
+  final Uuid _uuid;
 
   @override
   Future<Either<Failure, Workout>> generateWorkout({
@@ -47,7 +48,7 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
 
       // Save to Firestore (fire and forget)
       _remoteDataSource.saveWorkoutToFirestore(workout).catchError((error) {
-        print('Failed to save workout to Firestore: $error');
+        AppLogger.e('Failed to save workout to Firestore', error: error);
       });
 
       return Right(workout.toEntity());
@@ -157,7 +158,7 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
       );
 
       if (workout == null) {
-        return Left(CacheFailure(message: 'Workout not found'));
+        return const Left(CacheFailure(message: 'Workout not found'));
       }
 
       return Right(workout.toEntity());
@@ -190,7 +191,7 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
       _remoteDataSource
           .deleteWorkoutFromFirestore(workoutId)
           .catchError((error) {
-        print('Failed to delete workout from Firestore: $error');
+        AppLogger.e('Failed to delete workout from Firestore', error: error);
       });
 
       return const Right(unit);

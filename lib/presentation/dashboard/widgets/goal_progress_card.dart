@@ -4,9 +4,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 
 class GoalProgressCard extends StatelessWidget {
-  final String goal;
-  final double progress; // 0.0 to 1.0
-  final String message;
 
   const GoalProgressCard({
     required this.goal,
@@ -14,6 +11,9 @@ class GoalProgressCard extends StatelessWidget {
     required this.message,
     super.key,
   });
+  final String goal;
+  final double progress; // 0.0 to 1.0
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class GoalProgressCard extends StatelessWidget {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withOpacity(0.2),
+                    color: AppColors.primary.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
@@ -47,7 +47,7 @@ class GoalProgressCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Your Goal',
                         style: AppTextStyles.body1Medium,
                       ),

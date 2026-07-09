@@ -23,8 +23,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
   bool _isGenerating = false;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -54,7 +53,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                 const SizedBox(height: 24),
 
                 // Title
-                Text(
+                const Text(
                   'Generate Workout',
                   style: AppTextStyles.h5,
                 ),
@@ -68,7 +67,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                 const SizedBox(height: 24),
 
                 // Goal type
-                Text(
+                const Text(
                   'What\'s your goal?',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -108,7 +107,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                 const SizedBox(height: 24),
 
                 // Energy level
-                Text(
+                const Text(
                   'How\'s your energy today?',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -158,7 +157,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                 const SizedBox(height: 24),
 
                 // Duration
-                Text(
+                const Text(
                   'How long do you have?',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -191,7 +190,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                 const SizedBox(height: 24),
 
                 // Difficulty
-                Text(
+                const Text(
                   'Difficulty level',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -203,7 +202,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                         difficulty: WorkoutDifficulty.beginner,
                         selected: _difficulty == WorkoutDifficulty.beginner,
                         onTap: () => setState(
-                            () => _difficulty = WorkoutDifficulty.beginner),
+                            () => _difficulty = WorkoutDifficulty.beginner,),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -212,7 +211,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                         difficulty: WorkoutDifficulty.intermediate,
                         selected: _difficulty == WorkoutDifficulty.intermediate,
                         onTap: () => setState(
-                            () => _difficulty = WorkoutDifficulty.intermediate),
+                            () => _difficulty = WorkoutDifficulty.intermediate,),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -221,7 +220,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                         difficulty: WorkoutDifficulty.advanced,
                         selected: _difficulty == WorkoutDifficulty.advanced,
                         onTap: () => setState(
-                            () => _difficulty = WorkoutDifficulty.advanced),
+                            () => _difficulty = WorkoutDifficulty.advanced,),
                       ),
                     ),
                   ],
@@ -247,7 +246,7 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
                         : const Icon(Icons.auto_awesome),
                     label: Text(_isGenerating
                         ? 'Generating...'
-                        : 'Generate My Workout'),
+                        : 'Generate My Workout',),
                   ),
                 ),
               ],
@@ -256,7 +255,6 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
         ),
       ),
     );
-  }
 
   Future<void> _generateWorkout() async {
     setState(() {
@@ -338,10 +336,6 @@ class _GenerateWorkoutSheetState extends ConsumerState<GenerateWorkoutSheet> {
 }
 
 class _GoalChip extends StatelessWidget {
-  final String label;
-  final String value;
-  final bool selected;
-  final VoidCallback onTap;
 
   const _GoalChip({
     required this.label,
@@ -349,10 +343,13 @@ class _GoalChip extends StatelessWidget {
     required this.selected,
     required this.onTap,
   });
+  final String label;
+  final String value;
+  final bool selected;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
+  Widget build(BuildContext context) => GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -372,23 +369,21 @@ class _GoalChip extends StatelessWidget {
         ),
       ),
     );
-  }
 }
 
 class _DifficultyOption extends StatelessWidget {
-  final WorkoutDifficulty difficulty;
-  final bool selected;
-  final VoidCallback onTap;
 
   const _DifficultyOption({
     required this.difficulty,
     required this.selected,
     required this.onTap,
   });
+  final WorkoutDifficulty difficulty;
+  final bool selected;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
+  Widget build(BuildContext context) => GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -411,5 +406,4 @@ class _DifficultyOption extends StatelessWidget {
         ),
       ),
     );
-  }
 }

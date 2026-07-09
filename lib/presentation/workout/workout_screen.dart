@@ -26,7 +26,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Workouts',
               style: AppTextStyles.body1Medium,
             ),
@@ -73,14 +73,14 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
+                          const Row(
                             children: [
-                              const Icon(
+                              Icon(
                                 Icons.stars,
                                 color: AppColors.primary,
                                 size: 20,
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               Text(
                                 'Recommended for You',
                                 style: AppTextStyles.body1Medium,
@@ -94,7 +94,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                                   workout: workout,
                                   isRecommended: true,
                                 ),
-                              )),
+                              ),),
                           const SizedBox(height: 24),
                           const Divider(),
                           const SizedBox(height: 24),
@@ -108,7 +108,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                 ),
 
                 // All workouts section
-                Text(
+                const Text(
                   'Your Workouts',
                   style: AppTextStyles.body1Medium,
                 ),
@@ -116,7 +116,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                 ...workouts.map((workout) => Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: WorkoutCard(workout: workout),
-                    )),
+                    ),),
               ],
             ),
           );
@@ -155,8 +155,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
     );
   }
 
-  Widget _buildEmptyState() {
-    return Center(
+  Widget _buildEmptyState() => Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
@@ -166,7 +165,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -176,7 +175,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            Text(
+            const Text(
               'Ready to Start Your Fitness Journey?',
               style: AppTextStyles.h5,
               textAlign: TextAlign.center,
@@ -235,20 +234,18 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
         ),
       ),
     );
-  }
 
   Widget _buildFeatureItem({
     required IconData icon,
     required String title,
     required String description,
-  }) {
-    return Row(
+  }) => Row(
       children: [
         Container(
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: Icon(icon, color: AppColors.primary, size: 20),
@@ -273,7 +270,6 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
         ),
       ],
     );
-  }
 
   void _showGenerateWorkoutSheet(BuildContext context) {
     showModalBottomSheet(

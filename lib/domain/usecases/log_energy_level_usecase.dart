@@ -7,9 +7,9 @@ import '../repositories/dashboard_repository.dart';
 
 @injectable
 class LogEnergyLevelUseCase {
-  final DashboardRepository _repository;
 
   LogEnergyLevelUseCase(this._repository);
+  final DashboardRepository _repository;
 
   Future<Either<Failure, ProgressLog>> call({
     required String userId,
@@ -28,7 +28,7 @@ class LogEnergyLevelUseCase {
       );
     }
 
-    return await _repository.logEnergyLevel(
+    return _repository.logEnergyLevel(
       userId: userId,
       energyLevel: energyLevel,
       notes: notes,

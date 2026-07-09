@@ -5,23 +5,6 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 
 class CustomTextField extends StatefulWidget {
-  final TextEditingController? controller;
-  final String? label;
-  final String? hint;
-  final String? errorText;
-  final bool obscureText;
-  final TextInputType keyboardType;
-  final TextInputAction textInputAction;
-  final int? maxLines;
-  final int? maxLength;
-  final bool enabled;
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
-  final Function(String)? onChanged;
-  final Function(String)? onSubmitted;
-  final List<TextInputFormatter>? inputFormatters;
-  final String? Function(String?)? validator;
-  final FocusNode? focusNode;
 
   const CustomTextField({
     this.controller,
@@ -43,6 +26,23 @@ class CustomTextField extends StatefulWidget {
     this.focusNode,
     super.key,
   });
+  final TextEditingController? controller;
+  final String? label;
+  final String? hint;
+  final String? errorText;
+  final bool obscureText;
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
+  final int? maxLines;
+  final int? maxLength;
+  final bool enabled;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? Function(String?)? validator;
+  final FocusNode? focusNode;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -58,8 +58,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.label != null) ...[
@@ -115,7 +114,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: AppColors.error, width: 1),
+              borderSide: const BorderSide(color: AppColors.error),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
@@ -133,5 +132,4 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ],
     );
-  }
 }

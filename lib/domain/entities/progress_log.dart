@@ -1,6 +1,23 @@
 import 'package:equatable/equatable.dart';
 
 class ProgressLog extends Equatable {
+
+  const ProgressLog({
+    required this.logId,
+    required this.userId,
+    required this.loggedAt, required this.createdAt, this.weightKg,
+    this.bodyFatPercentage,
+    this.waistCm,
+    this.hipsCm,
+    this.energyLevel,
+    this.sleepQuality,
+    this.moodRating,
+    this.stressLevel,
+    this.functionalMilestones,
+    this.photoUrl,
+    this.notes,
+    this.aiInsights,
+  });
   final String logId;
   final String userId;
 
@@ -30,25 +47,6 @@ class ProgressLog extends Equatable {
   final DateTime loggedAt;
   final DateTime createdAt;
 
-  const ProgressLog({
-    required this.logId,
-    required this.userId,
-    this.weightKg,
-    this.bodyFatPercentage,
-    this.waistCm,
-    this.hipsCm,
-    this.energyLevel,
-    this.sleepQuality,
-    this.moodRating,
-    this.stressLevel,
-    this.functionalMilestones,
-    this.photoUrl,
-    this.notes,
-    this.aiInsights,
-    required this.loggedAt,
-    required this.createdAt,
-  });
-
   ProgressLog copyWith({
     String? logId,
     String? userId,
@@ -66,8 +64,7 @@ class ProgressLog extends Equatable {
     String? aiInsights,
     DateTime? loggedAt,
     DateTime? createdAt,
-  }) {
-    return ProgressLog(
+  }) => ProgressLog(
       logId: logId ?? this.logId,
       userId: userId ?? this.userId,
       weightKg: weightKg ?? this.weightKg,
@@ -85,7 +82,6 @@ class ProgressLog extends Equatable {
       loggedAt: loggedAt ?? this.loggedAt,
       createdAt: createdAt ?? this.createdAt,
     );
-  }
 
   @override
   List<Object?> get props => [

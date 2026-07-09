@@ -1,6 +1,27 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
+
+  const User({
+    required this.userId,
+    required this.firebaseUid,
+    required this.email,
+    required this.displayName,
+    required this.createdAt, required this.updatedAt, required this.isActive, this.photoUrl,
+    this.age,
+    this.heightCm,
+    this.currentWeightKg,
+    this.goalWeightKg,
+    this.gender,
+    this.emotionalGoal,
+    this.activityLevel,
+    this.dietaryPreferences,
+    this.dailyCaloricTarget,
+    this.proteinGrams,
+    this.carbsGrams,
+    this.fatsGrams,
+    this.waterIntakeMl,
+  });
   final String userId;
   final String firebaseUid;
   final String email;
@@ -30,30 +51,6 @@ class User extends Equatable {
   final DateTime createdAt;
   final DateTime updatedAt;
   final bool isActive;
-
-  const User({
-    required this.userId,
-    required this.firebaseUid,
-    required this.email,
-    required this.displayName,
-    this.photoUrl,
-    this.age,
-    this.heightCm,
-    this.currentWeightKg,
-    this.goalWeightKg,
-    this.gender,
-    this.emotionalGoal,
-    this.activityLevel,
-    this.dietaryPreferences,
-    this.dailyCaloricTarget,
-    this.proteinGrams,
-    this.carbsGrams,
-    this.fatsGrams,
-    this.waterIntakeMl,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.isActive,
-  });
 
   bool get hasCompletedProfile =>
       age != null &&
@@ -86,8 +83,7 @@ class User extends Equatable {
     DateTime? createdAt,
     DateTime? updatedAt,
     bool? isActive,
-  }) {
-    return User(
+  }) => User(
       userId: userId ?? this.userId,
       firebaseUid: firebaseUid ?? this.firebaseUid,
       email: email ?? this.email,
@@ -110,7 +106,6 @@ class User extends Equatable {
       updatedAt: updatedAt ?? this.updatedAt,
       isActive: isActive ?? this.isActive,
     );
-  }
 
   @override
   List<Object?> get props => [

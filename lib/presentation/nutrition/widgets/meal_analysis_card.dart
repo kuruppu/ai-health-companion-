@@ -5,21 +5,19 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../domain/entities/meal.dart';
 
 class MealAnalysisCard extends StatelessWidget {
-  final Meal meal;
 
   const MealAnalysisCard({
     required this.meal,
     super.key,
   });
+  final Meal meal;
 
   @override
-  Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
+  Widget build(BuildContext context) => DraggableScrollableSheet(
       initialChildSize: 0.7,
       minChildSize: 0.5,
       maxChildSize: 0.95,
-      builder: (context, scrollController) {
-        return Container(
+      builder: (context, scrollController) => Container(
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -111,10 +109,10 @@ class MealAnalysisCard extends StatelessWidget {
                         content: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.05),
+                            color: AppColors.primary.withValues(alpha: 0.05),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: AppColors.primary.withOpacity(0.2),
+                              color: AppColors.primary.withValues(alpha: 0.2),
                             ),
                           ),
                           child: Text(
@@ -134,10 +132,10 @@ class MealAnalysisCard extends StatelessWidget {
                           content: Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: AppColors.warning.withOpacity(0.05),
+                              color: AppColors.warning.withValues(alpha: 0.05),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: AppColors.warning.withOpacity(0.2),
+                                color: AppColors.warning.withValues(alpha: 0.2),
                               ),
                             ),
                             child: Text(
@@ -250,17 +248,14 @@ class MealAnalysisCard extends StatelessWidget {
               ),
             ],
           ),
-        );
-      },
+        ),
     );
-  }
 
   Widget _buildSection({
     required String title,
     required IconData icon,
     required Widget content,
-  }) {
-    return Column(
+  }) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
@@ -277,10 +272,8 @@ class MealAnalysisCard extends StatelessWidget {
         content,
       ],
     );
-  }
 
-  Widget _buildDetailRow(String label, String value) {
-    return Row(
+  Widget _buildDetailRow(String label, String value) => Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
@@ -295,7 +288,6 @@ class MealAnalysisCard extends StatelessWidget {
         ),
       ],
     );
-  }
 
   Color _getHealthScoreColor(int score) {
     if (score >= 4) return AppColors.success;

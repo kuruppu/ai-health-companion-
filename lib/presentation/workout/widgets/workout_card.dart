@@ -7,18 +7,17 @@ import 'exercise_list_card.dart';
 import 'workout_in_progress_sheet.dart';
 
 class WorkoutCard extends StatelessWidget {
-  final Workout workout;
-  final bool isRecommended;
 
   const WorkoutCard({
     required this.workout,
     this.isRecommended = false,
     super.key,
   });
+  final Workout workout;
+  final bool isRecommended;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
       clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,13 +27,13 @@ class WorkoutCard extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               gradient: isRecommended
-                  ? LinearGradient(
+                  ? const LinearGradient(
                       colors: AppColors.primaryGradient,
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     )
                   : null,
-              color: isRecommended ? null : AppColors.primary.withOpacity(0.1),
+              color: isRecommended ? null : AppColors.primary.withValues(alpha: 0.1),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +69,7 @@ class WorkoutCard extends StatelessWidget {
                   workout.description,
                   style: AppTextStyles.body2.copyWith(
                     color: isRecommended
-                        ? Colors.white.withOpacity(0.9)
+                        ? Colors.white.withValues(alpha: 0.9)
                         : AppColors.textSecondary,
                   ),
                   maxLines: 2,
@@ -106,14 +105,13 @@ class WorkoutCard extends StatelessWidget {
                   Wrap(
                     spacing: 6,
                     runSpacing: 6,
-                    children: workout.targetMuscles.take(4).map((muscle) {
-                      return Container(
+                    children: workout.targetMuscles.take(4).map((muscle) => Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.secondary.withOpacity(0.1),
+                          color: AppColors.secondary.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
@@ -123,8 +121,7 @@ class WorkoutCard extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                      );
-                    }).toList(),
+                      ),).toList(),
                   ),
                   const SizedBox(height: 12),
                 ],
@@ -155,7 +152,6 @@ class WorkoutCard extends StatelessWidget {
         ],
       ),
     );
-  }
 
   void _startWorkout(BuildContext context) {
     showModalBottomSheet(
@@ -178,13 +174,13 @@ class WorkoutCard extends StatelessWidget {
 }
 
 class _DifficultyBadge extends StatelessWidget {
-  final WorkoutDifficulty difficulty;
-  final bool isLight;
 
   const _DifficultyBadge({
     required this.difficulty,
     this.isLight = false,
   });
+  final WorkoutDifficulty difficulty;
+  final bool isLight;
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +189,7 @@ class _DifficultyBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: isLight ? Colors.white.withOpacity(0.2) : color.withOpacity(0.1),
+        color: isLight ? Colors.white.withValues(alpha: 0.2) : color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
@@ -219,17 +215,16 @@ class _DifficultyBadge extends StatelessWidget {
 }
 
 class _InfoChip extends StatelessWidget {
-  final IconData icon;
-  final String label;
 
   const _InfoChip({
     required this.icon,
     required this.label,
   });
+  final IconData icon;
+  final String label;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: AppColors.surfaceLight,
@@ -249,5 +244,4 @@ class _InfoChip extends StatelessWidget {
         ],
       ),
     );
-  }
 }

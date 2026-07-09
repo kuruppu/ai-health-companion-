@@ -2,6 +2,20 @@ import 'package:equatable/equatable.dart';
 
 /// Represents a completed workout session
 class WorkoutLog extends Equatable {
+
+  const WorkoutLog({
+    required this.logId,
+    required this.userId,
+    required this.workoutId,
+    required this.workoutName,
+    required this.startedAt,
+    required this.completedAt,
+    required this.durationMinutes,
+    required this.exercisesCompleted,
+    required this.totalExercises,
+    this.energyRating,
+    this.notes,
+  });
   /// Unique identifier for this log
   final String logId;
 
@@ -42,20 +56,6 @@ class WorkoutLog extends Equatable {
   double get completionPercentage =>
       totalExercises > 0 ? (exercisesCompleted / totalExercises) * 100 : 0;
 
-  const WorkoutLog({
-    required this.logId,
-    required this.userId,
-    required this.workoutId,
-    required this.workoutName,
-    required this.startedAt,
-    required this.completedAt,
-    required this.durationMinutes,
-    required this.exercisesCompleted,
-    required this.totalExercises,
-    this.energyRating,
-    this.notes,
-  });
-
   @override
   List<Object?> get props => [
         logId,
@@ -83,8 +83,7 @@ class WorkoutLog extends Equatable {
     int? totalExercises,
     int? energyRating,
     String? notes,
-  }) {
-    return WorkoutLog(
+  }) => WorkoutLog(
       logId: logId ?? this.logId,
       userId: userId ?? this.userId,
       workoutId: workoutId ?? this.workoutId,
@@ -97,5 +96,4 @@ class WorkoutLog extends Equatable {
       energyRating: energyRating ?? this.energyRating,
       notes: notes ?? this.notes,
     );
-  }
 }

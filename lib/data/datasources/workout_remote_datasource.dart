@@ -11,15 +11,15 @@ import '../models/workout_model.dart';
 /// Remote data source for workout operations (Claude API + Firestore)
 @injectable
 class WorkoutRemoteDataSource {
-  final Dio _dioClient;
-  final FirebaseFirestore _firestore;
-  final String _apiKey;
 
   const WorkoutRemoteDataSource(
     this._dioClient,
     this._firestore,
     @Named('claudeApiKey') this._apiKey,
   );
+  final Dio _dioClient;
+  final FirebaseFirestore _firestore;
+  final String _apiKey;
 
   /// Generate personalized workout using Claude AI
   ///
