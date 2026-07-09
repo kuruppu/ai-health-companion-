@@ -21,6 +21,8 @@ class MealCheckNotifier extends _$MealCheckNotifier {
 
     // Listen for scheduled check-ins
     _scheduler.addListener(_handleScheduledCheckIn);
+
+    return; // Explicitly return void
   }
 
   /// Handle scheduled check-in trigger
@@ -35,7 +37,7 @@ class MealCheckNotifier extends _$MealCheckNotifier {
       // Trigger AI message (handled by chat provider)
       ref
           .read(mealCheckChatProvider.notifier)
-          .triggerCheckInMessage(period, user.name ?? 'there');
+          .triggerCheckInMessage(period, user.displayName ?? 'there');
     }
   }
 
@@ -84,8 +86,9 @@ class MealCheckChat extends _$MealCheckChat {
   MealPeriod? _pendingCheckIn;
 
   @override
-  Future<void> build() {
+  Future<void> build() async {
     _checkService = getIt<MealCheckService>();
+    return; // Explicitly return void
   }
 
   /// Trigger AI check-in message

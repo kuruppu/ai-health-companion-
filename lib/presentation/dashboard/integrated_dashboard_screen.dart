@@ -52,7 +52,7 @@ class IntegratedDashboardScreen extends ConsumerWidget {
               children: [
                 // Greeting
                 Text(
-                  _getGreeting(user?.name),
+                  _getGreeting(user?.displayName),
                   style: AppTextStyles.h4,
                 ),
                 const SizedBox(height: 8),

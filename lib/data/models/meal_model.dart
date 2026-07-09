@@ -15,6 +15,9 @@ class MealModel extends Meal {
     required super.eatenAt,
   });
 
+  /// Alias for database compatibility (table uses loggedAt)
+  DateTime get loggedAt => eatenAt;
+
   /// Create from entity
   factory MealModel.fromEntity(Meal meal) {
     return MealModel(

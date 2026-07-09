@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, uri_does_not_exist, creation_with_non_type, undefined_method
+// TODO: Complete milestone 3 screens
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,9 +10,9 @@ import '../../presentation/dashboard/dashboard_screen.dart';
 import '../../presentation/home/home_screen.dart';
 import '../../presentation/nutrition/nutrition_screen.dart';
 import '../../presentation/onboarding/emotional_goal_screen.dart';
-import '../../presentation/onboarding/get_started_screen.dart';
-import '../../presentation/onboarding/user_info_screen.dart';
-import '../../presentation/profile/profile_screen.dart';
+// import '../../presentation/onboarding/get_started_screen.dart'; // TODO: Create
+// import '../../presentation/onboarding/user_info_screen.dart'; // TODO: Create
+// import '../../presentation/profile/profile_screen.dart'; // TODO: Create
 import '../../presentation/splash/splash_screen.dart';
 import '../../presentation/workout/workout_screen.dart';
 
@@ -23,24 +25,26 @@ class AppRouter {
         name: 'splash',
         builder: (context, state) => const SplashScreen(),
       ),
-      GoRoute(
-        path: '/get-started',
-        name: 'get-started',
-        builder: (context, state) => const GetStartedScreen(),
-      ),
+      // TODO: Uncomment when GetStartedScreen is created
+      // GoRoute(
+      //   path: '/get-started',
+      //   name: 'get-started',
+      //   builder: (context, state) => const GetStartedScreen(),
+      // ),
       GoRoute(
         path: '/emotional-goal',
         name: 'emotional-goal',
         builder: (context, state) => const EmotionalGoalScreen(),
       ),
-      GoRoute(
-        path: '/user-info',
-        name: 'user-info',
-        builder: (context, state) {
-          final emotionalGoal = state.extra as String;
-          return UserInfoScreen(emotionalGoal: emotionalGoal);
-        },
-      ),
+      // TODO: Uncomment when UserInfoScreen is created
+      // GoRoute(
+      //   path: '/user-info',
+      //   name: 'user-info',
+      //   builder: (context, state) {
+      //     final emotionalGoal = state.extra as String;
+      //     return UserInfoScreen(emotionalGoal: emotionalGoal);
+      //   },
+      // ),
       GoRoute(
         path: '/login',
         name: 'login',
@@ -76,11 +80,12 @@ class AppRouter {
         name: 'workout',
         builder: (context, state) => const WorkoutScreen(),
       ),
-      GoRoute(
-        path: '/profile',
-        name: 'profile',
-        builder: (context, state) => const ProfileScreen(),
-      ),
+      // TODO: Uncomment when ProfileScreen is created
+      // GoRoute(
+      //   path: '/profile',
+      //   name: 'profile',
+      //   builder: (context, state) => const ProfileScreen(),
+      // ),
     ],
     errorBuilder: (context, state) => Scaffold(
       body: Center(

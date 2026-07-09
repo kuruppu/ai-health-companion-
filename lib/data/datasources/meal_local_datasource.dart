@@ -17,17 +17,19 @@ class MealLocalDataSource {
   );
 
   /// Save meal to SQLite
+  /// TODO: Fix schema mismatch - table expects different fields
   Future<void> saveMeal(MealModel meal) async {
     await _database.into(_database.mealsTable).insert(
           MealsTableCompanion(
             mealId: Value(meal.mealId),
             userId: Value(meal.userId),
             mealType: Value(meal.mealType.name),
+            mealName: Value('Meal'), // TODO: Get from analysis or user input
+            totalCalories: Value(0.0), // TODO: Calculate from analysis
             photoUrl: Value(meal.photoUrl),
-            userNotes: Value(meal.userNotes),
-            analysisJson: Value(meal.analysis.toString()),
-            timestamp: Value(meal.timestamp),
-            loggedAt: Value(meal.loggedAt),
+            description: Value(meal.userNotes), // Map userNotes to description
+            aiAnalysis: Value(meal.analysis.toString()), // Changed from analysisJson
+            loggedAt: Value(meal.loggedAt), // Removed timestamp
           ),
           mode: InsertMode.insertOrReplace,
         );
@@ -109,7 +111,7 @@ class MealLocalDataSource {
   }) async {
     await (_database.update(_database.mealsTable)
           ..where((tbl) => tbl.mealId.equals(mealId)))
-        .write(MealsTableCompanion(userNotes: Value(userNotes)));
+        .write(MealsTableCompanion(description: Value(userNotes))); // Changed to description
 
     // Update cache
     final meal = await getMealById(mealId: mealId);
@@ -172,15 +174,15 @@ class MealLocalDataSource {
   }
 
   /// Convert Drift row to MealModel
-  MealModel _mealFromDriftRow(Meal row) {
+  MealModel _mealFromDriftRow(MealsTableData row) { // Changed from Meal
     return MealModel.fromDrift({
       'meal_id': row.mealId,
       'user_id': row.userId,
       'meal_type': row.mealType,
       'photo_url': row.photoUrl,
-      'user_notes': row.userNotes,
-      'analysis': row.analysisJson,
-      'timestamp': row.timestamp.millisecondsSinceEpoch,
+      'user_notes': row.description, // Changed from row.userNotes
+      'analysis': row.aiAnalysis, // Changed from row.analysisJson
+      'timestamp': row.createdAt.millisecondsSinceEpoch, // Changed from row.timestamp
       'eaten_at': row.loggedAt.millisecondsSinceEpoch,
     });
   }
