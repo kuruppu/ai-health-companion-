@@ -18,29 +18,27 @@ class AppLifecycle {
     }
     _initialized = true;
 
-    // Get scheduler from DI container
-    final scheduler = getIt<IntegratedMealCheckScheduler>();
+    // Get scheduler from DI container and start with callback
+    getIt<IntegratedMealCheckScheduler>()
+      ..start(
+        onCheckIn: (period) {
+          // Get current user name
+          final authState = ref.read(authProvider);
+          var userName = 'there';
 
-    // Start the scheduler with callback
-    scheduler.start(
-      onCheckIn: (period) {
-        // Get current user name
-        final authState = ref.read(authProvider);
-        var userName = 'there';
+          authState.whenData((status) {
+            if (status is Authenticated) {
+              userName = status.user.displayName;
+            }
+          });
 
-        authState.whenData((status) {
-          if (status is Authenticated) {
-            userName = status.user.displayName;
-          }
-        });
-
-        // Trigger check-in message in chat
-        ref.read(integratedChatProvider.notifier).addCheckInMessage(
-              period,
-              userName,
-            );
-      },
-    );
+          // Trigger check-in message in chat
+          ref.read(integratedChatProvider.notifier).addCheckInMessage(
+                period,
+                userName,
+              );
+        },
+      );
   }
 
   /// Clean up resources
@@ -49,8 +47,7 @@ class AppLifecycle {
       return;
     }
 
-    final scheduler = getIt<IntegratedMealCheckScheduler>();
-    scheduler.stop();
+    getIt<IntegratedMealCheckScheduler>().stop();
     _initialized = false;
   }
 }

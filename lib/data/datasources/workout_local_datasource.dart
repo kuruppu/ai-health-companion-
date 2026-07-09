@@ -169,12 +169,10 @@ class WorkoutLocalDataSource {
     final cached =
         _workoutCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})!;
 
-    final workouts = cached.values
+    return cached.values
         .map((json) => WorkoutModel.fromJson(json as Map<String, dynamic>))
-        .toList();
-
-    workouts.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-    return workouts;
+        .toList()
+      ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
   }
 
   /// Remove cached workout

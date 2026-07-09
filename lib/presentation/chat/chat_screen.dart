@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../shared/widgets/loading_indicator.dart';
-import '../providers/auth_provider.dart';
 import '../providers/chat_provider.dart';
 import 'widgets/chat_input_field.dart';
 import 'widgets/message_bubble.dart';

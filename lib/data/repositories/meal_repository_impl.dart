@@ -146,9 +146,11 @@ class MealRepositoryImpl implements MealRepository {
       await _localDataSource.deleteMeal(mealId: mealId);
 
       // Delete from remote (fire and forget)
-      unawaited(_remoteDataSource.deleteMealFromFirestore(mealId).catchError((error) {
-        AppLogger.e('Failed to delete meal from Firestore', error: error);
-      }));
+      unawaited(
+        _remoteDataSource.deleteMealFromFirestore(mealId).catchError((error) {
+          AppLogger.e('Failed to delete meal from Firestore', error: error);
+        }),
+      );
 
       return const Right(unit);
     } catch (e) {

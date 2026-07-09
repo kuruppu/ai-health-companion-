@@ -150,12 +150,10 @@ class MealLocalDataSource {
     final cacheKey = '${userId}_meals';
     final cached = _mealCache.get(cacheKey, defaultValue: <dynamic, dynamic>{})!;
 
-    final meals = cached.values
+    return cached.values
         .map((json) => MealModel.fromJson(json as Map<String, dynamic>))
-        .toList();
-
-    meals.sort((a, b) => b.loggedAt.compareTo(a.loggedAt));
-    return meals;
+        .toList()
+      ..sort((a, b) => b.loggedAt.compareTo(a.loggedAt));
   }
 
   /// Remove cached meal
