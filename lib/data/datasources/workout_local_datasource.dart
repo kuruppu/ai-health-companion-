@@ -17,20 +17,19 @@ class WorkoutLocalDataSource {
   );
 
   /// Save workout to SQLite
+  /// TODO: Fix schema mismatch - table uses workoutName/intensity, not name/difficulty
   Future<void> saveWorkout(WorkoutModel workout) async {
     await _database.into(_database.workoutsTable).insert(
           WorkoutsTableCompanion(
             workoutId: Value(workout.workoutId),
             userId: Value(workout.userId),
-            name: Value(workout.name),
-            description: Value(workout.description),
-            difficulty: Value(workout.difficulty.name),
+            workoutName: Value(workout.name),
+            workoutType: Value('strength'), // TODO: Map from workout type
+            intensity: Value(workout.difficulty.name),
             durationMinutes: Value(workout.durationMinutes),
-            targetMuscles: Value(workout.targetMuscles.join(',')),
-            exercisesJson: Value(workout.exercises
-                .map((e) => ExerciseModel.fromEntity(e).toJson())
-                .toList()
-                .toString()),
+            description: Value(workout.description),
+            // targetMuscles & exercisesJson don't exist in schema
+            // Exercises should be stored in WorkoutExercisesTable
             isAiGenerated: Value(workout.isAiGenerated),
             aiContext: Value(workout.aiContext),
             createdAt: Value(workout.createdAt),
@@ -85,20 +84,23 @@ class WorkoutLocalDataSource {
   }
 
   /// Save workout log to SQLite
+  /// TODO: Fix schema mismatch - table uses different field names
   Future<void> saveWorkoutLog(WorkoutLogModel log) async {
     await _database.into(_database.workoutLogsTable).insert(
           WorkoutLogsTableCompanion(
             logId: Value(log.logId),
             userId: Value(log.userId),
             workoutId: Value(log.workoutId),
-            workoutName: Value(log.workoutName),
-            startedAt: Value(log.startedAt),
+            // workoutName doesn't exist in schema
+            // startedAt doesn't exist, only completedAt
             completedAt: Value(log.completedAt),
-            durationMinutes: Value(log.durationMinutes),
-            exercisesCompleted: Value(log.exercisesCompleted),
+            actualDurationMinutes: Value(log.durationMinutes),
+            completedExercises: Value(log.exercisesCompleted),
             totalExercises: Value(log.totalExercises),
-            energyRating: Value(log.energyRating),
-            notes: Value(log.notes),
+            completionPercentage: Value(log.exercisesCompleted / log.totalExercises * 100),
+            intensity: Value('moderate'), // TODO: Map from log data
+            energyAfter: Value(log.energyRating),
+            userNotes: Value(log.notes),
           ),
           mode: InsertMode.insertOrReplace,
         );
@@ -191,16 +193,17 @@ class WorkoutLocalDataSource {
   }
 
   /// Convert Drift row to WorkoutModel
+  /// TODO: Fix field name mismatches
   WorkoutModel _workoutFromDriftRow(WorkoutsTableData row) {
     return WorkoutModel.fromDrift({
       'workout_id': row.workoutId,
       'user_id': row.userId,
-      'name': row.name,
+      'name': row.workoutName, // Changed from row.name
       'description': row.description,
-      'difficulty': row.difficulty,
+      'difficulty': row.intensity, // Changed from row.difficulty
       'duration_minutes': row.durationMinutes,
-      'target_muscles': row.targetMuscles,
-      'exercises': row.exercisesJson,
+      'target_muscles': '', // Field doesn't exist in schema
+      'exercises': '[]', // Field doesn't exist, exercises in separate table
       'is_ai_generated': row.isAiGenerated,
       'ai_context': row.aiContext,
       'created_at': row.createdAt.millisecondsSinceEpoch,
@@ -208,19 +211,20 @@ class WorkoutLocalDataSource {
   }
 
   /// Convert Drift row to WorkoutLogModel
+  /// TODO: Fix field name mismatches
   WorkoutLogModel _workoutLogFromDriftRow(WorkoutLogsTableData row) {
     return WorkoutLogModel.fromDrift({
       'log_id': row.logId,
       'user_id': row.userId,
       'workout_id': row.workoutId,
-      'workout_name': row.workoutName,
-      'started_at': row.startedAt.millisecondsSinceEpoch,
+      'workout_name': '', // Field doesn't exist in schema
+      'started_at': row.completedAt.millisecondsSinceEpoch, // startedAt doesn't exist
       'completed_at': row.completedAt.millisecondsSinceEpoch,
-      'duration_minutes': row.durationMinutes,
-      'exercises_completed': row.exercisesCompleted,
+      'duration_minutes': row.actualDurationMinutes, // Changed from row.durationMinutes
+      'exercises_completed': row.completedExercises, // Changed from row.exercisesCompleted
       'total_exercises': row.totalExercises,
-      'energy_rating': row.energyRating,
-      'notes': row.notes,
+      'energy_rating': row.energyAfter ?? 3, // Changed from row.energyRating
+      'notes': row.userNotes, // Changed from row.notes
     });
   }
 }
