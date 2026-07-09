@@ -39,7 +39,6 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
     final chatState = ref.watch(chatProvider);
-    final user = authState.value?.getCurrentUser();
 
     return Scaffold(
       appBar: AppBar(

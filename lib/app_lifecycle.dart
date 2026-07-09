@@ -30,7 +30,7 @@ class AppLifecycle {
 
         authState.whenData((status) {
           if (status is Authenticated) {
-            userName = status.user.displayName ?? 'there';
+            userName = status.user.displayName;
           }
         });
 

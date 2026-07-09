@@ -43,8 +43,6 @@ class _IntegratedChatScreenState extends ConsumerState<IntegratedChatScreen> {
     final chatState = ref.watch(integratedChatProvider);
     final hasPendingCheckIn = ref.watch(hasPendingCheckInProvider);
 
-    final user = authState.value?.getCurrentUser();
-
     return Scaffold(
       appBar: AppBar(
         title: Row(

@@ -143,7 +143,7 @@ class MealRepositoryImpl implements MealRepository {
 
       // Delete from remote (fire and forget)
       _remoteDataSource.deleteMealFromFirestore(mealId).catchError((error) {
-        print('Failed to delete meal from Firestore: $error');
+        AppLogger.e('Failed to delete meal from Firestore', error: error);
       });
 
       return const Right(unit);

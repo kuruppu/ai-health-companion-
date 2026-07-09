@@ -37,7 +37,7 @@ class MealCheckNotifier extends _$MealCheckNotifier {
       // Trigger AI message (handled by chat provider)
       ref
           .read(mealCheckChatProvider.notifier)
-          .triggerCheckInMessage(period, user.displayName ?? 'there');
+          .triggerCheckInMessage(period, user.displayName);
     }
   }
 

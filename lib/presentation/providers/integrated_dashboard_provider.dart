@@ -177,9 +177,6 @@ class IntegratedDashboard extends _$IntegratedDashboard {
         ref.read(mealCheckNotifierProvider.notifier).getSkipRate(user.userId);
 
     // Determine which meals were eaten today
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-
     var hadBreakfast = false;
     var hadLunch = false;
     var hadDinner = false;
