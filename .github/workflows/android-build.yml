@@ -7,6 +7,10 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,22 +31,25 @@ jobs:
         channel: 'stable'
 
     - name: Get dependencies
-      run: flutter pub get || true
+      run: flutter pub get
 
     - name: Run code generation
-      run: flutter pub run build_runner build --delete-conflicting-outputs || true
+      run: flutter pub run build_runner build --delete-conflicting-outputs
 
     - name: Build APK
-      run: flutter build apk --release --no-tree-shake-icons || true
+      run: flutter build apk --release --no-tree-shake-icons
+      continue-on-error: true
+      id: build_apk
 
     - name: Upload APK
+      if: steps.build_apk.outcome == 'success'
       uses: actions/upload-artifact@v4
       with:
         name: app-release
         path: build/app/outputs/flutter-apk/app-release.apk
 
     - name: Create Release
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      if: steps.build_apk.outcome == 'success' && github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
         tag_name: v${{ github.run_number }}

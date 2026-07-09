@@ -21,10 +21,10 @@ jobs:
           channel: 'stable'
 
       - name: Get dependencies
-        run: flutter pub get || true
+        run: flutter pub get
 
       - name: Run code generation
-        run: flutter pub run build_runner build --delete-conflicting-outputs || true
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed . || true
@@ -47,15 +47,18 @@ jobs:
           channel: 'stable'
 
       - name: Get dependencies
-        run: flutter pub get || true
+        run: flutter pub get
 
       - name: Run code generation
-        run: flutter pub run build_runner build --delete-conflicting-outputs || true
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Run unit tests
-        run: flutter test --coverage --no-test-assets || true
+        run: flutter test --coverage --no-test-assets
+        continue-on-error: true
+        id: run_tests
 
       - name: Upload coverage to Codecov
+        if: always()
         uses: codecov/codecov-action@v3
         with:
           files: ./coverage/lcov.info
@@ -76,15 +79,18 @@ jobs:
           channel: 'stable'
 
       - name: Get dependencies
-        run: flutter pub get || true
+        run: flutter pub get
 
       - name: Run code generation
-        run: flutter pub run build_runner build --delete-conflicting-outputs || true
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Build APK
-        run: flutter build apk --release || true
+        run: flutter build apk --release
+        continue-on-error: true
+        id: build_apk
 
       - name: Upload APK artifact
+        if: steps.build_apk.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
@@ -106,10 +112,12 @@ jobs:
           channel: 'stable'
 
       - name: Get dependencies
-        run: flutter pub get || true
+        run: flutter pub get
 
       - name: Run code generation
-        run: flutter pub run build_runner build --delete-conflicting-outputs || true
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Build iOS (no codesign)
-        run: flutter build ios --release --no-codesign || true
+        run: flutter build ios --release --no-codesign
+        continue-on-error: true
+        id: build_ios
